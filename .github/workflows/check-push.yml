@@ -1,0 +1,66 @@
+name: CI/CD_PUSH
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node_version: [18.14.0]
+      fail-fast: false
+
+    name: Lint, Test and Check formatting
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Install npm
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node_version }}
+          cache: "npm"
+          cache-dependency-path: 'package-lock.json'
+
+      - name: Install deps
+        run: npm install --no-frozen-lockfile
+
+      - name: Build
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Check formatting
+        run: npm run format
+
+  check_commit_convention:
+    name: Conventional Commit Message
+    runs-on: ubuntu-latest
+    steps:
+    - uses: gsactions/commit-message-checker@v2
+      with:
+        pattern: '(?:build|docs|refactor|test|fix|perf|chore|feat|ci)(?:\(\w+\))?:\s[a-z]{1,2}.+'
+        error: 'The commit message must follow the commit messages guidelines'
+        excludeDescription: 'true'
+        excludeTitle: 'true'
+        checkAllCommitMessages: 'true'
+        accessToken: ${{ secrets.GITHUB_TOKEN }}
+
+  check_branches_convention:
+    name: Conventional Branch Name
+    runs-on: ubuntu-latest
+    steps:
+      - uses: deepakputhraya/action-branch-name@master
+        with:
+          regex: '([a-z])+\/([a-z])+'
+          allowed_prefixes: 'feature,stable,fix,chore,docs,feat,build,ci,test,refactor,perf'
+          ignore: main,develop
+          min_length: 4
+          max_length: 100
