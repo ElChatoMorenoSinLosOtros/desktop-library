@@ -1,4 +1,5 @@
 /* eslint-disable import/order */
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { app, BrowserWindow } from 'electron';
 import path from 'node:path';
 

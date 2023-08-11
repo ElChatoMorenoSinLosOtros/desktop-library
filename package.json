@@ -2,6 +2,11 @@
   "name": "library-desktop",
   "private": false,
   "version": "0.0.1",
+  "description": "A desktop app for the library",
+  "author": {
+    "name": "El Chato Moreno y los otros",
+    "email": "morales.patty.jose@gmail.com"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && electron-builder",
@@ -12,7 +17,6 @@
   "dependencies": {
     "@mui/icons-material": "^5.14.3",
     "@mui/material": "^5.14.4",
-    "electron": "^24.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "vite-tsconfig-paths": "^4.2.0",
@@ -27,6 +31,7 @@
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "autoprefixer": "^10.4.14",
+    "electron": "^24.4.0",
     "electron-builder": "^23.6.0",
     "eslint": "^8.38.0",
     "eslint-config-airbnb": "^19.0.4",

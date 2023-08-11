@@ -13,7 +13,8 @@
     "artifactName": "${productName}_${version}.${ext}",
     "target": [
       "dmg"
-    ]
+    ],
+    "icon": "public/logo.svg"
   },
   "win": {
     "target": [
@@ -24,7 +25,15 @@
         ]
       }
     ],
-    "artifactName": "${productName}_${version}.${ext}"
+    "artifactName": "${productName}_${version}.${ext}",
+    "icon": "public/logo.svg"
+  },
+  "linux": {
+    "target": [
+      "deb"
+    ],
+    "category": "Development",
+    "icon": "public/logo.svg"
   },
   "nsis": {
     "oneClick": false,
