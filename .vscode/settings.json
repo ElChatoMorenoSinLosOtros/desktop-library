@@ -7,4 +7,17 @@
   "editor.tabSize": 2,
   "eslint.lintTask.enable": true,
   "files.eol": "\n",
+  "vitest.commandLine": "npm run -w client test --",
+  "jest.jestCommandLine": "npm run -w api test --",
+  "vitest.exclude": [
+    "**/apps/api/**",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/cypress/**",
+    "**/.{idea,git,cache,output,temp}/**"
+  ],
+  "jest.autoRun": {
+    "onSave": false,
+    "onType": false
+  },
 }

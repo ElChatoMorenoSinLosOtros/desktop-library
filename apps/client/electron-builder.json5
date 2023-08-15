@@ -14,7 +14,7 @@
     "target": [
       "dmg"
     ],
-    "icon": "public/logo.svg"
+    "icon": "./src/assets/logos/mac.icns"
   },
   "win": {
     "target": [
@@ -26,14 +26,14 @@
       }
     ],
     "artifactName": "${productName}_${version}.${ext}",
-    "icon": "public/logo.svg"
+    "icon": "./src/assets/logos/windows.ico"
   },
   "linux": {
     "target": [
       "deb"
     ],
     "category": "Development",
-    "icon": "public/logo.svg"
+    "icon": "./src/assets/logos/linux.png"
   },
   "nsis": {
     "oneClick": false,

@@ -8,46 +8,22 @@
     "email": "morales.patty.jose@gmail.com"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build && electron-builder",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --log-level warn --write \"**/**/*.{jsx,js,ts,tsx}\"",
-    "preview": "vite preview"
+    "dev": "turbo dev -F db && turbo dev -F api -F client",
+    "dev:windows": "turbo dev -F api -F client",
+    "up": "turbo up -F db",
+    "build": "turbo build -F client -F api",
+    "lint": "turbo lint -F client -F api",
+    "format": "turbo format -F client -F api",
+    "format:check": "turbo format:check -F client -F api",
+    "test:unit": "turbo test:unit -F client -F api",
+    "test:cov": "turbo test:cov -F client -F api",
+    "start": "node apps/api/dist/main"
   },
-  "dependencies": {
-    "@mui/icons-material": "^5.14.3",
-    "@mui/material": "^5.14.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "vite-tsconfig-paths": "^4.2.0",
-    "vite": "^4.3.2",
-    "vite-plugin-electron": "^0.11.2",
-    "vite-plugin-electron-renderer": "^0.14.5",
-    "@vitejs/plugin-react": "^4.0.0"
-  },
+  "license": "ISC",
+  "workspaces": [
+    "apps/*"
+  ],
   "devDependencies": {
-    "@types/react": "^18.0.37",
-    "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.59.0",
-    "@typescript-eslint/parser": "^5.59.0",
-    "autoprefixer": "^10.4.14",
-    "electron": "^24.4.0",
-    "electron-builder": "^23.6.0",
-    "eslint": "^8.38.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-airbnb-typescript": "^17.1.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.3.4",
-    "postcss": "^8.4.27",
-    "tailwindcss": "^3.3.3",
-    "typescript": "^5.0.2"
-  },
-  "eslintConfig": {
-    "extends": [
-      "./.eslintrc.cjs"
-    ]
-  },
-  "main": "dist-electron/main.js"
+    "turbo": "v1.10.12"
+  }
 }

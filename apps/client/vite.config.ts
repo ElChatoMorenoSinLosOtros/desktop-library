@@ -10,10 +10,10 @@ export default defineConfig({
     viteTsconfigPaths(),
     electron([
       {
-        entry: 'electron/main.ts'
+        entry: './electron/main.ts'
       },
       {
-        entry: 'electron/preload.ts',
+        entry: './electron/preload.ts',
         onstart(options) {
           options.reload();
         }

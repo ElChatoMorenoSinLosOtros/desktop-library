@@ -1,0 +1,15 @@
+{
+  "name": "db",
+  "version": "0.0.1",
+  "description": "A Api for the library",
+  "author": {
+    "name": "El Chato Moreno y los otros",
+    "email": "morales.patty.jose@gmail.com"
+  },
+  "license": "ISC",
+  "private": false,
+  "scripts": {
+    "dev": "docker compose down && docker compose up -d",
+    "up": "docker compose down && docker compose up -d"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "dev": {
+      "cache": false
+    },
+    "dev:windows": {
+      "cache": false
+    },
+    "up": {
+      "cache": false
+    },
+    "lint": {
+      "cache": false
+    },
+    "format": {
+      "cache": false
+    },
+    "format:check": {
+      "cache": false
+    },
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**"
+      ]
+    }
+  }
+}

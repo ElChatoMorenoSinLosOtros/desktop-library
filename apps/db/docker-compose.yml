@@ -1,0 +1,30 @@
+version: latest
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: library
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - 1010:1010
+    command: -p 1010
+    volumes:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./sql/query.sql:/docker-entrypoint-initdb.d/query.sql
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_LISTEN_PORT: 2020
+    ports:
+      - 2020:2020
+    depends_on:
+      - postgres

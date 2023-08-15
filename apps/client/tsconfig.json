@@ -23,16 +23,16 @@
     "baseUrl": "./",
     "paths": {
       "@/node": [
-        "node:path"
+        "./node:path"
       ],
       "@/*": [
-        "src/*"
+        "./src/*"
       ],
       "@src/*": [
-        "src/app/*"
+        "./src/app/*"
       ],
       "@pages/*": [
-        "src/app/pages/*"
+        "./src/app/pages/*"
       ],
     }
   },

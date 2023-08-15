@@ -1,3 +1,9 @@
+!**/glob-import/dir/node_modules
+
+# compiled output
+/dist
+/node_modules
+
 # Logs
 logs
 *.log
@@ -7,21 +13,49 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Tests
+coverage
+/coverage
+/.nyc_output
+
 node_modules
 dist
 dist-ssr
 dist-electron
 release
 *.local
+temp
+.eslintcache
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
-.idea
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# IDEs and editors
+.idea
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Turbo
+.turbo
+
+# Postgres
+postgres-data
+
+
