@@ -1,11 +1,26 @@
+import { useEffect, useState } from 'react';
 import TextField from './components/TextField';
 
 function Login() {
+  const [backendMessage, setBackendMessage] = useState('');
+
+  useEffect(() => {
+    fetch('/api')
+      .then(res => res.text())
+      .then((data: string) => setBackendMessage(data))
+      .catch((err: Error) => {
+        throw new Error(err.message);
+      });
+  }, []);
+
   return (
     <div className='bg-slate-900 h-screen grid place-content-center'>
       <div className='flex flex-col gap-10'>
         <div className='flex flex-col gap-5'>
-          <div className='text-3xl font-light text-white'>Welcome Back</div>
+          <div className='text-3xl font-light text-white'>
+            Welcome Back
+            {backendMessage}
+          </div>
           <div className='text-sm font-light text-white'>
             Enter Your Credentials
           </div>
