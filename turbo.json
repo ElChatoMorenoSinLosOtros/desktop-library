@@ -7,6 +7,9 @@
     "dev:windows": {
       "cache": false
     },
+    "prisma": {
+      "cache": false
+    },
     "up": {
       "cache": false
     },
