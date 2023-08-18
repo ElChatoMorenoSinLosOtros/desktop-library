@@ -24,6 +24,17 @@
     "apps/*"
   ],
   "devDependencies": {
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.2",
     "turbo": "v1.10.12"
+  },
+  "dependencies": {
+    "@nestjs/jwt": "^10.1.0",
+    "@nestjs/passport": "^10.0.0",
+    "jsonwebtoken": "^9.0.1",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1"
   }
 }
