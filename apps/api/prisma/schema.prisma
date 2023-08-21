@@ -1,3 +1,5 @@
+
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -7,11 +9,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+
 model User {
-  id        Int    @id @default(autoincrement())
-  name      String
-  direction String
-  phone     String @unique
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
 }
 
 model Admins {
@@ -23,3 +26,29 @@ model Admins {
   createdAt DateTime   @default(now())
   updatedAt  DateTime   @default(now())
 }
+
+model Client {
+        userId              Int           @id @default(autoincrement())
+        name                String?
+        lastName            String?
+        address             String?
+        email               String?       @unique
+        phoneNumber         Int?          @unique
+        typeUser            String
+        @@map(name: "user")
+}
+
+model Material {
+        materialId          Int           @id @default(autoincrement())
+        title               String?
+        author              String?
+        category            String?
+        isbn                String?       @unique
+        publicationYear     Int?
+        pageCount           Int?
+        quantity            Int?
+        available           Boolean
+        type_material       String
+        @@map(name: "material")
+}
+

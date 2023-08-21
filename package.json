@@ -1,4 +1,7 @@
 {
+  "dependencies": {
+    "@nestjs/mapped-types": "*"
+  },
   "name": "library-desktop",
   "private": false,
   "version": "0.0.1",
@@ -26,6 +29,9 @@
     "apps/*"
   ],
   "devDependencies": {
-    "turbo": "v1.10.12"
+    "@types/node": "^20.5.1",
+    "ts-node": "^10.9.1",
+    "turbo": "v1.10.12",
+    "typescript": "^5.1.6"
   }
 }
