@@ -6,12 +6,10 @@ import AuthModule from './auth/auth.module';
 import ClientsModule from './clients/clients.module';
 import MaterialsModule from './materials/materials.module';
 import PrismaModule from './prisma/prisma.module';
-import UsersModule from './users/users.module';
 
 @Module({
   imports: [
     PrismaModule,
-    UsersModule,
     AuthModule,
     AdminsModule,
     MaterialsModule,

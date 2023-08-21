@@ -28,7 +28,7 @@ model Admins {
 }
 
 model Client {
-        userId              Int           @id @default(autoincrement())
+        clientId              Int           @id @default(autoincrement())
         name                String?
         lastName            String?
         address             String?
