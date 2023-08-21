@@ -14,6 +14,11 @@ class UpdateUserDto extends PartialType(CreateUserDto) {
   direction: string;
 
   @IsOptional()
+  @IsNotEmpty()
+  @IsString()
+  gender: string;
+
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   phone: string;

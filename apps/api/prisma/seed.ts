@@ -9,6 +9,7 @@ async function main() {
     create: {
       name: 'Manuel Morales',
       direction: 'Av. Siempre viva',
+      gender: 'M',
       phone: '123456789'
     }
   });
@@ -22,6 +23,7 @@ async function main() {
     create: {
       name: 'Juan Perez',
       direction: 'Av. Los sueños',
+      gender: 'M',
       phone: '1234567890'
     }
   });

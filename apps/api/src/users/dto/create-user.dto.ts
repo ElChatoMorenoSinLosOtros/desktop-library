@@ -11,5 +11,9 @@ export default class CreateUserDto {
 
   @IsNotEmpty()
   @IsString()
+  gender: string;
+
+  @IsNotEmpty()
+  @IsString()
   phone: string;
 }

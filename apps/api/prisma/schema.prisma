@@ -11,5 +11,12 @@ model User {
   id        Int    @id @default(autoincrement())
   name      String
   direction String
+  gender    String
   phone     String @unique
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  password String
+  type     String
 }
