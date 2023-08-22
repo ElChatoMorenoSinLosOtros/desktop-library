@@ -10,6 +10,9 @@
     "prisma": {
       "cache": false
     },
+    "prisma:seed": {
+      "cache": false
+    },
     "up": {
       "cache": false
     },
