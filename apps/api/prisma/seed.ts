@@ -9,7 +9,7 @@ async function main() {
   const passwordSabin = await bcrypt.hash('password-sabin', roundsOfHashing);
   const passwordAlex = await bcrypt.hash('password-alex', roundsOfHashing);
 
-  const user1 = await prisma.admins.upsert({
+  await prisma.admins.upsert({
     where: { email: 'admin@admin.com' },
     update: {
       password: passwordSabin
@@ -22,7 +22,7 @@ async function main() {
     }
   });
 
-  const user2 = await prisma.admins.upsert({
+  await prisma.admins.upsert({
     where: { email: 'librarian@librarian.com' },
     update: {
       password: passwordAlex
@@ -34,7 +34,6 @@ async function main() {
       role: 'admin'
     }
   });
-  console.log(user1, user2);
 }
 
 main().catch((error: Error) => {

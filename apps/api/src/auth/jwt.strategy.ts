@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import AdminsService from 'src/users/users.service';
+// eslint-disable-next-line import/no-cycle
 import { jwtSecret } from './auth.module';
 
 @Injectable()
