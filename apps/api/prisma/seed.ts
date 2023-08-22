@@ -1,33 +1,40 @@
 import { PrismaClient } from '@prisma/client';
+import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
+const roundsOfHashing = 10;
+
 async function main() {
-  const post1 = await prisma.user.upsert({
-    where: { name: 'Manuel Morales', phone: '123456789' },
-    update: {},
+  const passwordSabin = await bcrypt.hash('password-sabin', roundsOfHashing);
+  const passwordAlex = await bcrypt.hash('password-alex', roundsOfHashing);
+
+  const user1 = await prisma.admins.upsert({
+    where: { email: 'admin@admin.com' },
+    update: {
+      password: passwordSabin
+    },
     create: {
-      name: 'Manuel Morales',
-      direction: 'Av. Siempre viva',
-      phone: '123456789'
+      email: 'admin@admin.com',
+      name: 'Admin',
+      password: passwordSabin,
+      role: 'admin'
     }
   });
 
-  const post2 = await prisma.user.upsert({
-    where: {
-      name: 'Juan Perez',
-      phone: '1234567890'
+  const user2 = await prisma.admins.upsert({
+    where: { email: 'librarian@librarian.com' },
+    update: {
+      password: passwordAlex
     },
-    update: {},
     create: {
-      name: 'Juan Perez',
-      direction: 'Av. Los sueños',
-      phone: '1234567890'
+      email: 'librarian@librarian.com',
+      name: 'Librarian',
+      password: passwordAlex,
+      role: 'admin'
     }
   });
-  if (!post1 || !post2) {
-    throw new Error('Upsert failed');
-  }
+  console.log(user1, user2);
 }
 
 main().catch((error: Error) => {

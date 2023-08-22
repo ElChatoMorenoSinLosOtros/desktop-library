@@ -16,4 +16,10 @@ export default class AdminEntity implements Admins {
 
   @ApiProperty()
   role: string;
+
+  @ApiProperty()
+  createdAt: Date;
+
+  @ApiProperty()
+  updatedAt: Date;
 }
