@@ -9,18 +9,16 @@ import UsersModule from 'src/users/users.module';
 import UsersService from 'src/users/users.service';
 import AuthController from './auth.controller';
 import AuthService from './auth.service';
-// eslint-disable-next-line import/no-cycle
+import jwtConstants from './constants';
 import JwtStrategy from './jwt.strategy';
-
-export const jwtSecret = 'zjP9h6ZI5LoSKCRj';
 
 @Module({
   imports: [
     PrismaModule,
     PassportModule,
     JwtModule.register({
-      secret: jwtSecret,
-      signOptions: { expiresIn: '5m' }
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '24hr' }
     }),
     AdminsModule,
     UsersModule
