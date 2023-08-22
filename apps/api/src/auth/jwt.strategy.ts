@@ -2,15 +2,14 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import AdminsService from 'src/users/users.service';
-// eslint-disable-next-line import/no-cycle
-import { jwtSecret } from './auth.module';
+import jwtConstants from './constants';
 
 @Injectable()
 export default class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(private usersService: AdminsService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: jwtSecret
+      secretOrKey: jwtConstants.secret
     });
   }
 

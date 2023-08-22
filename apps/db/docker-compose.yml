@@ -10,8 +10,8 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     ports:
-      - 1010:1010
-    command: -p 1010
+      - 3030:3030
+    command: -p 3030
     volumes:
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./sql/query.sql:/docker-entrypoint-initdb.d/query.sql
@@ -23,8 +23,8 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
-      PGADMIN_LISTEN_PORT: 2020
+      PGADMIN_LISTEN_PORT: 5050
     ports:
-      - 2020:2020
+      - 5050:5050
     depends_on:
       - postgres
