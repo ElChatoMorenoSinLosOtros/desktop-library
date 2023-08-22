@@ -5,9 +5,16 @@ import {
   Get,
   Param,
   Patch,
-  Post
+  Post,
+  UseGuards
 } from '@nestjs/common';
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiTags
+} from '@nestjs/swagger';
+import JwtAuthGuard from 'src/auth/jwt-auth.guard';
 import AdminsService from './admins.service';
 import CreateAdminDto from './dto/create-admin.dto';
 import UpdateAdminDto from './dto/update-admin.dto';
@@ -25,24 +32,32 @@ export default class AdminsController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ type: AdminEntity, isArray: true })
   findAll() {
     return this.adminsService.findAll();
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ type: AdminEntity })
   findOne(@Param('id') id: string) {
     return this.adminsService.findOne(+id);
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ type: AdminEntity })
   update(@Param('id') id: string, @Body() updateAdminDto: UpdateAdminDto) {
     return this.adminsService.update(+id, updateAdminDto);
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ type: AdminEntity })
   remove(@Param('id') id: string) {
     return this.adminsService.remove(+id);
