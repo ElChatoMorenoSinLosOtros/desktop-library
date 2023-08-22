@@ -5,7 +5,6 @@ const prisma = new PrismaClient();
 
 const roundsOfHashing = 10;
 
-
 async function main() {
   const passwordSabin = await bcrypt.hash('password-sabin', roundsOfHashing);
   const passwordAlex = await bcrypt.hash('password-alex', roundsOfHashing);
@@ -51,24 +50,6 @@ async function main() {
       type_material: 'BOOK'
     });
   }
-
-  console.log('Seeding complete.');
-  if (!users || !materials) {
-    throw new Error('Upsert failed');
-  }
-
-  // Seed Users
-  const seededUsers = await prisma.client.createMany({
-    data: users
-  });
-
-  // Seed Materials
-  const seededMaterials = await prisma.material.createMany({
-    data: materials
-  });
-
-  console.log('Seeded users:', seededUsers);
-  console.log('Seeded materials:', seededMaterials);
 }
 
 main().catch((error: Error) => {

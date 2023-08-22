@@ -5,8 +5,6 @@ import AdminsModule from 'src/admins/admins.module';
 import AdminsService from 'src/admins/admins.service';
 import PrismaModule from 'src/prisma/prisma.module';
 import PrismaService from 'src/prisma/prisma.service';
-import UsersModule from 'src/users/users.module';
-import UsersService from 'src/users/users.service';
 import AuthController from './auth.controller';
 import AuthService from './auth.service';
 import jwtConstants from './constants';
@@ -20,16 +18,9 @@ import JwtStrategy from './jwt.strategy';
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '24hr' }
     }),
-    AdminsModule,
-    UsersModule
+    AdminsModule
   ],
   controllers: [AuthController],
-  providers: [
-    AdminsService,
-    UsersService,
-    AuthService,
-    PrismaService,
-    JwtStrategy
-  ]
+  providers: [AdminsService, AuthService, PrismaService, JwtStrategy]
 })
 export default class AuthModule {}
