@@ -1,3 +1,5 @@
+import { NavigateFunction } from 'react-router-dom';
+
 export {};
 
 declare global {
@@ -73,6 +75,31 @@ declare global {
   }
 
   interface LoginSubmitButtonProps {
+    children: React.ReactNode;
+  }
+
+  interface ItemListButtonProps {
+    children: React.ReactNode;
+    onClick: () => void;
+  }
+
+  interface SideBarItem {
+    id: number;
+    name: string;
+    link: string;
+  }
+
+  interface SideBarMenu {
+    menus: SideBarItem[];
+  }
+
+  interface SideBarItemListProps {
+    name: string;
+    link: string;
+    navigate: NavigateFunction;
+  }
+
+  interface LogOutButtonProps {
     children: React.ReactNode;
   }
 }

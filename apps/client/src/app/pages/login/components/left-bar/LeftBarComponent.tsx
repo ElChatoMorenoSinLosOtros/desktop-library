@@ -1,13 +1,11 @@
+import logo from '@images/logo-wbg.png';
+
 function LeftBarComponent() {
   return (
     <div className='h-screen col-span-5 bg-[#0d1b2a] flex flex-col font-russo'>
       <div className='h-3/5 grid place-content-center'>
         <div className='bg-[#D9D9D9] px-11 rounded-full py-5'>
-          <img
-            className='h-96'
-            src='/src/assets/images/logo-wbg.png'
-            alt='logo'
-          />
+          <img className='h-96' src={logo} alt='logo' />
         </div>
       </div>
       <div className='grid place-content-center gap-8'>

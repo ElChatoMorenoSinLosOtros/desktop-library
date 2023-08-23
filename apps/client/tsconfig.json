@@ -42,6 +42,18 @@
       ],
       "@store/*": [
         "./src/store/*"
+      ],
+      "@components/*": [
+        "./src/app/components/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@images/*": [
+        "./src/assets/images/*"
+      ],
+      "@menus/*": [
+        "./src/assets/menus/*"
       ]
     }
   },
