@@ -102,4 +102,14 @@ declare global {
   interface LogOutButtonProps {
     children: React.ReactNode;
   }
+
+  interface LogOutButtonsProps {
+    children: React.ReactNode;
+    onClick: () => void;
+    className: string;
+  }
+
+  interface UseLogOutProps {
+    navigate: NavigateFunction;
+  }
 }
