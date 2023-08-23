@@ -42,7 +42,10 @@
       ],
       "@store/*": [
         "./src/store/*"
-      ]
+      ],
+      "@components/*": [
+        "./src/app/components/*"
+      ],
     }
   },
   "types": [
