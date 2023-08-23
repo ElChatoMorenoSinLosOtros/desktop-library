@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 function CancelButton() {
-  const [isPopupVisible, setPopupVisible] = useState(false);
+  const [, setPopupVisible] = useState(false);
 
   const handleClick = () => {
     setPopupVisible(false);
