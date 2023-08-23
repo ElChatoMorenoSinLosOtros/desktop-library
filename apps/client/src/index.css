@@ -1,3 +1,84 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'roboto';
+    font-weight: 100;
+    font-style: normal;
+    src: url('/src/assets/fonts/roboto/roboto-thin.ttf');
+  }
+  @font-face {
+    font-family: 'roboto';
+    font-weight: 100;
+    font-style: italic;
+    src: url('/src/assets/fonts/roboto/roboto-thin-italic.ttf');
+  }
+  @font-face {
+    font-family: 'roboto';
+    font-weight: 300;
+    font-style: normal;
+    src: url('/src/assets/fonts/roboto/roboto-light.ttf');
+  }
+  @font-face {
+    font-family: 'roboto';
+    font-weight: 300;
+    font-style: italic;
+    src: url('/src/assets/fonts/roboto/roboto-light-italic.ttf');
+  }
+  @font-face {
+    font-family: 'roboto';
+    font-weight: 400;
+    font-style: normal;
+    src: url('/src/assets/fonts/roboto/roboto-regular.ttf');
+  }
+  @font-face {
+    font-family: 'roboto';
+    font-weight: 400;
+    font-style: italic;
+    src: url('/src/assets/fonts/roboto/roboto-italic.ttf');
+  }
+  @font-face {
+    font-family: 'roboto';
+    font-weight: 500;
+    font-style: normal;
+    src: url('/src/assets/fonts/roboto/roboto-medium.ttf');
+  }
+  @font-face {
+    font-family: 'roboto';
+    font-weight: 500;
+    font-style: italic;
+    src: url('/src/assets/fonts/roboto/roboto-medium-italic.ttf');
+  }
+  @font-face {
+    font-family: 'roboto';
+    font-weight: 700;
+    font-style: normal;
+    src: url('/src/assets/fonts/roboto/roboto-bold.ttf');
+  }
+  @font-face {
+    font-family: 'roboto';
+    font-weight: 700;
+    font-style: italic;
+    src: url('/src/assets/fonts/roboto/roboto-bold-italic.ttf');
+  }
+  @font-face {
+    font-family: 'roboto';
+    font-weight: 900;
+    font-style: normal;
+    src: url('/src/assets/fonts/roboto/roboto-black.ttf');
+  }
+  @font-face {
+    font-family: 'roboto';
+    font-weight: 900;
+    font-style: italic;
+    src: url('/src/assets/fonts/roboto/roboto-black-italic.ttf');
+  }
+  @font-face {
+    font-family: 'russo';
+    font-weight: 400;
+    font-style: normal;
+    src: url('/src/assets/fonts/russo/russo-regular.ttf');
+  }
+}
