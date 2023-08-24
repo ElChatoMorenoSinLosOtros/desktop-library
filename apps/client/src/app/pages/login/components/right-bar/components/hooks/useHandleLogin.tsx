@@ -19,7 +19,7 @@ export const useHandleLogin = ({ setError }: UseHandleLoginProps) => {
     };
     const { setAdmin } = useAdminStore.getState();
     setAdmin({ admin: Admin });
-    navigate('/dashboard');
+    navigate('/menu');
   };
 
   return { useLogin };

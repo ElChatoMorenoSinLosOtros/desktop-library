@@ -4,7 +4,7 @@ const useLogOut = ({ navigate }: UseLogOutProps) => {
   const { logout } = useAdminStore();
 
   const handleCancel = () => {
-    navigate('/dashboard');
+    navigate('/menu');
   };
 
   const handleLogOut = () => {
