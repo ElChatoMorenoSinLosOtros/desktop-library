@@ -7,19 +7,39 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int    @id @default(autoincrement())
-  name      String
-  direction String
-  phone     String @unique
-}
-
 model Admins {
-  id        Int         @id @default(autoincrement())
-  email     String      @unique
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
   password  String
   name      String
   role      String
-  createdAt DateTime   @default(now())
-  updatedAt  DateTime   @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model Client {
+  clientId    Int     @id @default(autoincrement())
+  name        String?
+  lastName    String?
+  address     String?
+  email       String? @unique
+  phoneNumber Int?    @unique
+  typeUser    String
+
+  @@map(name: "user")
+}
+
+model Material {
+  materialId      Int     @id @default(autoincrement())
+  title           String?
+  author          String?
+  category        String?
+  isbn            String? @unique
+  publicationYear Int?
+  pageCount       Int?
+  quantity        Int?
+  available       Boolean
+  type_material   String
+
+  @@map(name: "material")
 }
