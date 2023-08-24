@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Client } from '@prisma/client';
+import LoanEntity from 'src/loans/entities/loan.entity';
 
 export default class ClientEntity implements Client {
   @ApiProperty()
@@ -22,4 +23,7 @@ export default class ClientEntity implements Client {
 
   @ApiProperty()
   typeUser: string;
+
+  @ApiProperty({ type: () => [LoanEntity], isArray: true }) // Specify the type for loans array
+  loans?: LoanEntity[];
 }
