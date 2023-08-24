@@ -9,6 +9,7 @@ declare global {
     placeholder: string;
     type?: 'text' | 'password' | 'email' | 'number' | 'date' | 'time';
     className?: string;
+    classNameTitle?: string;
   }
 
   interface ButtonProps {
@@ -127,5 +128,22 @@ declare global {
 
   interface OptionsMenu {
     menu: OptionMenu[];
+  }
+
+  interface GlobalFormProps {
+    title: string;
+    children: React.ReactNode;
+    subTitle: string;
+  }
+
+  interface GlobalTextFieldProps {
+    title: string;
+    name: string;
+    type?: 'text' | 'password' | 'email' | 'number' | 'date' | 'time';
+  }
+
+  interface GlobalSubmitButtonProps {
+    children: React.ReactNode;
+    className?: string;
   }
 }

@@ -5,17 +5,21 @@ function TextField({
   name,
   placeholder,
   type = 'text',
-  className = ''
+  className = '',
+  classNameTitle = ''
 }: TextFieldProps) {
   return (
-    <div className='flex flex-col gap-1'>
-      <label htmlFor={name}>{title}</label>
+    <div className='flex flex-col gap-5'>
+      <label htmlFor={name} className={classNameTitle}>
+        {title}
+      </label>
       <Field
         id={name}
         name={name}
-        className={`py-3 px-5 outline-none ${className}`}
+        className={`py-2 px-4 outline-none ${className}`}
         placeholder={placeholder}
         type={type}
+        required
       />
     </div>
   );
