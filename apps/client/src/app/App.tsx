@@ -8,6 +8,7 @@ import MaterialManagementPage from '@pages/material-management/MaterialManagemen
 import MenuPage from '@pages/menu/MenuPage';
 import NotFoundPage from '@pages/not-found/NotFoundPage';
 import PersonManagementPage from '@pages/person-management/PersonManagementPage';
+import AddPersonPage from '@pages/person-management/pages/AddPersonPage';
 import NewDataPersonPage from '@pages/person-management/pages/NewDataPersonPage';
 import ReportsPage from '@pages/reports/ReportsPage';
 import ReservationsManagementPage from '@pages/reservations-management/ReservationsManagementPage';
@@ -40,6 +41,10 @@ function App() {
           <Route
             path='/person-management/new-data'
             element={<NewDataPersonPage />}
+          />
+          <Route
+            path='/person-management/add-person'
+            element={<AddPersonPage />}
           />
         </Routes>
       </div>
