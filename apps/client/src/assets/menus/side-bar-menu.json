@@ -11,6 +11,11 @@
       "link": "/dashboard"
     },
     {
+      "id": 8,
+      "name": "Reports",
+      "link": "/reports"
+    },
+    {
       "id": 3,
       "name": "Person Management",
       "link": "/person-management"

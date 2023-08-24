@@ -8,6 +8,7 @@ import MaterialManagementPage from '@pages/material-management/MaterialManagemen
 import MenuPage from '@pages/menu/MenuPage';
 import NotFoundPage from '@pages/not-found/NotFoundPage';
 import PersonManagementPage from '@pages/person-management/PersonManagementPage';
+import ReportsPage from '@pages/reports/ReportsPage';
 import ReservationsManagementPage from '@pages/reservations-management/ReservationsManagementPage';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
@@ -34,6 +35,7 @@ function App() {
             element={<ReservationsManagementPage />}
           />
           <Route path='/logout' element={<LogoutPage />} />
+          <Route path='/reports' element={<ReportsPage />} />
         </Routes>
       </div>
     </div>

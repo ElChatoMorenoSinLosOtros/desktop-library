@@ -1,0 +1,34 @@
+{
+  "menu": [
+    {
+      "id": 1,
+      "title": "Materials",
+      "url": "/material-management"
+    },
+    {
+      "id": 2,
+      "title": "Persons",
+      "url": "/person-management"
+    },
+    {
+      "id": 3,
+      "title": "Loans",
+      "url": "/loan-management"
+    },
+    {
+      "id": 4,
+      "title": "Fines",
+      "url": "/fines-management"
+    },
+    {
+      "id": 5,
+      "title": "Reservations",
+      "url": "/reservations-management"
+    },
+    {
+      "id": 6,
+      "title": "Reports",
+      "url": "/reports"
+    }
+  ]
+}

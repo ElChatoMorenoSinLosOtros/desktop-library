@@ -112,4 +112,20 @@ declare global {
   interface UseLogOutProps {
     navigate: NavigateFunction;
   }
+
+  interface MenuOptionButtonProps {
+    src: string;
+    title: string;
+    navigate: NavigateFunction;
+  }
+
+  interface OptionMenu {
+    id: number;
+    url: string;
+    title: string;
+  }
+
+  interface OptionsMenu {
+    menu: OptionMenu[];
+  }
 }
