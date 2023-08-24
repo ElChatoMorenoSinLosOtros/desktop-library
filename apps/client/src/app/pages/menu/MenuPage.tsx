@@ -1,7 +1,10 @@
+import OptionsMenuPage from './components/OptionsMenuPage';
+
 function MenuPage() {
   return (
-    <div className='h-screen grid place-content-center font-russo text-6xl'>
-      <h1>Menu Page</h1>
+    <div className='h-full flex flex-col'>
+      <header className='font-russo text-5xl text-start p-10'>Menu</header>
+      <OptionsMenuPage />
     </div>
   );
 }
