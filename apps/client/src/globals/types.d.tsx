@@ -1,7 +1,5 @@
 import { NavigateFunction } from 'react-router-dom';
 
-export {};
-
 declare global {
   interface TextFieldProps {
     title: string;
@@ -28,9 +26,32 @@ declare global {
     message?: string;
   }
 
+  interface MaterialResponse {
+    title?: string;
+    author?: string;
+    category?: string;
+    isbn?: string;
+    publicationYear?: number;
+    pageCount?: number;
+    typeMaterial?: string;
+    accessToken?: string;
+    statusCode?: number;
+    message?: string;
+  }
+
   interface HandleLoginSubmitProps {
     email: string;
     password: string;
+  }
+
+  interface HandleMaterialSubmitProps {
+    title: string;
+    author: string;
+    category: string;
+    materialType: string;
+    publicationYear: number;
+    pageCount: number;
+    isbn: string;
   }
 
   interface Admin {
@@ -67,6 +88,10 @@ declare global {
     setError: React.Dispatch<React.SetStateAction<string>>;
   }
 
+  interface UseHandleMaterialProps {
+    setError: React.Dispatch<React.SetStateAction<string>>;
+  }
+
   interface LoginFormTextFieldProps {
     title: string;
     name: string;
@@ -74,7 +99,18 @@ declare global {
     type: 'text' | 'password' | 'email' | 'number' | 'date' | 'time';
   }
 
+  interface MaterialFormTextFieldProps {
+    title: string;
+    name: string;
+    placeholder: string;
+    type: 'text' | 'number' | 'date';
+  }
+
   interface LoginSubmitButtonProps {
+    children: React.ReactNode;
+  }
+
+  interface MaterialSubmitButtonProps {
     children: React.ReactNode;
   }
 

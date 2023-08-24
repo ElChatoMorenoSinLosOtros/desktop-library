@@ -5,6 +5,8 @@ import LoanManagementPage from '@pages/loan-management/LoanManagementPage';
 import LoginPage from '@pages/login/LoginPage';
 import LogoutPage from '@pages/logout/LogoutPage';
 import MaterialManagementPage from '@pages/material-management/MaterialManagementPage';
+import AddMaterialPage from '@pages/material-management/pages/add-material/AddMaterialPage';
+import NewMaterialPage from '@pages/material-management/pages/new-material/NewMaterialPage';
 import MenuPage from '@pages/menu/MenuPage';
 import NotFoundPage from '@pages/not-found/NotFoundPage';
 import PersonManagementPage from '@pages/person-management/PersonManagementPage';
@@ -34,6 +36,14 @@ function App() {
             element={<ReservationsManagementPage />}
           />
           <Route path='/logout' element={<LogoutPage />} />
+          <Route
+            path='/material-management/add-material'
+            element={<AddMaterialPage />}
+          />
+          <Route
+            path='/material-management/new-material'
+            element={<NewMaterialPage />}
+          />
         </Routes>
       </div>
     </div>
