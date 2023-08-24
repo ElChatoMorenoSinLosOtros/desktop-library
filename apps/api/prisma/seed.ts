@@ -35,7 +35,6 @@ async function main() {
     }
   });
 
-  // Seed Materials
   const materials = [];
   for (let i = 1; i <= 10; i += 1) {
     materials.push({
@@ -46,7 +45,7 @@ async function main() {
       publicationYear: 2000 + i,
       pageCount: 100 + i,
       quantity: i,
-      available: i > 0, // Set availability based on quantity
+      available: i > 0,
       type_material: 'BOOK'
     });
   }
