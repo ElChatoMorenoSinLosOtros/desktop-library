@@ -9,7 +9,7 @@ async function main() {
   const passwordSabin = await bcrypt.hash('password-sabin', roundsOfHashing);
   const passwordAlex = await bcrypt.hash('password-alex', roundsOfHashing);
 
-  await prisma.admins.upsert({
+  await prisma.admin.upsert({
     where: { email: 'admin@admin.com' },
     update: {
       password: passwordSabin
@@ -22,7 +22,7 @@ async function main() {
     }
   });
 
-  await prisma.admins.upsert({
+  await prisma.admin.upsert({
     where: { email: 'librarian@librarian.com' },
     update: {
       password: passwordAlex
