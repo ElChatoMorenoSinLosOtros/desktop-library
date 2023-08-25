@@ -19,22 +19,22 @@ export default class AdminsService {
       ...createAdminDto,
       password: hashedPassword
     };
-    return this.prisma.admins.create({
+    return this.prisma.admin.create({
       data: adminData
     });
   }
 
   findAll() {
-    return this.prisma.admins.findMany();
+    return this.prisma.admin.findMany();
   }
 
-  findOne(id: number) {
-    return this.prisma.admins.findMany({
-      where: { id }
+  findOne(adminId: number) {
+    return this.prisma.admin.findMany({
+      where: { adminId }
     });
   }
 
-  async update(id: number, updateAdminDto: UpdateAdminDto) {
+  async update(adminId: number, updateAdminDto: UpdateAdminDto) {
     let hashedPassword = '';
     if (updateAdminDto.password) {
       hashedPassword = await bcrypt.hash(
@@ -46,15 +46,15 @@ export default class AdminsService {
       ...updateAdminDto,
       password: hashedPassword
     };
-    return this.prisma.admins.update({
-      where: { id },
+    return this.prisma.admin.update({
+      where: { adminId },
       data: updateAdminData
     });
   }
 
-  remove(id: number) {
-    return this.prisma.admins.delete({
-      where: { id }
+  remove(adminId: number) {
+    return this.prisma.admin.delete({
+      where: { adminId }
     });
   }
 }

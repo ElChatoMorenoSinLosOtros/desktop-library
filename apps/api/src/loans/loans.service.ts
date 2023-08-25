@@ -2,39 +2,26 @@ import { Injectable } from '@nestjs/common';
 import PrismaService from 'src/prisma/prisma.service';
 import CreateLoanDto from './dto/create-loan.dto';
 import UpdateLoanDto from './dto/update-loan.dto';
-import LoanEntity from './entities/loan.entity';
 
 @Injectable()
 export default class LoansService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(
-    clientId: number,
-    createLoanDto: CreateLoanDto
-  ): Promise<LoanEntity> {
-    const { materialId, loanDate, returnDate } = createLoanDto;
-    const material = await this.prisma.material.findUnique({
-      where: { materialId }
-    });
-    if (!material || material.quantity <= 0) {
-      throw new Error('Material not available');
-    }
-    const loanData: CreateLoanDto = {
-      clientId,
-      materialId,
-      loanDate,
-      returnDate
-    };
-
-    await this.prisma.material.update({
-      where: { materialId },
-      data: {
-        quantity: material.quantity - 1
-      }
-    });
+  async createLoan(createLoanDto: CreateLoanDto) {
+    const { adminID, ...loanData } = createLoanDto;
 
     const createdLoan = await this.prisma.loan.create({
-      data: loanData
+      data: {
+        ...loanData,
+        admin: {
+          connect: { adminId: adminID }
+        }
+      },
+      include: {
+        admin: true, // Include the admin in the created loan response
+        client: true, // Include the client if needed
+        material: true // Include the material if needed
+      }
     });
     return createdLoan;
   }

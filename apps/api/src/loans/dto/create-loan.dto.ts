@@ -18,10 +18,14 @@ export default class CreateLoanDto {
   @ApiProperty()
   @IsDate()
   @IsOptional()
-  returnDate?: Date;
+  returnDate?: Date | null;
 
   @ApiProperty()
   @IsBoolean()
   @IsOptional()
   returned?: boolean;
+
+  @ApiProperty()
+  @IsInt()
+  adminID: number;
 }
