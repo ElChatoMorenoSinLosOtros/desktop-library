@@ -23,7 +23,7 @@ function AddMaterialPage() {
       <div className='mt-44'>
         <MaterialAddForm />
       </div>
-      <div className='flex justify-end pr-8 mt-12'>
+      <div className='flex justify-end pr-8 mt-20'>
         <MaterialSubmitButton>Add</MaterialSubmitButton>
       </div>
     </div>
