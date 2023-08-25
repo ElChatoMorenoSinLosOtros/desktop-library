@@ -16,7 +16,7 @@ function NewDataPersonPage() {
           address: ''
         }}
         onSubmit={() => {
-          // TODO: Add new person
+          // TODO: Update Person Data - endpoint
         }}
       >
         <Form className='w-3/5 ml-36 flex flex-col gap-5'>
