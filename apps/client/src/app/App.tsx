@@ -7,7 +7,6 @@ import LoginPage from '@pages/login/LoginPage';
 import LogoutPage from '@pages/logout/LogoutPage';
 import MaterialManagementPage from '@pages/material-management/MaterialManagementPage';
 import AddMaterialPage from '@pages/material-management/pages/AddMaterialPage';
-import MaterialInfoPage from '@pages/material-management/pages/MaterialInfoPage';
 import NewDataMaterialPage from '@pages/material-management/pages/NewDataMaterialPage';
 import MenuPage from '@pages/menu/MenuPage';
 import NotFoundPage from '@pages/not-found/NotFoundPage';
@@ -63,7 +62,7 @@ function App() {
           />
           <Route
             path='/material-management/info/:id'
-            element={<MaterialInfoPage />}
+            // element={<MaterialInfoPage />}
           />
         </Routes>
       </div>
