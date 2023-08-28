@@ -51,15 +51,6 @@ declare global {
     logout: () => void;
   }
 
-  type Users = User[];
-
-  interface User {
-    id: number;
-    name: string;
-    email: string;
-    password: string;
-  }
-
   interface LoginFormProps {
     setError: React.Dispatch<React.SetStateAction<string>>;
   }
@@ -145,5 +136,33 @@ declare global {
   interface GlobalSubmitButtonProps {
     children: React.ReactNode;
     className?: string;
+  }
+
+  type User = {
+    clientId: number;
+    name: string;
+    lastName: string;
+    address: string;
+    email: string;
+    phoneNumber: number;
+    typeUser: string;
+  };
+
+  type GetUsersResponse = User[];
+
+  type GetUserByIdResponse = User;
+
+  type InfoPersonPageParams = {
+    id: string;
+  };
+
+  interface CommonHeaderProps {
+    title: string;
+    subTitle?: string;
+  }
+
+  interface GlobalListProps {
+    title: string;
+    children: React.ReactNode;
   }
 }

@@ -39,6 +39,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'react-refresh/only-export-components': 'warn',
-    'react/react-in-jsx-scope': 'off'
+    'react/react-in-jsx-scope': 'off',
+    'react-hooks/exhaustive-deps': 'off'
   }
 };

@@ -26,5 +26,10 @@ services:
       PGADMIN_LISTEN_PORT: 5050
     ports:
       - 5050:5050
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
     depends_on:
       - postgres
+
+volumes:
+  pgadmin-data:

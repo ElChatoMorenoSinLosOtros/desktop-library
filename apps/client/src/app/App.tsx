@@ -11,6 +11,7 @@ import PersonManagementPage from '@pages/person-management/PersonManagementPage'
 import AddPersonPage from '@pages/person-management/pages/AddPersonPage';
 import NewDataPersonPage from '@pages/person-management/pages/NewDataPersonPage';
 import PersonInfoPage from '@pages/person-management/pages/PersonInfoPage';
+import InfoPersonPage from '@pages/person-management/pages/info/InfoPersonPage';
 import ReportsPage from '@pages/reports/ReportsPage';
 import ReservationsManagementPage from '@pages/reservations-management/ReservationsManagementPage';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -50,6 +51,10 @@ function App() {
           <Route
             path='/person-management/person-info'
             element={<PersonInfoPage />}
+          />
+          <Route
+            path='/person-management/info/:id'
+            element={<InfoPersonPage />}
           />
         </Routes>
       </div>

@@ -81,4 +81,92 @@
     font-style: normal;
     src: url('/src/assets/fonts/russo/russo-regular.ttf');
   }
+  @font-face {
+    font-family: 'roboto-mono';
+    font-weight: 100;
+    font-style: italic;
+    src: url('/src/assets/fonts/roboto-mono/roboto-mono-thin-italic.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-mono';
+    font-weight: 100;
+    font-style: normal;
+    src: url('/src/assets/fonts/roboto-mono/roboto-mono-thin.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-mono';
+    font-weight: 200;
+    font-style: italic;
+    src: url('/src/assets/fonts/roboto-mono/roboto-mono-extra-light-italic.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-mono';
+    font-weight: 200;
+    font-style: normal;
+    src: url('/src/assets/fonts/roboto-mono/roboto-mono-extra-light.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-mono';
+    font-weight: 300;
+    font-style: italic;
+    src: url('/src/assets/fonts/roboto-mono/roboto-mono-light-italic.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-mono';
+    font-weight: 300;
+    font-style: normal;
+    src: url('/src/assets/fonts/roboto-mono/roboto-mono-light.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-mono';
+    font-weight: 400;
+    font-style: italic;
+    src: url('/src/assets/fonts/roboto-mono/roboto-mono-italic.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-mono';
+    font-weight: 400;
+    font-style: normal;
+    src: url('/src/assets/fonts/roboto-mono/roboto-mono-regular.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-mono';
+    font-weight: 500;
+    font-style: italic;
+    src: url('/src/assets/fonts/roboto-mono/roboto-mono-medium-italic.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-mono';
+    font-weight: 500;
+    font-style: normal;
+    src: url('/src/assets/fonts/roboto-mono/roboto-mono-medium.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-mono';
+    font-weight: 600;
+    font-style: italic;
+    src: url('/src/assets/fonts/roboto-mono/roboto-mono-semi-bold-italic.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-mono';
+    font-weight: 600;
+    font-style: normal;
+    src: url('/src/assets/fonts/roboto-mono/roboto-mono-semi-bold.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-mono';
+    font-weight: 700;
+    font-style: italic;
+    src: url('/src/assets/fonts/roboto-mono/roboto-mono-bold-italic.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-mono';
+    font-weight: 700;
+    font-style: normal;
+    src: url('/src/assets/fonts/roboto-mono/roboto-mono-bold.ttf');
+  }
+}
+
+select {
+	appearance: none;
 }
