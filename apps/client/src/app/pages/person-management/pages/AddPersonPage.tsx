@@ -3,9 +3,9 @@ import GlobalSubmitButton from '@common-components/GlobalSubmitButton';
 import GlobalTextField from '@common-components/GlobalTextField';
 import { Form, Formik } from 'formik';
 
-function NewDataPersonPage() {
+function AddPersonPage() {
   return (
-    <GlobalForm title='Person Management' subTitle='New Data'>
+    <GlobalForm title='Person Management' subTitle='Add Person'>
       <Formik
         initialValues={{
           name: '',
@@ -16,18 +16,18 @@ function NewDataPersonPage() {
           address: ''
         }}
         onSubmit={() => {
-          // TODO: Update Person Data - endpoint
+          // TODO: Add new person - endpoint
         }}
       >
         <Form className='w-3/5 ml-36 flex flex-col gap-5'>
-          <GlobalTextField title='New Name:' name='name' />
-          <GlobalTextField title='New Last Name:' name='lastName' />
-          <GlobalTextField title='New Email:' name='email' type='email' />
-          <GlobalTextField title='New Type:' name='type' />
-          <GlobalTextField title='New Phone Number:' name='phone' />
-          <GlobalTextField title='New Address:' name='address' />
+          <GlobalTextField title='Name:' name='name' />
+          <GlobalTextField title='Last Name:' name='lastName' />
+          <GlobalTextField title='Email:' name='email' type='email' />
+          <GlobalTextField title='Type:' name='type' />
+          <GlobalTextField title='Phone Number:' name='phone' />
+          <GlobalTextField title='Address:' name='address' />
           <GlobalSubmitButton className='absolute right-0 bottom-0 mb-12 mr-12'>
-            Update
+            Add
           </GlobalSubmitButton>
         </Form>
       </Formik>
@@ -35,4 +35,4 @@ function NewDataPersonPage() {
   );
 }
 
-export default NewDataPersonPage;
+export default AddPersonPage;
