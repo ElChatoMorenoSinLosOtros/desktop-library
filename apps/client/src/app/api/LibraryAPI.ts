@@ -48,7 +48,19 @@ const LibraryAPIService = () => {
     });
   };
 
-  return { login, getUsers, getUserById };
+  const removeUserById = async ({
+    id
+  }: {
+    id: string;
+  }): Promise<RemoveUserByIdResponse> => {
+    return LibraryAPI.delete<RemoveUserByIdResponse>(`/clients/${id}`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  return { login, getUsers, getUserById, removeUserById };
 };
 
 export default LibraryAPIService;

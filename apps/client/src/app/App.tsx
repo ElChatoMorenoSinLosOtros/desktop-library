@@ -1,5 +1,6 @@
 import SideBar from '@common-components/side-bar/SideBar';
 import DashboardPage from '@pages/dashboard/DashboardPage';
+import DeletePage from '@pages/delete/DeletePage';
 import FinesManagementPage from '@pages/fines-management/FinesManagementPage';
 import LoanManagementPage from '@pages/loan-management/LoanManagementPage';
 import LoginPage from '@pages/login/LoginPage';
@@ -8,10 +9,9 @@ import MaterialManagementPage from '@pages/material-management/MaterialManagemen
 import MenuPage from '@pages/menu/MenuPage';
 import NotFoundPage from '@pages/not-found/NotFoundPage';
 import PersonManagementPage from '@pages/person-management/PersonManagementPage';
-import AddPersonPage from '@pages/person-management/pages/AddPersonPage';
-import NewDataPersonPage from '@pages/person-management/pages/NewDataPersonPage';
-import PersonInfoPage from '@pages/person-management/pages/PersonInfoPage';
-import InfoPersonPage from '@pages/person-management/pages/info/InfoPersonPage';
+import AddPersonPage from '@pages/person-management/pages/add/AddPersonPage';
+import PersonInfoPage from '@pages/person-management/pages/info/InfoPersonPage';
+import NewDataPersonPage from '@pages/person-management/pages/new-data/NewDataPersonPage';
 import ReportsPage from '@pages/reports/ReportsPage';
 import ReservationsManagementPage from '@pages/reservations-management/ReservationsManagementPage';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -39,22 +39,16 @@ function App() {
             element={<ReservationsManagementPage />}
           />
           <Route path='/logout' element={<LogoutPage />} />
+          <Route path='/delete' element={<DeletePage />} />
           <Route path='/reports' element={<ReportsPage />} />
           <Route
-            path='/person-management/new-data'
+            path='/person-management/new-data/:id'
             element={<NewDataPersonPage />}
           />
-          <Route
-            path='/person-management/add-person'
-            element={<AddPersonPage />}
-          />
-          <Route
-            path='/person-management/person-info'
-            element={<PersonInfoPage />}
-          />
+          <Route path='/person-management/add' element={<AddPersonPage />} />
           <Route
             path='/person-management/info/:id'
-            element={<InfoPersonPage />}
+            element={<PersonInfoPage />}
           />
         </Routes>
       </div>

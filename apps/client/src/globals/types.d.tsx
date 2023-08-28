@@ -51,6 +51,13 @@ declare global {
     logout: () => void;
   }
 
+  interface DeleteStore {
+    type: string;
+    onClick: () => void;
+    setOnClick: ({ onClick }: { onClick: () => void }) => void;
+    setType: ({ type }: { type: string }) => void;
+  }
+
   interface LoginFormProps {
     setError: React.Dispatch<React.SetStateAction<string>>;
   }
@@ -152,6 +159,8 @@ declare global {
 
   type GetUserByIdResponse = User;
 
+  type RemoveUserByIdResponse = User;
+
   type InfoPersonPageParams = {
     id: string;
   };
@@ -164,5 +173,31 @@ declare global {
   interface GlobalListProps {
     title: string;
     children: React.ReactNode;
+  }
+
+  interface DeleteButtonProps {
+    children: React.ReactNode;
+    onClick: () => void;
+    className: string;
+  }
+
+  interface SelectFilterPersonProps {
+    valueSelected: string;
+    handleSelectChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  }
+
+  interface OptionFilterPerson {
+    value: string;
+    children: React.ReactNode;
+    isDisabled?: boolean;
+  }
+
+  interface LineProps {
+    className?: string;
+  }
+
+  interface SearchInputPersonsProps {
+    inputValue: string;
+    handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   }
 }

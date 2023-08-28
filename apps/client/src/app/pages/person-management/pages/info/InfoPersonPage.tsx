@@ -1,16 +1,7 @@
 import LibraryAPIService from '@api/LibraryAPI';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-const INITIAL_STATE = {
-  clientId: 0,
-  name: '',
-  lastName: '',
-  address: '',
-  email: '',
-  phoneNumber: 0,
-  typeUser: ''
-};
+import INITIAL_STATE from './states/InfoPersonStates';
 
 function InfoPersonPage() {
   const { id } = useParams<InfoPersonPageParams>();
