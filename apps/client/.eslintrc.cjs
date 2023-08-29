@@ -30,8 +30,7 @@ module.exports = {
     '@typescript-eslint',
     'prettier',
     '@typescript-eslint/eslint-plugin',
-    'import',
-    'prettier'
+    'import'
   ],
   rules: {
     '@typescript-eslint/interface-name-prefix': 'off',
