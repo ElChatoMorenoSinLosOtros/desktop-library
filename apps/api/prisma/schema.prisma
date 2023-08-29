@@ -26,6 +26,7 @@ model Client {
   phoneNumber Int?    @unique
   typeUser    String
 
+  reservation Reservation[]
   @@map(name: "user")
 }
 
@@ -41,5 +42,17 @@ model Material {
   available       Boolean
   type_material   String
 
+  reservations Reservation[]
   @@map(name: "material")
+}
+
+model Reservation {
+  reservationId    Int           @id @default(autoincrement())
+  initialDate      DateTime      @default(now())
+  dueDate          DateTime
+  client           Client?       @relation(fields: [clientId], references: [clientId])
+  clientId         Int           @unique
+  material         Material?     @relation(fields: [materialId], references: [materialId])
+  materialId       Int           @unique
+  @@map(name: "reservation")
 }

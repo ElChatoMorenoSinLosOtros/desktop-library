@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ReservationsModule } from './reservations/reservations.module';
 import AdminsModule from './admins/admins.module';
 import AppController from './app.controller';
 import AppService from './app.service';
@@ -13,7 +14,8 @@ import PrismaModule from './prisma/prisma.module';
     AuthModule,
     AdminsModule,
     MaterialsModule,
-    ClientsModule
+    ClientsModule,
+    ReservationsModule
   ],
   controllers: [AppController],
   providers: [AppService]
