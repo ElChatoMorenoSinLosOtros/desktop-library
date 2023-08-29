@@ -1,10 +1,18 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate } from '@nestjs/class-validator';
+import { IsInt, IsDate } from '@nestjs/class-validator';
 
 export default class CreateReservationDto {
   @ApiProperty()
+  @IsInt()
+  clientId: number;
+
+  @ApiProperty()
+  @IsInt()
+  materialId: number;
+
+  @ApiProperty()
   @IsDate()
-  orderDate?: Date;
+  initialDate?: Date;
 
   @ApiProperty()
   @IsDate()
