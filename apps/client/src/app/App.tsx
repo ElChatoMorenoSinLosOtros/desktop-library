@@ -6,8 +6,9 @@ import LoanManagementPage from '@pages/loan-management/LoanManagementPage';
 import LoginPage from '@pages/login/LoginPage';
 import LogoutPage from '@pages/logout/LogoutPage';
 import MaterialManagementPage from '@pages/material-management/MaterialManagementPage';
-import AddMaterialPage from '@pages/material-management/pages/AddMaterialPage';
-import NewDataMaterialPage from '@pages/material-management/pages/NewDataMaterialPage';
+import AddMaterialPage from '@pages/material-management/pages/add/AddMaterialPage';
+import InfoMaterialPage from '@pages/material-management/pages/info/InfoMaterialPage';
+import NewDataMaterialPage from '@pages/material-management/pages/new/NewDataMaterialPage';
 import MenuPage from '@pages/menu/MenuPage';
 import NotFoundPage from '@pages/not-found/NotFoundPage';
 import PersonManagementPage from '@pages/person-management/PersonManagementPage';
@@ -62,7 +63,7 @@ function App() {
           />
           <Route
             path='/material-management/info/:id'
-            // element={<MaterialInfoPage />}
+            element={<InfoMaterialPage />}
           />
         </Routes>
       </div>
