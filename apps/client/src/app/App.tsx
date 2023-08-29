@@ -42,7 +42,7 @@ function App() {
           <Route path='/delete' element={<DeletePage />} />
           <Route path='/reports' element={<ReportsPage />} />
           <Route
-            path='/person-management/new-data/:id'
+            path='/person-management/update/:id'
             element={<NewDataPersonPage />}
           />
           <Route path='/person-management/add' element={<AddPersonPage />} />

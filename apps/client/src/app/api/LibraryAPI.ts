@@ -60,7 +60,40 @@ const LibraryAPIService = () => {
     });
   };
 
-  return { login, getUsers, getUserById, removeUserById };
+  const createUser = async ({
+    client
+  }: {
+    client: Client;
+  }): Promise<CreateUserResponse> => {
+    return LibraryAPI.post<CreateUserResponse>(`/clients`, client, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const updateUserById = async ({
+    client,
+    id
+  }: {
+    client: Client;
+    id: number;
+  }): Promise<UpdateUserByIdResponse> => {
+    return LibraryAPI.patch<UpdateUserByIdResponse>(`/clients/${id}`, client, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  return {
+    login,
+    getUsers,
+    getUserById,
+    removeUserById,
+    createUser,
+    updateUserById
+  };
 };
 
 export default LibraryAPIService;

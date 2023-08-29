@@ -6,10 +6,8 @@ function OptionFilterPerson({
   return (
     <option
       value={value}
-      className={`text-sm font-bold font-roboto-mono ${
-        isDisabled ? 'hidden' : ''
-      }}`}
-      disabled={isDisabled}
+      className='text-sm font-bold font-roboto-mono'
+      hidden={isDisabled}
     >
       {children}
     </option>

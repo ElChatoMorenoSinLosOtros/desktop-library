@@ -7,8 +7,8 @@ function GlobalTextField({ title, name, type = 'text' }: GlobalTextFieldProps) {
       name={name}
       placeholder=''
       type={type}
-      className='text-lg font-roboto'
-      classNameTitle='font-bold font-roboto text-xl'
+      className='text-lg font-roboto-mono font-bold'
+      classNameTitle='font-bold font-roboto-mono text-xl'
     />
   );
 }

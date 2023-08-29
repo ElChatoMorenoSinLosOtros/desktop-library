@@ -182,7 +182,6 @@ declare global {
   }
 
   interface SelectFilterPersonProps {
-    valueSelected: string;
     handleSelectChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   }
 
@@ -199,5 +198,33 @@ declare global {
   interface SearchInputPersonsProps {
     inputValue: string;
     handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  }
+
+  type Client = {
+    name: string;
+    lastName: string;
+    address: string;
+    email: string;
+    phoneNumber: number;
+    typeUser: string;
+  };
+
+  type CreateUserResponse = User;
+
+  type UpdateUserByIdResponse = User;
+
+  type NewDataPersonPageParams = {
+    id: string;
+  };
+
+  interface GlobalTextProps {
+    title: string;
+    text: string;
+  }
+
+  interface InfoPersonProps {
+    title: string;
+    number: number;
+    isDouble?: boolean;
   }
 }

@@ -9,7 +9,7 @@ class ClientsService {
 
   create(createClientDto: CreateClientDto) {
     return this.prisma.client.create({
-      data: { ...createClientDto, typeUser: 'student' }
+      data: createClientDto
     });
   }
 

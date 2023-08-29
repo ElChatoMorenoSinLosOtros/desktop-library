@@ -7,7 +7,7 @@ function UpdateUserButton({ id }: { id: number }) {
 
   return (
     <Button
-      onClick={() => navigate(`/person-management/new-data/${id}`)}
+      onClick={() => navigate(`/person-management/update/${id}`)}
       className='text-center text-2xl grid place-content-center'
     >
       <EditIcon />
