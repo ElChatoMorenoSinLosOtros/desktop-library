@@ -51,13 +51,11 @@ declare global {
     logout: () => void;
   }
 
-  type Users = User[];
-
-  interface User {
-    id: number;
-    name: string;
-    email: string;
-    password: string;
+  interface DeleteStore {
+    type: string;
+    onClick: () => void;
+    setOnClick: ({ onClick }: { onClick: () => void }) => void;
+    setType: ({ type }: { type: string }) => void;
   }
 
   interface LoginFormProps {
@@ -145,5 +143,88 @@ declare global {
   interface GlobalSubmitButtonProps {
     children: React.ReactNode;
     className?: string;
+  }
+
+  type User = {
+    clientId: number;
+    name: string;
+    lastName: string;
+    address: string;
+    email: string;
+    phoneNumber: number;
+    typeUser: string;
+  };
+
+  type GetUsersResponse = User[];
+
+  type GetUserByIdResponse = User;
+
+  type RemoveUserByIdResponse = User;
+
+  type InfoPersonPageParams = {
+    id: string;
+  };
+
+  interface CommonHeaderProps {
+    title: string;
+    subTitle?: string;
+  }
+
+  interface GlobalListProps {
+    title: string;
+    children: React.ReactNode;
+  }
+
+  interface DeleteButtonProps {
+    children: React.ReactNode;
+    onClick: () => void;
+    className: string;
+  }
+
+  interface SelectFilterPersonProps {
+    handleSelectChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  }
+
+  interface OptionFilterPerson {
+    value: string;
+    children: React.ReactNode;
+    isDisabled?: boolean;
+  }
+
+  interface LineProps {
+    className?: string;
+  }
+
+  interface SearchInputPersonsProps {
+    inputValue: string;
+    handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  }
+
+  type Client = {
+    name: string;
+    lastName: string;
+    address: string;
+    email: string;
+    phoneNumber: number;
+    typeUser: string;
+  };
+
+  type CreateUserResponse = User;
+
+  type UpdateUserByIdResponse = User;
+
+  type NewDataPersonPageParams = {
+    id: string;
+  };
+
+  interface GlobalTextProps {
+    title: string;
+    text: string;
+  }
+
+  interface InfoPersonProps {
+    title: string;
+    number: number;
+    isDouble?: boolean;
   }
 }

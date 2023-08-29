@@ -6,7 +6,7 @@ function SideBarUser() {
 
   return (
     <div
-      className='text-[#e0e1dd] font-roboto flex w-full mt-5
+      className='text-[#e0e1dd] font-roboto-mono flex w-full mt-5
   justify-center place-items-center gap-5 text-[18px] font-bold'
     >
       <img src={adminLogo} className='w-[90px] h-[90px]' alt='Profile' />

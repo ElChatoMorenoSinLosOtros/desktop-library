@@ -6,7 +6,7 @@ function SideBarList() {
   const navigate = useNavigate();
 
   return (
-    <ul className='flex flex-col mt-7 font-roboto text-xl font-bold text-[#E0E1DD]'>
+    <ul className='flex flex-col mt-7 font-roboto-mono text-xl font-bold text-[#E0E1DD]'>
       {(menus as SideBarMenu).menus.map(menu => {
         return (
           <SideBarItemList

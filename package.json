@@ -26,6 +26,6 @@
     "apps/*"
   ],
   "devDependencies": {
-    "turbo": "v1.10.12"
+    "turbo": "v1.10.13"
   }
 }
