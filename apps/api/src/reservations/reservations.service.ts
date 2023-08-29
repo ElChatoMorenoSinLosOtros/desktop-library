@@ -7,23 +7,40 @@ import UpdateReservationDto from './dto/update-reservation.dto';
 export default class ReservationsService {
   constructor(private prisma: PrismaService) {}
 
-  create(createReservationDto: CreateReservationDto) {
-    return 'This action adds a new reservation';
+  async create(createReservationDto: CreateReservationDto) {
+    const reservationData = {
+      clientId: createReservationDto.clientId,
+      materialId: createReservationDto.materialId,
+      initialDate: createReservationDto.initialDate,
+      dueDate: createReservationDto.dueDate,
+    };
+
+    const createdReservation = await this.prisma.reservation.create({
+      data: reservationData
+    });
+    return createdReservation;
   }
 
   findAll() {
-    return `This action returns all reservations`;
+    return this.prisma.reservation.findMany;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} reservation`;
+  findOne(reservationId: number) {
+    return this.prisma.reservation.findMany({
+      where: { reservationId }
+    });
   }
 
-  update(id: number, updateReservationDto: UpdateReservationDto) {
-    return `This action updates a #${id} reservation`;
+  update(reservationId: number, updateReservationDto: UpdateReservationDto) {
+    return this.prisma.reservation.update({
+      where: { reservationId },
+      data: updateReservationDto
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} reservation`;
+  remove(reservationId: number) {
+    return this.prisma.reservation.delete({
+      where: { reservationId }
+    });
   }
 }
