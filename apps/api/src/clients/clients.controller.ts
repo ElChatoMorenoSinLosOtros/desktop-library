@@ -64,6 +64,16 @@ class ClientsController {
   remove(@Param('id') id: string) {
     return this.clientsService.remove(+id);
   }
+
+  @Get(':clientId/total-read')
+  getTotalRead(@Param('clientId') clientId: number) {
+    return this.clientsService.getTotalRead(clientId);
+  }
+
+  @Get(':clientId/total-active-loans')
+  getTotalActiveLoans(@Param('clientId') clientId: number) {
+    return this.clientsService.getTotalActiveLoans(clientId);
+  }
 }
 
 export default ClientsController;

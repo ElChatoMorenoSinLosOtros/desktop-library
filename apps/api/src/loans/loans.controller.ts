@@ -32,7 +32,7 @@ export default class LoansController {
   @ApiCreatedResponse({ type: LoanEntity })
   @ApiOperation({ summary: 'create a new loan' })
   create(@Body() clientId: number, createLoanDto: CreateLoanDto) {
-    return this.loansService.create(clientId, createLoanDto);
+    return this.loansService.create(createLoanDto);
   }
 
   @Get()

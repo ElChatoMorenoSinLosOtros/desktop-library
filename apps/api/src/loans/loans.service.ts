@@ -7,21 +7,17 @@ import UpdateLoanDto from './dto/update-loan.dto';
 export default class LoansService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createLoan(createLoanDto: CreateLoanDto) {
-    const { adminID, ...loanData } = createLoanDto;
+  async create(createLoanDto: CreateLoanDto) {
+    const loanData = {
+      clientId: createLoanDto.clientId,
+      materialId: createLoanDto.materialId,
+      loanDate: createLoanDto.loanDate,
+      returnDate: createLoanDto.returnDate,
+      returned: createLoanDto.returned
+    };
 
     const createdLoan = await this.prisma.loan.create({
-      data: {
-        ...loanData,
-        admin: {
-          connect: { adminId: adminID }
-        }
-      },
-      include: {
-        admin: true, // Include the admin in the created loan response
-        client: true, // Include the client if needed
-        material: true // Include the material if needed
-      }
+      data: loanData
     });
     return createdLoan;
   }
