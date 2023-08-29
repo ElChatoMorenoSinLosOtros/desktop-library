@@ -1,20 +1,20 @@
 import GlobalBlueButton from '@common-components/GlobalBlueButton';
 import GlobalSearchInput from '@common-components/GlobalSearchInput';
 import GlobalSelectFilter from '@common-components/GlobalSelectFilter';
-import { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function PersonsHeader() {
+function MaterialHeader() {
   const [selected, setSelected] = useState('');
   const [inputValue, setInputValue] = useState('');
   const navigate = useNavigate();
 
-  const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     if (selected === event.target.value) return;
     setSelected(event.target.value);
   };
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (inputValue === event.target.value) return;
     setInputValue(event.target.value);
   };
@@ -22,14 +22,14 @@ function PersonsHeader() {
   return (
     <div className='px-6 py-2 grid place-items-center grid-cols-6'>
       <div className='font-russo text-3xl text-[#0D1B2A]/75 text-start w-full'>
-        List Person
+        List Material
       </div>
       <GlobalBlueButton
         onClick={() => {
-          navigate('/person-management/add');
+          navigate('/material-management/add');
         }}
       >
-        Add Person
+        Add Material
       </GlobalBlueButton>
       <GlobalBlueButton onClick={() => setInputValue('')}>
         See All
@@ -37,7 +37,7 @@ function PersonsHeader() {
       <GlobalSelectFilter
         handleSelectChange={handleSelectChange}
         defaultValue='Filter'
-        options={['ID', 'Name', 'Last Name', 'Type', 'Email']}
+        options={['ID', 'Title', 'Category', 'Available', 'Type Material']}
       />
       <GlobalSearchInput
         inputValue={inputValue}
@@ -47,4 +47,4 @@ function PersonsHeader() {
   );
 }
 
-export default PersonsHeader;
+export default MaterialHeader;

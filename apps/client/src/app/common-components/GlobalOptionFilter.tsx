@@ -1,8 +1,8 @@
-function OptionFilterPerson({
+function GlobalOptionFilter({
   value,
   children,
   isDisabled = false
-}: OptionFilterPerson) {
+}: GlobalFilterPerson) {
   return (
     <option
       value={value}
@@ -14,4 +14,4 @@ function OptionFilterPerson({
   );
 }
 
-export default OptionFilterPerson;
+export default GlobalOptionFilter;

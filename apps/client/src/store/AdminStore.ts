@@ -5,7 +5,8 @@ const INITIAL_STATE = {
     name: '',
     email: '',
     role: '',
-    accessToken: ''
+    accessToken:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MzI3NzE5MSwiZXhwIjoxNjkzMzYzNTkxfQ.WsyIxDd8tQpMBmZqBzv1Zq8NYCrn5IUTuG4IMXchhOU'
   }
 };
 

@@ -9,7 +9,7 @@ class MaterialsService {
 
   create(createMaterialDto: CreateMaterialDto) {
     return this.prisma.material.create({
-      data: { ...createMaterialDto, available: true, type_material: 'book' }
+      data: { ...createMaterialDto, available: true }
     });
   }
 

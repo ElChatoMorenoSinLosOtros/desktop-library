@@ -3,12 +3,12 @@ import UserItemList from './components/user/UserItemList';
 function UsersList({ users }: { users: User[] }) {
   return (
     <div
-      className={`max-h-[550px] overflow-auto mt-4 ${
-        users.length > 9 ? 'mr-[-15px]' : ''
+      className={`max-h-full overflow-auto mt-2 ${
+        users.length > 9 ? 'mr-[-17px]' : ''
       }`}
     >
       <div
-        className='max-h-[550px] flex flex-col
+        className='max-h-full flex flex-col
         font-roboto-mono text-sm font-bold w-full gap-y-10'
       >
         {users.map((user: User) => {
