@@ -9,13 +9,13 @@ function GlobalInfoForm({
   title: string;
 }) {
   return (
-    <>
+    <div className='flex flex-col h-screen'>
       <CommonHeader title={title} />
       <div className='px-8'>
         <Line />
       </div>
       {children}
-    </>
+    </div>
   );
 }
 

@@ -145,6 +145,12 @@ declare global {
     className?: string;
   }
 
+  interface GlobalButtonProps {
+    children: React.ReactNode;
+    className?: string;
+    onClick: () => void;
+  }
+
   type User = {
     clientId: number;
     name: string;
@@ -181,11 +187,13 @@ declare global {
     className: string;
   }
 
-  interface SelectFilterPersonProps {
+  interface GlobalSelectFilterProps {
     handleSelectChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    defaultValue: string;
+    options: string[];
   }
 
-  interface OptionFilterPerson {
+  interface GlobalFilterPerson {
     value: string;
     children: React.ReactNode;
     isDisabled?: boolean;
@@ -195,7 +203,7 @@ declare global {
     className?: string;
   }
 
-  interface SearchInputPersonsProps {
+  interface GlobalSearchInputProps {
     inputValue: string;
     handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   }
@@ -220,6 +228,7 @@ declare global {
   interface GlobalTextProps {
     title: string;
     text: string;
+    className?: string;
   }
 
   interface InfoPersonProps {
@@ -264,6 +273,10 @@ declare global {
   type UpdateMaterialByIdResponse = Material;
 
   type NewDataMaterialPageParams = {
+    id: string;
+  };
+
+  type InfoMaterialPageParams = {
     id: string;
   };
 }

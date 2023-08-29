@@ -4,13 +4,15 @@ import GlobalSubmitButton from '@common-components/GlobalSubmitButton';
 import GlobalTextField from '@common-components/GlobalTextField';
 import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import INIT_STATE from './states/NewDataMaterialStates';
 
 function NewDataMaterialPage() {
   const { id } = useParams<NewDataMaterialPageParams>();
-  const [material, setMaterial] = useState<Material>({} as Material);
+  const [material, setMaterial] = useState<Material>(INIT_STATE);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { getMaterialById } = LibraryAPIService();
+  const { getMaterialById, updateMaterialById } = LibraryAPIService();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getMaterialById({ id: Number(id) })
@@ -35,14 +37,21 @@ function NewDataMaterialPage() {
               category: `${material.category}`,
               isbn: `${material.isbn}`,
               publicationYear: Number(String(material.publicationYear)),
-              pageCount: Number(String(material.publicationYear)),
-              quantity: Number(String(material.publicationYear)),
+              pageCount: Number(String(material.pageCount)),
+              quantity: Number(String(material.quantity)),
               available: material.available,
               type_material: `${material.type_material}`
             }}
             enableReinitialize
             onSubmit={(values: MaterialWithOutID) => {
-              alert(JSON.stringify(values, null, 2));
+              updateMaterialById({ id: Number(id), material: values })
+                .then()
+                .catch((error: Error) => {
+                  throw new Error(error.message);
+                })
+                .finally(() => {
+                  navigate('/material-management');
+                });
             }}
           >
             <Form className='mx-16 grid grid-cols-2 gap-16'>

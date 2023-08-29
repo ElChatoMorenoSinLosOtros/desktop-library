@@ -1,7 +1,7 @@
-import Button from '@common-components/Button';
 import React from 'react';
+import Button from './Button';
 
-function BluePersonButton({
+function GlobalBlueButton({
   children,
   onClick
 }: {
@@ -18,4 +18,4 @@ function BluePersonButton({
   );
 }
 
-export default BluePersonButton;
+export default GlobalBlueButton;

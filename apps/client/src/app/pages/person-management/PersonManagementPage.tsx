@@ -21,13 +21,11 @@ function PersonManagementPage() {
 
   return (
     <GlobalList title='Person Management'>
-      <div className='w-full p-6 flex flex-col gap-3'>
-        <PersonsHeader />
-        <Line />
-        <UserFields />
-        <Line />
-        <UsersList users={users} />
-      </div>
+      <PersonsHeader />
+      <Line />
+      <UserFields />
+      <Line />
+      <UsersList users={users} />
     </GlobalList>
   );
 }

@@ -28,8 +28,10 @@ function AddMaterialPage() {
             .then()
             .catch((error: Error) => {
               throw new Error(error.message);
+            })
+            .finally(() => {
+              navigate('/material-management');
             });
-          navigate('/material-management');
         }}
       >
         <Form className='mx-16 grid grid-cols-2 gap-16'>

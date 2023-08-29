@@ -1,7 +1,7 @@
-function SearchInput({
+function GlobalSearchInput({
   inputValue,
   handleInputChange
-}: SearchInputPersonsProps) {
+}: GlobalSearchInputProps) {
   return (
     <input
       className='col-span-2 bg-[#C8C8C8] w-full text-black/75 font-roboto-mono text-sm font-bold
@@ -13,4 +13,4 @@ function SearchInput({
   );
 }
 
-export default SearchInput;
+export default GlobalSearchInput;
