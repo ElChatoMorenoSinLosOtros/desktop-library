@@ -8,7 +8,7 @@ import LogoutPage from '@pages/logout/LogoutPage';
 import MaterialManagementPage from '@pages/material-management/MaterialManagementPage';
 import AddMaterialPage from '@pages/material-management/pages/add/AddMaterialPage';
 import InfoMaterialPage from '@pages/material-management/pages/info/InfoMaterialPage';
-import NewDataMaterialPage from '@pages/material-management/pages/new/NewDataMaterialPage';
+import NewDataMaterialPage from '@pages/material-management/pages/update/NewDataMaterialPage';
 import MenuPage from '@pages/menu/MenuPage';
 import NotFoundPage from '@pages/not-found/NotFoundPage';
 import PersonManagementPage from '@pages/person-management/PersonManagementPage';

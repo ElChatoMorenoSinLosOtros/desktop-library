@@ -227,4 +227,43 @@ declare global {
     number: number;
     isDouble?: boolean;
   }
+
+  type Material = {
+    materialId: number;
+    title: string;
+    author: string;
+    category: string;
+    isbn: string;
+    publicationYear: number;
+    pageCount: number;
+    quantity: number;
+    available: boolean;
+    type_material: string;
+  };
+
+  type MaterialWithOutID = {
+    title: string;
+    author: string;
+    category: string;
+    isbn: string;
+    publicationYear: number;
+    pageCount: number;
+    quantity: number;
+    available: boolean;
+    type_material: string;
+  };
+
+  type GetMaterialsResponse = Material[];
+
+  type GetMaterialByIdResponse = Material;
+
+  type CreateMaterialResponse = Material;
+
+  type RemoveMaterialByIdResponse = Material;
+
+  type UpdateMaterialByIdResponse = Material;
+
+  type NewDataMaterialPageParams = {
+    id: string;
+  };
 }
