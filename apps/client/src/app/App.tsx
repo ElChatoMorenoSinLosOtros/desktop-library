@@ -12,7 +12,6 @@ import NewDataPersonPage from '@pages/person-management/pages/NewDataPersonPage'
 import ReportsPage from '@pages/reports/ReportsPage';
 import ReservationsManagementPage from '@pages/reservations-management/ReservationsManagementPage';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import MaterialInfoPage from './pages/material-management/pages/MaterialInfoPage';
 
 function App() {
   return (
@@ -41,10 +40,6 @@ function App() {
           <Route
             path='/person-management/new-data'
             element={<NewDataPersonPage />}
-          />
-          <Route
-            path='/material-management/info-data'
-            element={<MaterialInfoPage />}
           />
         </Routes>
       </div>
