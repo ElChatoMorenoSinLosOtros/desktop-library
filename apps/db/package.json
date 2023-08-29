@@ -9,7 +9,7 @@
   "license": "ISC",
   "private": false,
   "scripts": {
-    "dev": "docker compose down && docker compose up -d",
-    "up": "docker compose down && docker compose up -d"
+    "dev": "docker compose down && docker compose up -d && docker volume prune -f",
+    "up": "docker compose down && docker compose up -d && docker volume prune -f"
   }
 }
