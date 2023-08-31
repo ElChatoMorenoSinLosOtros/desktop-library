@@ -1,3 +1,4 @@
+import JwtAuthGuard from '@auth/jwt-auth.guard';
 import {
   Body,
   Controller,
@@ -14,7 +15,6 @@ import {
   ApiOkResponse,
   ApiTags
 } from '@nestjs/swagger';
-import JwtAuthGuard from 'src/auth/jwt-auth.guard';
 import CreateMaterialDto from './dto/create-material.dto';
 import UpdateMaterialDto from './dto/update-material.dto';
 import MaterialEntity from './entities/material.entity';

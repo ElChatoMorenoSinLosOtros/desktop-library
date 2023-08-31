@@ -1,13 +1,13 @@
+import AdminsModule from '@admins/admins.module';
+import AdminsService from '@admins/admins.service';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import AdminsModule from 'src/admins/admins.module';
-import AdminsService from 'src/admins/admins.service';
-import PrismaModule from 'src/prisma/prisma.module';
-import PrismaService from 'src/prisma/prisma.service';
+import PrismaModule from '@pr-prisma/prisma.module';
+import PrismaService from '@pr-prisma/prisma.service';
+import jwtConstants from '@utils/constants';
 import AuthController from './auth.controller';
 import AuthService from './auth.service';
-import jwtConstants from './constants';
 import JwtStrategy from './jwt.strategy';
 
 @Module({

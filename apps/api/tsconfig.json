@@ -16,15 +16,43 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@test/*": [
+        "src/test/*"
+      ],
+      "@pr-prisma/*": [
+        "./src/prisma/*"
+      ],
+      "@materials/*": [
+        "./src/materials/*"
+      ],
+      "@auth/*": [
+        "./src/auth/*"
+      ],
+      "@clients/*": [
+        "src/clients/*"
+      ],
+      "@admins/*": [
+        "./src/admins/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+    }
   },
   "include": [
     "src",
     "prisma",
-    "test",
+    "src/test",
     "*.ts",
     "*.js",
     ".eslintrc.cjs",
     "*.d.ts",
+    "test",
   ],
 }

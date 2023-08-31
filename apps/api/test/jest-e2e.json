@@ -9,5 +9,18 @@
   "testRegex": ".e2e-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
-  }
+  },
+  "moduleNameMapper": {
+    "@/(.*)": "<rootDir>/../src/$1",
+    "@test/(.*)": "<rootDir>/../test/$1",
+    "@pr-prisma/(.*)": "<rootDir>/../src/prisma/$1",
+    "@materials/(.*)": "<rootDir>/../src/materials/$1",
+    "@auth/(.*)": "<rootDir>/../src/auth/$1",
+    "@clients/(.*)": "<rootDir>/../src/clients/$1",
+    "@admins/(.*)": "<rootDir>/../src/admins/$1"
+  },
+  "moduleDirectories": [
+    "src",
+    "node_modules"
+  ]
 }

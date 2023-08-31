@@ -25,6 +25,9 @@
     "format:check": {
       "cache": false
     },
+    "test:unit": {
+      "cache": false
+    },
     "build": {
       "dependsOn": [
         "^build"

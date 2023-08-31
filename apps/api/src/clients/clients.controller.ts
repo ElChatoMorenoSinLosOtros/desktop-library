@@ -1,3 +1,4 @@
+import JwtAuthGuard from '@auth/jwt-auth.guard';
 import {
   Body,
   Controller,
@@ -14,7 +15,6 @@ import {
   ApiOkResponse,
   ApiTags
 } from '@nestjs/swagger';
-import JwtAuthGuard from 'src/auth/jwt-auth.guard';
 import ClientsService from './clients.service';
 import CreateClientDto from './dto/create-client.dto';
 import UpdateClientDto from './dto/update-client.dto';

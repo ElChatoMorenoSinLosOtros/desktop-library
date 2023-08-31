@@ -7,16 +7,16 @@ async function bootstrap() {
   app.setGlobalPrefix('/api');
 
   const config = new DocumentBuilder()
-    .setTitle('Median')
-    .setDescription('The Median API description')
-    .setVersion('0.1')
+    .setTitle('LibraryApi')
+    .setDescription('Library API')
+    .setVersion('1.0')
     .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap().catch((err: Error) => {
   throw new Error(err.message);

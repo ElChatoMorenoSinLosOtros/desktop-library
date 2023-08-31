@@ -21,6 +21,7 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
+    "esModuleInterop": true,
     "paths": {
       "@/node": [
         "./node:path"
@@ -58,7 +59,7 @@
     }
   },
   "types": [
-    "./src/globals"
+    "./src/globals",
   ],
   "include": [
     "src",
@@ -68,7 +69,17 @@
     "*.tsx",
     ".eslintrc.cjs",
     "*.d.ts",
-    "*.d.tsx"
+    "*.d.tsx",
+    "test",
+    "index.d.ts",
+    "src/*.ts",
+    "src/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "test/*.ts",
+    "test/*.tsx",
+    "test/**/*.ts",
+    "test/**/*.tsx"
   ],
   "references": [
     {
