@@ -12,7 +12,6 @@ import {
   ApiBearerAuth,
   ApiCreatedResponse,
   ApiOkResponse,
-  ApiOperation,
   ApiTags
 } from '@nestjs/swagger';
 import JwtAuthGuard from 'src/auth/jwt-auth.guard';
@@ -30,14 +29,12 @@ export default class LoansController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiCreatedResponse({ type: LoanEntity })
-  @ApiOperation({ summary: 'create a new loan' })
-  create(@Body() clientId: number, createLoanDto: CreateLoanDto) {
+  create(@Body() createLoanDto: CreateLoanDto) {
     return this.loansService.create(createLoanDto);
   }
 
   @Get()
   @ApiOkResponse({ type: LoanEntity, isArray: true })
-  @ApiOperation({ summary: 'get all loans' })
   findAll() {
     return this.loansService.findAll();
   }
@@ -46,7 +43,6 @@ export default class LoansController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: LoanEntity })
-  @ApiOperation({ summary: 'create one loan by id' })
   findOne(@Param('id') id: string) {
     return this.loansService.findOne(+id);
   }

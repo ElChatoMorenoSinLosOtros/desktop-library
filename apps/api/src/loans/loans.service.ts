@@ -16,6 +16,20 @@ export default class LoansService {
       returned: createLoanDto.returned
     };
 
+    const { materialId } = createLoanDto;
+
+    const material = await this.prisma.material.findUnique({
+      where: { materialId }
+    });
+
+    if (!material || material.available) {
+      throw new Error('Material not available');
+    } else if (material.quantity === 1) {
+      await this.prisma.material.update({
+        where: { materialId },
+        data: { quantity: 0, available: false }
+      });
+    }
     const createdLoan = await this.prisma.loan.create({
       data: loanData
     });
