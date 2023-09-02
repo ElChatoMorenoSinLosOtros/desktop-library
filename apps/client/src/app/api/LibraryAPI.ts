@@ -210,6 +210,26 @@ const LibraryAPIService = () => {
     });
   };
 
+  const getLoans = async (): Promise<GetLoansResponse> => {
+    return LibraryAPI.get<GetLoansResponse>('/loans', {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const removeLoanById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<RemoveLoanByIdResponse> => {
+    return LibraryAPI.delete<RemoveLoanByIdResponse>(`/loans/${id}`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
   return {
     login,
     getUsers,
@@ -226,7 +246,9 @@ const LibraryAPIService = () => {
     getOfficeById,
     removeOfficeById,
     updateOfficeById,
-    createOffice
+    createOffice,
+    getLoans,
+    removeLoanById
   };
 };
 

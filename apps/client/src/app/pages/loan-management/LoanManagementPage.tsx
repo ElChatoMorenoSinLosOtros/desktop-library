@@ -1,8 +1,31 @@
+import LibraryAPIService from '@api/LibraryAPI.ts';
+import { useEffect, useState } from 'react';
+import GlobalList from '@common-components/GlobalList.tsx';
+import Line from '@common-components/Line.tsx';
+import LoanHeader from '@pages/loan-management/components/header/LoanHeader';
+import LoanFields from '@pages/loan-management/components/fields/LoanFields';
+import LoanList from '@pages/loan-management/components/list/LoanList';
+
 function LoanManagementPage() {
+  const { getLoans } = LibraryAPIService();
+  const [loans, setLoans] = useState<Material[]>([]);
+
+  useEffect(() => {
+    getLoans()
+      .then(res => setLoans(res))
+      .catch((error: Error) => {
+        throw new Error(error.message);
+      });
+  }, []);
+
   return (
-    <div className='h-screen grid place-content-center font-russo text-6xl'>
-      <h1>Loan Management Page</h1>
-    </div>
+    <GlobalList title='Loans Management'>
+      <LoanHeader />
+      <Line />
+      <LoanFields />
+      <Line />
+      <LoanList loans={loans} />
+    </GlobalList>
   );
 }
 
