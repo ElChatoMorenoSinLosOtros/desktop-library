@@ -47,13 +47,13 @@ model Material {
 
 
 model Loan {
-  loanId     Int          @id @default(autoincrement()) @unique
+  loanId     Int        @id @default(autoincrement()) @unique
   clientId   Int
   materialId Int
-  loanDate   DateTime     @default(now())
+  loanDate   DateTime   @default(now())
   returnDate DateTime?
   returned   Boolean      @default(false)
-  client     Client?      @relation(fields: [clientId], references: [clientId])
-  material   Material?    @relation(fields: [materialId], references: [materialId])
+  client     Client      @relation(fields: [clientId], references: [clientId])
+  material   Material    @relation(fields: [materialId], references: [materialId])
   @@map(name: "loan")
 }

@@ -36,8 +36,6 @@ export default class LoansController {
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
   @ApiOkResponse({ type: LoanEntity, isArray: true })
   @ApiOperation({ summary: 'get all loans' })
   findAll() {
