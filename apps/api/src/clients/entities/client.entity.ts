@@ -24,6 +24,6 @@ export default class ClientEntity implements Client {
   @ApiProperty()
   typeUser: string;
 
-  @ApiProperty({ type: () => [LoanEntity], isArray: true }) // Specify the type for loans array
+  @ApiProperty({ type: () => [LoanEntity], isArray: true })
   loans?: LoanEntity[];
 }

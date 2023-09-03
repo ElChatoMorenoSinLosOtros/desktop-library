@@ -66,13 +66,17 @@ class ClientsController {
   }
 
   @Get(':clientId/total-read')
-  getTotalRead(@Param('clientId') clientId: number) {
-    return this.clientsService.getTotalRead(clientId);
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  getTotalRead(@Param('clientId') clientId: string) {
+    return this.clientsService.getTotalRead(+clientId);
   }
 
   @Get(':clientId/total-active-loans')
-  getTotalActiveLoans(@Param('clientId') clientId: number) {
-    return this.clientsService.getTotalActiveLoans(clientId);
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  getTotalActiveLoans(@Param('clientId') clientId: string) {
+    return this.clientsService.getTotalActiveLoans(+clientId);
   }
 }
 

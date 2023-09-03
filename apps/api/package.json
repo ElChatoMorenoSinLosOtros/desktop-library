@@ -9,7 +9,7 @@
   "license": "ISC",
   "private": false,
   "scripts": {
-    "build": "prisma db push --accept-data-loss && prisma db seed && prisma generate && nest build",
+    "build": "prisma generate && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "format:check": "prettier --check",
     "start": "nest start",
