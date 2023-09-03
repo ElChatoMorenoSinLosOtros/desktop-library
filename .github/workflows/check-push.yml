@@ -40,6 +40,12 @@ jobs:
       - name: Check formatting
         run: npm run format
 
+      - name: Test Api
+        run: npm run test:unit -w api
+
+      - name: Test Client
+        run: npm run test:unit -w client
+
   check_commit_convention:
     name: Conventional Commit Message
     runs-on: ubuntu-latest
