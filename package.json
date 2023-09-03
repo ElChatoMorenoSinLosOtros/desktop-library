@@ -8,7 +8,7 @@
     "email": "morales.patty.jose@gmail.com"
   },
   "scripts": {
-    "dev": "turbo dev -F db && turbo prisma -F api && turbo prisma:seed -F api && turbo dev -F api -F client",
+    "dev": "turbo dev -F db && turbo prisma:seed -F api && turbo prisma -F api && turbo dev -F api -F client",
     "dev:windows": "turbo dev -F api -F client",
     "up": "turbo up -F db",
     "build": "turbo build -F client -F api",
