@@ -16,7 +16,7 @@ export default class AuthService {
   ) {}
 
   async login(email: string, password: string): Promise<AuthEntity> {
-    const user = await this.prisma.admins.findUnique({ where: { email } });
+    const user = await this.prisma.admin.findUnique({ where: { email } });
     if (!user) {
       throw new NotFoundException(`No user found for email: ${email}`);
     }
@@ -25,7 +25,7 @@ export default class AuthService {
       throw new UnauthorizedException('Invalid password');
     }
     return {
-      accessToken: this.jwtService.sign({ userId: user.id }),
+      accessToken: this.jwtService.sign({ userId: user.adminId }),
       email: user.email,
       name: user.name,
       role: user.role

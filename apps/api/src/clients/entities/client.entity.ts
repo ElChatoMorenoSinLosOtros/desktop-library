@@ -1,3 +1,4 @@
+import LoanEntity from '@loans/entities/loan.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { Client } from '@prisma/client';
 
@@ -22,4 +23,7 @@ export default class ClientEntity implements Client {
 
   @ApiProperty()
   typeUser: string;
+
+  @ApiProperty({ type: () => [LoanEntity], isArray: true })
+  loans?: LoanEntity[];
 }

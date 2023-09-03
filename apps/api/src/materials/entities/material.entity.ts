@@ -1,3 +1,4 @@
+import LoanEntity from '@loans/entities/loan.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { Material } from '@prisma/client';
 
@@ -31,4 +32,7 @@ export default class MaterialEntity implements Material {
 
   @ApiProperty()
   type_material: string;
+
+  @ApiProperty({ type: () => [LoanEntity], isArray: true })
+  loans?: LoanEntity[];
 }

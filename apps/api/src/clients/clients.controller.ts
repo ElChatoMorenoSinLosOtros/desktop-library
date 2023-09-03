@@ -64,6 +64,20 @@ class ClientsController {
   remove(@Param('id') id: string) {
     return this.clientsService.remove(+id);
   }
+
+  @Get(':clientId/total-read')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  getTotalRead(@Param('clientId') clientId: string) {
+    return this.clientsService.getTotalRead(+clientId);
+  }
+
+  @Get(':clientId/total-active-loans')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  getTotalActiveLoans(@Param('clientId') clientId: string) {
+    return this.clientsService.getTotalActiveLoans(+clientId);
+  }
 }
 
 export default ClientsController;

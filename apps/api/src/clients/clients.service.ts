@@ -35,6 +35,24 @@ class ClientsService {
       where: { clientId }
     });
   }
+
+  getTotalRead(clientId: number) {
+    return this.prisma.loan.count({
+      where: {
+        clientId,
+        returned: true
+      }
+    });
+  }
+
+  getTotalActiveLoans(clientId: number) {
+    return this.prisma.loan.count({
+      where: {
+        clientId,
+        returned: false
+      }
+    });
+  }
 }
 
 export default ClientsService;

@@ -7,14 +7,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Admins {
-  id        Int      @id @default(autoincrement())
+model Admin {
+  adminId   Int      @id @default(autoincrement())
   email     String   @unique
   password  String
   name      String
   role      String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+  @@map(name: "admin")
 }
 
 model Client {
@@ -25,8 +26,8 @@ model Client {
   email       String? @unique
   phoneNumber Int?    @unique
   typeUser    String
-
-  @@map(name: "user")
+  loans       Loan[]
+  @@map(name: "client")
 }
 
 model Material {
@@ -40,6 +41,19 @@ model Material {
   quantity        Int?
   available       Boolean
   type_material   String
-
+  loans           Loan[]
   @@map(name: "material")
+}
+
+
+model Loan {
+  loanId     Int        @id @default(autoincrement()) @unique
+  clientId   Int
+  materialId Int
+  loanDate   DateTime   @default(now())
+  returnDate DateTime?
+  returned   Boolean      @default(false)
+  client     Client      @relation(fields: [clientId], references: [clientId])
+  material   Material    @relation(fields: [materialId], references: [materialId])
+  @@map(name: "loan")
 }

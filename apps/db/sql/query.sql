@@ -1,4 +1,4 @@
-INSERT INTO "user" ("name", "lastName", "address", "email", "phoneNumber", "typeUser") VALUES
+INSERT INTO "client" ("name", "lastName", "address", "email", "phoneNumber", "typeUser") VALUES
 ('Juan', 'Perez', 'Calle 1', 'juan.perez@gmail.com', 1234567, 'Student'),
 ('Maria', 'Gomez', 'Calle 2', 'maria.gomez@gmail.com', 1234568, 'Student'),
 ('Pedro', 'Garcia', 'Calle 3', 'pedro.garcia@gmail.com', 1234569, 'Student'),
