@@ -9,7 +9,7 @@
   "license": "ISC",
   "private": false,
   "scripts": {
-    "build": "prisma db push && prisma db seed && prisma generate && nest build",
+    "build": "prisma db push --accept-data-loss && prisma db seed && prisma generate && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "format:check": "prettier --check",
     "start": "nest start",
@@ -94,7 +94,8 @@
       "@auth/(.*)": "<rootDir>/src/auth/$1",
       "@clients/(.*)": "<rootDir>/src/clients/$1",
       "@admins/(.*)": "<rootDir>/src/admins/$1",
-      "@utils/(.*)": "<rootDir>/src/utils/$1"
+      "@utils/(.*)": "<rootDir>/src/utils/$1",
+      "@loans/(.*)": "<rootDir>/src/loans/$1"
     },
     "moduleDirectories": [
       "src",

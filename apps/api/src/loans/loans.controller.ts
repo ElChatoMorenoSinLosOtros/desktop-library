@@ -1,3 +1,4 @@
+import JwtAuthGuard from '@auth/jwt-auth.guard';
 import {
   Body,
   Controller,
@@ -14,7 +15,6 @@ import {
   ApiOkResponse,
   ApiTags
 } from '@nestjs/swagger';
-import JwtAuthGuard from 'src/auth/jwt-auth.guard';
 import CreateLoanDto from './dto/create-loan.dto';
 import UpdateLoanDto from './dto/update-loan.dto';
 import LoanEntity from './entities/loan.entity';
@@ -34,6 +34,8 @@ export default class LoansController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ type: LoanEntity, isArray: true })
   findAll() {
     return this.loansService.findAll();

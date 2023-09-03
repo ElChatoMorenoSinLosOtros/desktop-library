@@ -43,6 +43,9 @@
       "@utils/*": [
         "./src/utils/*"
       ],
+      "@loans/*": [
+        "./src/loans/*"
+      ],
     }
   },
   "include": [
