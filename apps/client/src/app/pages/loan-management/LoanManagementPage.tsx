@@ -8,7 +8,7 @@ import LoanList from '@pages/loan-management/components/list/LoanList';
 
 function LoanManagementPage() {
   const { getLoans } = LibraryAPIService();
-  const [loans, setLoans] = useState<Material[]>([]);
+  const [loans, setLoans] = useState<Loan[]>([]);
 
   useEffect(() => {
     getLoans()
