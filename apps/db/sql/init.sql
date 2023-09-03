@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS "loan" (
     CONSTRAINT "loan_pkey" PRIMARY KEY ("loanId")
 );
 
-CREATE UNIQUE INDEX "loan_loanId_key" ON "loan"("loanId");
+CREATE UNIQUE INDEX IF NOT EXISTS "loan_loanId_key" ON "loan"("loanId");
 
 CREATE UNIQUE INDEX IF NOT EXISTS "loan_loanId_key" ON "loan"("loanId");
 
