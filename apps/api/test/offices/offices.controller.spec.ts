@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import OfficesController from './offices.controller';
-import OfficesService from './offices.service';
+import OfficesController from '../../src/offices/offices.controller';
+import OfficesService from '../../src/offices/offices.service';
 
 describe('OfficesController', () => {
   let controller: OfficesController;
