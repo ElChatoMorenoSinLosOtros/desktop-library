@@ -148,6 +148,68 @@ const LibraryAPIService = () => {
     });
   };
 
+  const getOffices = async (): Promise<GetOfficesResponse> => {
+    return LibraryAPI.get<GetOfficesResponse>('/offices', {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const getOfficeById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<GetOfficeByIdResponse> => {
+    return LibraryAPI.get<GetOfficeByIdResponse>(`/offices/${id}`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const removeOfficeById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<RemoveOfficeByIdResponse> => {
+    return LibraryAPI.delete<RemoveOfficeByIdResponse>(`/offices/${id}`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const updateOfficeById = async ({
+    id,
+    office
+  }: {
+    id: number;
+    office: OfficeWithoutId;
+  }): Promise<UpdateOfficeByIdResponse> => {
+    return LibraryAPI.patch<UpdateOfficeByIdResponse>(
+      `/offices/${id}`,
+      office,
+      {
+        headers: { Authorization: `Bearer ${admin.accessToken}` }
+      }
+    ).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const createOffice = async ({
+    office
+  }: {
+    office: OfficeWithoutId;
+  }): Promise<CreateOfficeResponse> => {
+    return LibraryAPI.post<CreateOfficeResponse>(`/offices`, office, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
   return {
     login,
     getUsers,
@@ -159,7 +221,12 @@ const LibraryAPIService = () => {
     getMaterialById,
     createMaterial,
     removeMaterialById,
-    updateMaterialById
+    updateMaterialById,
+    getOffices,
+    getOfficeById,
+    removeOfficeById,
+    updateOfficeById,
+    createOffice
   };
 };
 

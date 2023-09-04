@@ -1,15 +1,15 @@
 CREATE OR REPLACE FUNCTION material_insert_trigger()
 RETURNS TRIGGER AS $$
 DECLARE
-  first_office_id UUID;
+  "first_office_id" UUID;
 BEGIN
-    SELECT officeId INTO first_office_id
-    FROM sucursal
-    ORDER BY officeId
+    SELECT "officeId" INTO "first_office_id"
+    FROM "office"
+    ORDER BY "officeId"
     LIMIT 1;
 
-    INSERT INTO materials_changes (officeId, materialId, changeType, oldData, newData)
-    VALUES (first_office_id, NEW.materialId, 'insert', NULL, to_jsonb(NEW));
+    INSERT INTO "materials_changes" ("officeId", "materialId", "changeType", "oldData", "newData")
+    VALUES ("first_office_id", NEW."materialId", 'insert', NULL, to_jsonb(NEW));
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -22,15 +22,15 @@ EXECUTE FUNCTION material_insert_trigger();
 CREATE OR REPLACE FUNCTION material_update_trigger()
 RETURNS TRIGGER AS $$
 DECLARE
-  first_office_id UUID;
+  "first_office_id" UUID;
 BEGIN
-    SELECT officeId INTO first_office_id
-    FROM sucursal
-    ORDER BY officeId
+    SELECT "officeId" INTO "first_office_id"
+    FROM "office"
+    ORDER BY "officeId"
     LIMIT 1;
 
-    INSERT INTO materials_changes (officeId, materialId, changeType, oldData, newData)
-    VALUES (first_office_id, NEW.materialId, 'update', to_jsonb(OLD), to_jsonb(NEW));
+    INSERT INTO "materials_changes" ("officeId", "materialId", "changeType", "oldData", "newData")
+    VALUES ("first_office_id", NEW."materialId", 'update', to_jsonb(OLD), to_jsonb(NEW));
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -44,15 +44,15 @@ EXECUTE FUNCTION material_update_trigger();
 CREATE OR REPLACE FUNCTION material_delete_trigger()
 RETURNS TRIGGER AS $$
 DECLARE
-  first_office_id UUID;
+  "first_office_id" UUID;
 BEGIN
-    SELECT officeId INTO first_office_id
-    FROM sucursal
-    ORDER BY officeId
+    SELECT "officeId" INTO "first_office_id"
+    FROM "office"
+    ORDER BY "officeId"
     LIMIT 1;
 
-    INSERT INTO materials_changes (officeId, materialId, changeType, oldData, newData)
-    VALUES (first_office_id, OLD.materialId, 'delete', to_jsonb(OLD), NULL);
+    INSERT INTO "materials_changes" ("officeId", "materialId", "changeType", "oldData", "newData")
+    VALUES ("first_office_id", OLD."materialId", 'delete', to_jsonb(OLD), NULL);
     RETURN OLD;
 END;
 $$ LANGUAGE plpgsql;

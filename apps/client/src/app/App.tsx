@@ -29,9 +29,7 @@ function App() {
         <Routes>
           <Route
             path='*'
-            element={
-              <Navigate to={`${admin.email === '' ? '/login' : '/menu'}`} />
-            }
+            element={<Navigate to={`${admin?.email === '' ? '/' : '/menu'}`} />}
           />
           <Route path='/' element={<Navigate to='/login' />} />
           <Route path='/login' element={<LoginPage />} />

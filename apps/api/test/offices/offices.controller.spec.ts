@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
+import OfficesController from '@offices/offices.controller';
+import OfficesService from '@offices/offices.service';
 import PrismaModule from '@pr-prisma/prisma.module';
 import PrismaService from '@pr-prisma/prisma.service';
-import OfficesController from '@/offices/offices.controller';
-import OfficesService from '@/offices/offices.service';
 
 describe('OfficesController', () => {
   let controller: OfficesController;

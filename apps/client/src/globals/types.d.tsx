@@ -33,7 +33,8 @@ declare global {
   interface UseLoginProps {
     email: string;
     password: string;
-    sucursal: string;
+    office: string;
+    isRegister: boolean;
   }
 
   interface HandleLoginSubmitProps {
@@ -65,9 +66,9 @@ declare global {
     setType: ({ type }: { type: string }) => void;
   }
 
-  interface SucursalStore {
-    sucursal: string;
-    setSucursal: ({ sucursal }: { sucursal: string }) => void;
+  interface OfficeStore {
+    office: string;
+    setOffice: ({ office }: { office: string }) => void;
   }
 
   interface LoginFormProps {
@@ -291,5 +292,26 @@ declare global {
 
   type InfoMaterialPageParams = {
     id: string;
+  };
+
+  type Office = {
+    officeId: number;
+    name: string;
+    created_at: string;
+    updated_at: string;
+  };
+
+  type GetOfficesResponse = Office[];
+
+  type GetOfficeByIdResponse = Office;
+
+  type CreateOfficeResponse = Office;
+
+  type RemoveOfficeByIdResponse = Office;
+
+  type UpdateOfficeByIdResponse = Office;
+
+  type OfficeWithoutId = {
+    name: string;
   };
 }

@@ -48,25 +48,25 @@ CREATE TABLE IF NOT EXISTS "material" (
 CREATE UNIQUE INDEX IF NOT EXISTS "material_isbn_key" ON "material"("isbn");
 
 CREATE TABLE IF NOT EXISTS "office" (
-    "officeId" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "officeId" TEXT PRIMARY KEY DEFAULT uuid_generate_v4(),
     "name" TEXT NOT NULL,
     "createdAt" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updatedAt" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+CREATE UNIQUE INDEX IF NOT EXISTS "office_name_key" ON "office"("name");
+
 CREATE TABLE IF NOT EXISTS "materials_changes" (
     "changeId" SERIAL PRIMARY KEY,
-    "officeId" UUID NOT NULL,
+    "officeId" TEXT NOT NULL,
     "materialId" INTEGER NOT NULL,
     "changeType" TEXT NOT NULL,
     "changeDate" TIMESTAMP DEFAULT NOW(),
     "oldData" JSONB,
     "newData" JSONB,
 
-    CONSTRAINT "materials_changes_materialId_fkey" FOREIGN KEY ("materialId") REFERENCES "material"("materialId") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "materials_changes_officeId_fkey" FOREIGN KEY ("officeId") REFERENCES "office"("officeId") ON DELETE RESTRICT ON UPDATE CASCADE
 );
-
 
 CREATE TABLE IF NOT EXISTS "loan" (
     "loanId" SERIAL NOT NULL,
@@ -83,13 +83,26 @@ CREATE UNIQUE INDEX IF NOT EXISTS "loan_loanId_key" ON "loan"("loanId");
 
 CREATE UNIQUE INDEX IF NOT EXISTS "loan_loanId_key" ON "loan"("loanId");
 
+CREATE OR REPLACE FUNCTION update_updatedAt()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW."updatedAt" = NOW();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 
-CREATE TABLE IF NOT EXISTS office (
-  officeId UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  name VARCHAR NOT NULL,
-  createdAt TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updatedAt TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
+CREATE TRIGGER trigger_update_office_updatedAt
+BEFORE UPDATE
+ON "office"
+FOR EACH ROW
+EXECUTE FUNCTION update_updatedAt();
+
+CREATE TRIGGER trigger_update_admin_updatedAt
+BEFORE UPDATE
+ON "admin"
+FOR EACH ROW
+EXECUTE FUNCTION update_updatedAt();
+
 
 DO $$
 BEGIN

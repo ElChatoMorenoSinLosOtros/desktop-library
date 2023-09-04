@@ -42,4 +42,4 @@ INSERT INTO "material" ("title", "author", "category", "isbn", "publicationYear"
 ('Lonely Planet Traveller', 'Varios autores', 'Viajes', '555-9876', 2023, 50, 22, true, 'Revista');
 
 INSERT INTO "office" ("name")
-VALUES ('hola');
+VALUES ('Development');

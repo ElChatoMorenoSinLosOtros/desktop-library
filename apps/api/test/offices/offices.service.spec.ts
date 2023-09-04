@@ -1,5 +1,5 @@
-import OfficesService from '@/offices/offices.service';
 import { Test, TestingModule } from '@nestjs/testing';
+import OfficesService from '@offices/offices.service';
 import PrismaModule from '@pr-prisma/prisma.module';
 import PrismaService from '@pr-prisma/prisma.service';
 
