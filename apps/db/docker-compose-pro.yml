@@ -15,6 +15,7 @@ services:
     volumes:
       - postgres-data-pro:/var/lib/postgresql/data
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./sql/production.sql:/docker-entrypoint-initdb.d/production.sql
 
   pgadmin:
     image: dpage/pgadmin4:latest

@@ -10,6 +10,7 @@ declare global {
     type?: 'text' | 'password' | 'email' | 'number' | 'date' | 'time';
     className?: string;
     classNameTitle?: string;
+    disabled?: boolean;
   }
 
   interface ButtonProps {
@@ -27,6 +28,13 @@ declare global {
     accessToken?: string;
     statusCode?: number;
     message?: string;
+  }
+
+  interface UseLoginProps {
+    email: string;
+    password: string;
+    office: string;
+    isRegister: boolean;
   }
 
   interface HandleLoginSubmitProps {
@@ -58,6 +66,11 @@ declare global {
     setType: ({ type }: { type: string }) => void;
   }
 
+  interface OfficeStore {
+    office: string;
+    setOffice: ({ office }: { office: string }) => void;
+  }
+
   interface LoginFormProps {
     setError: React.Dispatch<React.SetStateAction<string>>;
   }
@@ -71,6 +84,7 @@ declare global {
     name: string;
     placeholder: string;
     type: 'text' | 'password' | 'email' | 'number' | 'date' | 'time';
+    disabled?: boolean;
   }
 
   interface LoginSubmitButtonProps {
@@ -278,5 +292,26 @@ declare global {
 
   type InfoMaterialPageParams = {
     id: string;
+  };
+
+  type Office = {
+    officeId: number;
+    name: string;
+    created_at: string;
+    updated_at: string;
+  };
+
+  type GetOfficesResponse = Office[];
+
+  type GetOfficeByIdResponse = Office;
+
+  type CreateOfficeResponse = Office;
+
+  type RemoveOfficeByIdResponse = Office;
+
+  type UpdateOfficeByIdResponse = Office;
+
+  type OfficeWithoutId = {
+    name: string;
   };
 }

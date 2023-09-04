@@ -15,6 +15,7 @@ model Admin {
   role      String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+
   @@map(name: "admin")
 }
 
@@ -27,6 +28,7 @@ model Client {
   phoneNumber Int?    @unique
   typeUser    String
   loans       Loan[]
+
   @@map(name: "client")
 }
 
@@ -42,26 +44,44 @@ model Material {
   available       Boolean
   type_material   String
   loans           Loan[]
+
   @@map(name: "material")
 }
 
-
 model Loan {
-  loanId     Int        @id @default(autoincrement()) @unique
+  loanId     Int       @id @unique @default(autoincrement())
   clientId   Int
   materialId Int
-  loanDate   DateTime   @default(now())
+  loanDate   DateTime  @default(now())
   returnDate DateTime?
-  returned   Boolean      @default(false)
-  client     Client      @relation(fields: [clientId], references: [clientId])
-  material   Material    @relation(fields: [materialId], references: [materialId])
+  returned   Boolean   @default(false)
+  client     Client    @relation(fields: [clientId], references: [clientId])
+  material   Material  @relation(fields: [materialId], references: [materialId])
+
   @@map(name: "loan")
 }
 
 model Office {
-  officeId   String       @id @default(uuid())
-  name       String
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime     @default(now())
+  officeId         String             @id @default(uuid())
+  name             String             @unique
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @default(now())
+  MaterialsChanges MaterialsChanges[]
+
   @@map(name: "office")
+}
+
+model MaterialsChanges {
+  changeId   Int      @id @default(autoincrement())
+  officeId   String
+  materialId Int
+  changeType String
+  changeData DateTime @default(now())
+  oldData    Json?
+  newData    Json?
+
+  office Office @relation(fields: [officeId], references: [officeId])
+
+  @@index([officeId], name: "materials_changes_officeId_index")
+  @@map(name: "materials_changes")
 }
