@@ -24,8 +24,4 @@ export default class CreateLoanDto {
   @IsBoolean()
   @IsOptional()
   returned?: boolean;
-
-  @ApiProperty()
-  @IsInt()
-  adminID: number;
 }

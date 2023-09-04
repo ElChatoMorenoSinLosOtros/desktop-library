@@ -4,7 +4,8 @@ function LoginFormTextField({
   title,
   name,
   placeholder,
-  type
+  type,
+  disabled = false
 }: LoginFormTextFieldProps) {
   return (
     <TextField
@@ -12,7 +13,9 @@ function LoginFormTextField({
       name={name}
       placeholder={placeholder}
       type={type}
-      className='w-full border-gray-700 border-[1px] rounded-lg placeholder:text-black/50 bg-transparent '
+      className='w-full border-gray-700 border-[1px] rounded-lg
+      placeholder:text-black/50 bg-transparent'
+      disabled={disabled}
     />
   );
 }

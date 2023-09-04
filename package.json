@@ -8,8 +8,8 @@
     "email": "morales.patty.jose@gmail.com"
   },
   "scripts": {
-    "dev": "turbo dev -F db && turbo prisma:seed -F api && turbo prisma -F api && turbo dev -F api -F client",
-    "dev:windows": "turbo dev -F api -F client",
+    "dev": "concurrently \"turbo dev -F api\" \"turbo dev -F db && turbo prisma -F api && turbo prisma:seed -F api && turbo dev -F client \"",
+    "dev:windows": "concurrently \"turbo dev -F api\" \"turbo prisma -F api && turbo prisma:seed -F api && turbo dev -F client \"",
     "up": "turbo up -F db",
     "build": "turbo build -F client -F api",
     "lint": "turbo lint -F client -F api",
@@ -17,7 +17,7 @@
     "format:check": "turbo format:check -F client -F api",
     "test:unit": "turbo test:unit -F client -F api",
     "test:cov": "turbo test:cov -F client -F api",
-    "start": "turbo start -F db && turbo prisma:seed -F api && turbo start -F api -F client",
+    "start": "turbo start -F db && concurrently \"turbo start -F api\" \"turbo prisma -F api && turbo prisma:seed -F api && turbo start -F client \"",
     "prisma": "turbo prisma -F api",
     "prisma:seed": "turbo prisma:seed -F api"
   },
@@ -26,6 +26,7 @@
     "apps/*"
   ],
   "devDependencies": {
+    "concurrently": "^8.2.1",
     "turbo": "v1.10.13"
   }
 }

@@ -8,9 +8,6 @@ export default class LoanEntity implements Loan {
   loanId: number;
 
   @ApiProperty()
-  adminId: number;
-
-  @ApiProperty()
   clientId: number;
 
   @ApiProperty()

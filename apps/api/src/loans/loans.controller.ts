@@ -45,7 +45,7 @@ export default class LoansController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: LoanEntity })
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) {
     return this.loansService.findOne(+id);
   }
 
@@ -53,7 +53,7 @@ export default class LoansController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: LoanEntity })
-  update(@Param('id') id: string, @Body() updateLoanDto: UpdateLoanDto) {
+  update(@Param('id') id: number, @Body() updateLoanDto: UpdateLoanDto) {
     return this.loansService.update(+id, updateLoanDto);
   }
 
@@ -61,7 +61,7 @@ export default class LoansController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: LoanEntity })
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: number) {
     return this.loansService.remove(+id);
   }
 }

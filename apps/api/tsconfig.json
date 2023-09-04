@@ -46,6 +46,9 @@
       "@loans/*": [
         "./src/loans/*"
       ],
+      "@offices/*": [
+        "./src/offices/*"
+      ],
     }
   },
   "include": [

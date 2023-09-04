@@ -40,3 +40,6 @@ INSERT INTO "material" ("title", "author", "category", "isbn", "publicationYear"
 ('Smithsonian Magazine', 'Varios autores', 'Cultura', '987-6543', 2023, 60, 18, true, 'Revista'),
 ('New Scientist', 'Varios autores', 'Tecnología', '456-7890', 2023, 68, 15, true, 'Revista'),
 ('Lonely Planet Traveller', 'Varios autores', 'Viajes', '555-9876', 2023, 50, 22, true, 'Revista');
+
+INSERT INTO "office" ("name")
+VALUES ('Development');
