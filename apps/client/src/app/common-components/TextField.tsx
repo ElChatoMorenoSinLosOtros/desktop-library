@@ -6,7 +6,8 @@ function TextField({
   placeholder,
   type = 'text',
   className = '',
-  classNameTitle = ''
+  classNameTitle = '',
+  disabled = false
 }: TextFieldProps) {
   return (
     <div className='flex flex-col gap-5'>
@@ -20,6 +21,7 @@ function TextField({
         placeholder={placeholder}
         type={type}
         required
+        disabled={disabled}
       />
     </div>
   );

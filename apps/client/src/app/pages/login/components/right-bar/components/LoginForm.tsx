@@ -7,8 +7,18 @@ function LoginForm({ setError }: LoginFormProps) {
   const { useLogin } = useHandle({ setError });
 
   return (
-    <Formik initialValues={{ email: '', password: '' }} onSubmit={useLogin}>
+    <Formik
+      initialValues={{ email: '', password: '', sucursal: '' }}
+      onSubmit={useLogin}
+    >
       <Form className='flex flex-col gap-5'>
+        <LoginFormTextField
+          title='Sucursal'
+          name='sucursal'
+          placeholder='Enter your Sucursal'
+          type='text'
+          disabled
+        />
         <LoginFormTextField
           title='Email'
           name='email'

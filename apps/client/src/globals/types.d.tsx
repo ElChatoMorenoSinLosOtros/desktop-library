@@ -10,6 +10,7 @@ declare global {
     type?: 'text' | 'password' | 'email' | 'number' | 'date' | 'time';
     className?: string;
     classNameTitle?: string;
+    disabled?: boolean;
   }
 
   interface ButtonProps {
@@ -27,6 +28,12 @@ declare global {
     accessToken?: string;
     statusCode?: number;
     message?: string;
+  }
+
+  interface UseLoginProps {
+    email: string;
+    password: string;
+    sucursal: string;
   }
 
   interface HandleLoginSubmitProps {
@@ -58,6 +65,11 @@ declare global {
     setType: ({ type }: { type: string }) => void;
   }
 
+  interface SucursalStore {
+    sucursal: string;
+    setSucursal: ({ sucursal }: { sucursal: string }) => void;
+  }
+
   interface LoginFormProps {
     setError: React.Dispatch<React.SetStateAction<string>>;
   }
@@ -71,6 +83,7 @@ declare global {
     name: string;
     placeholder: string;
     type: 'text' | 'password' | 'email' | 'number' | 'date' | 'time';
+    disabled?: boolean;
   }
 
   interface LoginSubmitButtonProps {
