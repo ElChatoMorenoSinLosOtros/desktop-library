@@ -17,9 +17,10 @@
     "format:check": "turbo format:check -F client -F api",
     "test:unit": "turbo test:unit -F client -F api",
     "test:cov": "turbo test:cov -F client -F api",
-    "start": "turbo start -F db && concurrently \"turbo start -F api\" \"turbo prisma -F api && turbo prisma:seed -F api && turbo start -F client \"",
+    "start": "turbo start -F db && turbo start -F main-server && concurrently \"turbo start -F api\" \"turbo prisma -F api && turbo prisma:seed -F api && turbo start -F client \"",
     "prisma": "turbo prisma -F api",
-    "prisma:seed": "turbo prisma:seed -F api"
+    "prisma:seed": "turbo prisma:seed -F api",
+    "start:server": "turbo start -F main-server"
   },
   "license": "ISC",
   "workspaces": [

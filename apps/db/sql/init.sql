@@ -1,3 +1,5 @@
+SET TIME  ZONE 'UTC';
+
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE IF NOT EXISTS "client" (
@@ -22,8 +24,8 @@ CREATE TABLE IF NOT EXISTS "admin" (
     "password" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "role" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMPTZ(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMPTZ(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "admin_pkey" PRIMARY KEY ("adminId")
 );
@@ -61,7 +63,7 @@ CREATE TABLE IF NOT EXISTS "materials_changes" (
     "officeId" TEXT NOT NULL,
     "materialId" INTEGER NOT NULL,
     "changeType" TEXT NOT NULL,
-    "changeDate" TIMESTAMP DEFAULT NOW(),
+    "changeDate" TIMESTAMPTZ DEFAULT NOW(),
     "oldData" JSONB,
     "newData" JSONB,
 
@@ -72,8 +74,8 @@ CREATE TABLE IF NOT EXISTS "loan" (
     "loanId" SERIAL NOT NULL,
     "clientId" INTEGER NOT NULL,
     "materialId" INTEGER NOT NULL,
-    "loanDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "returnDate" TIMESTAMP(3) NOT NULL,
+    "loanDate" TIMESTAMPTZ(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "returnDate" TIMESTAMPTZ(3) NOT NULL,
     "returned" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "loan_pkey" PRIMARY KEY ("loanId")

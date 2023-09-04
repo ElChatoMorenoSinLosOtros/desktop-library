@@ -1,0 +1,34 @@
+version: latest
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-main-server
+    environment:
+      POSTGRES_DB: main
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - 4040:4040
+    command: -p 4040
+    volumes:
+      - postgres-data-main-server:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin-main-server
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_LISTEN_PORT: 6060
+    ports:
+      - 6060:6060
+    volumes:
+      - pgadmin-data-main-server:/var/lib/pgadmin
+    depends_on:
+      - postgres
+
+volumes:
+  pgadmin-data-main-server:
+  postgres-data-main-server:
