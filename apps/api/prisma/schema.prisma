@@ -20,30 +20,32 @@ model Admin {
 }
 
 model Client {
-  clientId    Int     @id @default(autoincrement())
+  clientId    Int       @id @default(autoincrement())
   name        String?
   lastName    String?
   address     String?
-  email       String? @unique
-  phoneNumber Int?    @unique
+  email       String?   @unique
+  phoneNumber Int?      @unique
   typeUser    String
   loans       Loan[]
+  Reserve     Reserve[]
 
   @@map(name: "client")
 }
 
 model Material {
-  materialId      Int     @id @default(autoincrement())
+  materialId      Int       @id @default(autoincrement())
   title           String?
   author          String?
   category        String?
-  isbn            String? @unique
+  isbn            String?   @unique
   publicationYear Int?
   pageCount       Int?
   quantity        Int?
   available       Boolean
   type_material   String
   loans           Loan[]
+  Reserve         Reserve[]
 
   @@map(name: "material")
 }
@@ -94,4 +96,17 @@ model Return {
   loanId     Int?     @unique
 
   @@map(name: "returns")
+}
+
+model Reserve {
+  reserveId  Int       @id @unique @default(autoincrement())
+  clientId   Int
+  materialId Int
+  checkDate  DateTime  @default(now())
+  returnDate DateTime
+  returned   Boolean   @default(false)
+  client     Client?   @relation(fields: [clientId], references: [clientId])
+  material   Material? @relation(fields: [materialId], references: [materialId])
+
+  @@map(name: "reserve")
 }

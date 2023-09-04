@@ -1,0 +1,36 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { Reserve } from '@prisma/client';
+import ClientEntity from 'src/clients/entities/client.entity';
+import MaterialEntity from 'src/materials/entities/material.entity';
+
+export default class ReserveEntity implements Reserve {
+  @ApiProperty()
+  reserveId: number;
+
+  @ApiProperty()
+  loanId: number;
+
+  @ApiProperty()
+  adminId: number;
+
+  @ApiProperty()
+  clientId: number;
+
+  @ApiProperty()
+  materialId: number;
+
+  @ApiProperty()
+  checkDate: Date;
+
+  @ApiProperty()
+  returnDate: Date | null;
+
+  @ApiProperty()
+  returned: boolean;
+
+  @ApiProperty({ type: () => ClientEntity })
+  client: ClientEntity;
+
+  @ApiProperty({ type: () => MaterialEntity })
+  material: MaterialEntity;
+}
