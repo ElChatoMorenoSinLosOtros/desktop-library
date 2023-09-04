@@ -2,9 +2,9 @@ import LibraryAPIService from '@api/LibraryAPI';
 import DeleteButton from '@common-components/DeleteButton';
 import EditIcon from '@mui/icons-material/Edit';
 import InfoIcon from '@mui/icons-material/Info';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoanActionButton from './components/LoanActionButton';
-import { useEffect, useState } from 'react';
 
 function LoanItem({ loan }: { loan: Loan }) {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ function LoanItem({ loan }: { loan: Loan }) {
   const [client, setClient] = useState<Client>({} as Client);
 
   useEffect(() => {
-    getMaterialById({id: loan.materialId})
+    getMaterialById({ id: loan.materialId })
       .then(res => setMaterial(res))
       .catch((error: Error) => {
         throw new Error(error.message);
@@ -21,7 +21,7 @@ function LoanItem({ loan }: { loan: Loan }) {
   }, [loan]);
 
   useEffect(() => {
-    getUserById({id: String(loan.clientId)})
+    getUserById({ id: String(loan.clientId) })
       .then(res => setClient(res))
       .catch((error: Error) => {
         throw new Error(error.message);
