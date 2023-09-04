@@ -12,11 +12,11 @@ function LoanItem({ loan }: { loan: Loan }) {
   return (
     <div className='grid grid-cols-9 w-full px-6 gap-4'>
       <div>{loan.loanId}</div>
-      <div>{loan.materialType}</div>
-      <div>{loan.title}</div>
-      <div>{loan.borrower}</div>
-      <div>{loan.dueDate}</div>
-      <div>{loan.status ? 'True' : 'False'}</div>
+      <div>{loan.materialId}</div>
+      <div>{loan.clientId}</div>
+      <div>{loan.loanDate.toString()}</div>
+      <div>{loan.returnDate.toString()}</div>
+      <div>{loan.returned ? 'True' : 'False'}</div>
       <LoanActionButton
         onClick={() => {
           navigate(`/loan-management/info/${loan.loanId}`);

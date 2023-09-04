@@ -266,11 +266,11 @@ declare global {
 
   type Loan = {
     loanId: number;
-    materialType: string;
-    title: string;
-    borrower: string;
-    dueDate: string;
-    status: number;
+    clientId: number;
+    materialId: number;
+    loanDate: Date;
+    returnDate: Date;
+    returned: boolean;
   };
 
   type MaterialWithOutID = {
