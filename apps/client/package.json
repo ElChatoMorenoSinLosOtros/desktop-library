@@ -18,7 +18,8 @@
     "format:check": "prettier --check",
     "preview": "vite preview",
     "test:unit": "jest --coverageThreshold '{}' --passWithNoTests --no-cache",
-    "test": "jest --coverageThreshold '{}' --passWithNoTests --no-cache"
+    "test": "jest --coverageThreshold '{}' --passWithNoTests --no-cache",
+    "start": "electron dist-electron/main.js "
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

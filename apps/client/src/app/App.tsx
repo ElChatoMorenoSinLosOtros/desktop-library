@@ -10,22 +10,29 @@ import AddMaterialPage from '@pages/material-management/pages/add/AddMaterialPag
 import InfoMaterialPage from '@pages/material-management/pages/info/InfoMaterialPage';
 import NewDataMaterialPage from '@pages/material-management/pages/update/NewDataMaterialPage';
 import MenuPage from '@pages/menu/MenuPage';
-import NotFoundPage from '@pages/not-found/NotFoundPage';
 import PersonManagementPage from '@pages/person-management/PersonManagementPage';
 import AddPersonPage from '@pages/person-management/pages/add/AddPersonPage';
 import PersonInfoPage from '@pages/person-management/pages/info/InfoPersonPage';
 import NewDataPersonPage from '@pages/person-management/pages/new-data/NewDataPersonPage';
 import ReportsPage from '@pages/reports/ReportsPage';
 import ReservationsManagementPage from '@pages/reservations-management/ReservationsManagementPage';
+import useAdminStore from '@store/AdminStore';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 function App() {
+  const admin = useAdminStore(state => state.admin);
+
   return (
     <div className='h-screen grid grid-cols-12 w-screen bg-black'>
       <SideBar />
       <div className='h-screen col-span-9 bg-[#d9d9d9]'>
         <Routes>
-          <Route path='*' element={<NotFoundPage />} />
+          <Route
+            path='*'
+            element={
+              <Navigate to={`${admin.email === '' ? '/login' : '/menu'}`} />
+            }
+          />
           <Route path='/' element={<Navigate to='/login' />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/menu' element={<MenuPage />} />

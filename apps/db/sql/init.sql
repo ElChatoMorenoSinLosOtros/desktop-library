@@ -82,15 +82,3 @@ BEGIN
     END IF;
 END $$;
 
-CREATE OR REPLACE FUNCTION update_updated_at()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.updatedAt = NOW();
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE OR REPLACE TRIGGER update_trigger
-BEFORE UPDATE ON "admin"
-FOR EACH ROW
-EXECUTE FUNCTION update_updated_at();

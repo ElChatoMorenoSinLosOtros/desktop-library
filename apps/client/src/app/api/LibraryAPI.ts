@@ -2,7 +2,7 @@ import useAdminStore from '@store/AdminStore';
 import axios from 'axios';
 
 const LibraryAPI = axios.create({
-  baseURL: '/api'
+  baseURL: 'http://localhost:3000/api'
 });
 
 const LibraryAPIService = () => {
