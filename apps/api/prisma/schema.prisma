@@ -57,3 +57,11 @@ model Loan {
   material   Material    @relation(fields: [materialId], references: [materialId])
   @@map(name: "loan")
 }
+
+model Office {
+  officeId   String       @id @default(uuid())
+  name       String
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @default(now())
+  @@map(name: "office")
+}

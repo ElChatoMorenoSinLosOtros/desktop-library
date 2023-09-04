@@ -4,6 +4,7 @@ import AuthModule from './auth/auth.module';
 import ClientsModule from './clients/clients.module';
 import LoansModule from './loans/loans.module';
 import MaterialsModule from './materials/materials.module';
+import OfficesModule from './offices/offices.module';
 import PrismaModule from './prisma/prisma.module';
 
 @Module({
@@ -13,7 +14,8 @@ import PrismaModule from './prisma/prisma.module';
     AdminsModule,
     MaterialsModule,
     ClientsModule,
-    LoansModule
+    LoansModule,
+    OfficesModule
   ]
 })
 export default class AppModule {}

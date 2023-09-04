@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 CREATE TABLE IF NOT EXISTS "client" (
     "clientId" SERIAL NOT NULL,
     "name" TEXT,
@@ -59,6 +61,14 @@ CREATE TABLE IF NOT EXISTS "loan" (
 CREATE UNIQUE INDEX IF NOT EXISTS "loan_loanId_key" ON "loan"("loanId");
 
 CREATE UNIQUE INDEX IF NOT EXISTS "loan_loanId_key" ON "loan"("loanId");
+
+
+CREATE TABLE IF NOT EXISTS office (
+  officeId UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name VARCHAR NOT NULL,
+  createdAt TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updatedAt TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
 
 DO $$
 BEGIN
