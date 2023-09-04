@@ -62,4 +62,3 @@ INSERT INTO "loan" ("clientId", "materialId", "returnDate", "returned") VALUES
 (16, 16, '2023-09-25 01:00:00', true),
 (17, 17, '2023-09-26 02:00:00', true),
 (18, 18, '2023-09-27 03:00:00', true);
->>>>>>> 16466a7 (fix: update loan parameters)
