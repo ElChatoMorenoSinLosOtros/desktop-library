@@ -6,6 +6,7 @@ import LoansModule from './loans/loans.module';
 import MaterialsModule from './materials/materials.module';
 import OfficesModule from './offices/offices.module';
 import PrismaModule from './prisma/prisma.module';
+import ReturnsModule from './returns/returns.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import PrismaModule from './prisma/prisma.module';
     MaterialsModule,
     ClientsModule,
     LoansModule,
-    OfficesModule
+    OfficesModule,
+    ReturnsModule
   ]
 })
 export default class AppModule {}

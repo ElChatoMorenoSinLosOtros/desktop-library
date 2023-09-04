@@ -1,3 +1,4 @@
+import ReturnEntity from '@/returns/entities/return.entity';
 import ClientEntity from '@clients/entities/client.entity';
 import MaterialEntity from '@materials/entities/material.entity';
 import { ApiProperty } from '@nestjs/swagger';
@@ -27,4 +28,7 @@ export default class LoanEntity implements Loan {
 
   @ApiProperty({ type: () => MaterialEntity })
   material: MaterialEntity;
+
+  @ApiProperty({ type: () => [ReturnEntity], isArray: true })
+  returns?: ReturnEntity[];
 }
