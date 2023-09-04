@@ -13,10 +13,12 @@ const { VITE_DEV_SERVER_URL } = process.env;
 
 function createWindow() {
   win = new BrowserWindow({
-    icon: path.join(process.env.PUBLIC, 'electron-vite.svg'),
+    icon: path.join(process.env.PUBLIC, 'library-logo.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
-    }
+    },
+    width: 1400,
+    height: 950
   });
 
   win.webContents.on('did-finish-load', () => {

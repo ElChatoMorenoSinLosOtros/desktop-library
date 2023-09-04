@@ -3,7 +3,7 @@ version: latest
 services:
   postgres:
     image: postgres:latest
-    container_name: postgres
+    container_name: postgres-pro
     restart: always
     environment:
       POSTGRES_DB: library
@@ -13,12 +13,12 @@ services:
       - 3030:3030
     command: -p 3030
     volumes:
+      - postgres-data-pro:/var/lib/postgresql/data
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./sql/query.sql:/docker-entrypoint-initdb.d/query.sql
 
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: pgadmin
+    container_name: pgadmin-pro
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
@@ -27,9 +27,10 @@ services:
     ports:
       - 5050:5050
     volumes:
-      - pgadmin-data:/var/lib/pgadmin
+      - pgadmin-data-pro:/var/lib/pgadmin
     depends_on:
       - postgres
 
 volumes:
-  pgadmin-data:
+  pgadmin-data-pro:
+  postgres-data-pro:
