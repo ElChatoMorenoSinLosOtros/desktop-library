@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import PrismaService from 'src/prisma/prisma.service';
+import PrismaService from '@pr-prisma/prisma.service';
+
 import CreateReserveDto from './dto/create-reserve.dto';
 import UpdateReserveDto from './dto/update-reserve.dto';
 
@@ -26,7 +27,7 @@ export default class ReserveService {
   }
 
   findOne(reserveId: number) {
-    return this.prisma.reserve.findMany({
+    return this.prisma.reserve.findUnique({
       where: { reserveId }
     });
   }

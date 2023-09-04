@@ -1,7 +1,7 @@
+import ClientEntity from '@clients/entities/client.entity';
+import MaterialEntity from '@materials/entities/material.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { Reserve } from '@prisma/client';
-import ClientEntity from 'src/clients/entities/client.entity';
-import MaterialEntity from 'src/materials/entities/material.entity';
 
 export default class ReserveEntity implements Reserve {
   @ApiProperty()

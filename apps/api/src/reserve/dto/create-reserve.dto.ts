@@ -1,5 +1,5 @@
-import { IsBoolean, IsDate, IsInt, IsOptional } from '@nestjs/class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsBoolean, IsDate, IsInt, IsOptional } from 'class-validator';
 
 export default class CreateReserveDto {
   @ApiProperty()
