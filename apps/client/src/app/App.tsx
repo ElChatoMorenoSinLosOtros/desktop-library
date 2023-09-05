@@ -3,6 +3,7 @@ import DashboardPage from '@pages/dashboard/DashboardPage';
 import DeletePage from '@pages/delete/DeletePage';
 import FinesManagementPage from '@pages/fines-management/FinesManagementPage';
 import LoanManagementPage from '@pages/loan-management/LoanManagementPage';
+import InfoLoanPage from '@pages/loan-management/pages/info/InfoLoanPage';
 import LoginPage from '@pages/login/LoginPage';
 import LogoutPage from '@pages/logout/LogoutPage';
 import MaterialManagementPage from '@pages/material-management/MaterialManagementPage';
@@ -70,6 +71,8 @@ function App() {
             path='/material-management/info/:id'
             element={<InfoMaterialPage />}
           />
+
+          <Route path='/loan-management/info/:id' element={<InfoLoanPage />} />
         </Routes>
       </div>
     </div>

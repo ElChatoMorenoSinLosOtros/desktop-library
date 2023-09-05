@@ -331,4 +331,10 @@ declare global {
   type OfficeWithoutId = {
     name: string;
   };
+
+  type InfoLoanPageParams = {
+    id: string;
+  };
+
+  type GetLoanByIdResponse = Loan[];
 }
