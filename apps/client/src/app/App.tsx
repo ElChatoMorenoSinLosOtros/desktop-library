@@ -5,6 +5,7 @@ import FinesManagementPage from '@pages/fines-management/FinesManagementPage';
 import LoanManagementPage from '@pages/loan-management/LoanManagementPage';
 import AddLoanPage from '@pages/loan-management/pages/add/AddLoanPage';
 import InfoLoanPage from '@pages/loan-management/pages/info/InfoLoanPage';
+import UpdateLoanPage from '@pages/loan-management/pages/update/UpdateLoanInfo';
 import LoginPage from '@pages/login/LoginPage';
 import LogoutPage from '@pages/logout/LogoutPage';
 import MaterialManagementPage from '@pages/material-management/MaterialManagementPage';
@@ -75,6 +76,10 @@ function App() {
           />
 
           <Route path='/loan-management/info/:id' element={<InfoLoanPage />} />
+          <Route
+            path='/loan-management/update/:id'
+            element={<UpdateLoanPage />}
+          />
         </Routes>
       </div>
     </div>

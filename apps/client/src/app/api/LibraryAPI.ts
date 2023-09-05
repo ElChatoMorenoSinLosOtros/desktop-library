@@ -269,6 +269,20 @@ const LibraryAPIService = () => {
     });
   };
 
+  const updateLoanById = async ({
+    id,
+    loan
+  }: {
+    loan: Loan;
+    id: number;
+  }): Promise<UpdateLoanByIdResponse> => {
+    return LibraryAPI.patch<UpdateLoanByIdResponse>(`/loans/${id}`, loan, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
   const getLoanById = async ({
     id
   }: {
@@ -303,6 +317,7 @@ const LibraryAPIService = () => {
     removeLoanById,
     getUserActiveLoansById,
     getUserTotalReadById,
+    updateLoanById,
     getLoanById
   };
 };

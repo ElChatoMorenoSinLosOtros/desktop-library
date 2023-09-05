@@ -251,6 +251,10 @@ declare global {
     isDouble?: boolean;
   }
 
+  type UpdateLoanPageParams = {
+    loanId: number;
+  };
+
   type Material = {
     materialId: number;
     title: string;
@@ -312,6 +316,8 @@ declare global {
   type GetLoansResponse = Loan[];
 
   type RemoveLoanByIdResponse = Loan;
+
+  type UpdateLoanByIdResponse = Loan;
 
   type NewDataMaterialPageParams = {
     id: string;
