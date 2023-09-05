@@ -29,7 +29,11 @@ model Client {
   phoneNumber Int?      @unique
   typeUser    String
   loans       Loan[]
+  <<<<<<< HEAD
   Reserve     Reserve[]
+  =======
+  fine        Fine[]
+  >>>>>>> feat: fines crud
 
   @@map(name: "client")
 }
@@ -61,6 +65,7 @@ model Loan {
   client     Client    @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
   material   Material  @relation(fields: [materialId], references: [materialId], onDelete: Cascade)
   return     Return?
+  Fine       Fine[]
 
   @@map(name: "loan")
 }
@@ -121,4 +126,15 @@ model Notification {
   notificationRead    Boolean  @default(false)
 
   @@map(name: "notification")
+}
+
+model Fine {
+  fineId     Int      @id @default(autoincrement())
+  debt       Decimal
+  createDate DateTime
+  payeed     Boolean
+  client     Client?  @relation(fields: [clientId], references: [clientId])
+  loan       Loan?    @relation(fields: [loanId], references: [loanId])
+  clientId   Int?
+  loanId     Int?
 }
