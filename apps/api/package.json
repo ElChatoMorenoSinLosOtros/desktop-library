@@ -95,7 +95,8 @@
       "@admins/(.*)": "<rootDir>/src/admins/$1",
       "@utils/(.*)": "<rootDir>/src/utils/$1",
       "@loans/(.*)": "<rootDir>/src/loans/$1",
-      "@offices/(.*)": "<rootDir>/src/offices/$1"
+      "@offices/(.*)": "<rootDir>/src/offices/$1",
+      "@returns/(.*)": "<rootDir>/src/returns/$1"
     },
     "moduleDirectories": [
       "src",

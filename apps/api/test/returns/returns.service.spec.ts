@@ -1,7 +1,7 @@
-import ReturnsService from '@/returns/returns.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import PrismaModule from '@pr-prisma/prisma.module';
 import PrismaService from '@pr-prisma/prisma.service';
+import ReturnsService from '@returns/returns.service';
 
 describe('ReturnsService', () => {
   let service: ReturnsService;

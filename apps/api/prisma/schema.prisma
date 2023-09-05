@@ -57,7 +57,7 @@ model Loan {
   returned   Boolean   @default(false)
   client     Client    @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
   material   Material  @relation(fields: [materialId], references: [materialId], onDelete: Cascade)
-  Return     Return[]
+  return     Return?
 
   @@map(name: "loan")
 }
@@ -89,9 +89,9 @@ model MaterialsChanges {
 
 model Return {
   returnId   Int      @id @default(autoincrement())
-  loanId     Int
-  returnDate DateTime @default(now())
-  loan       Loan     @relation(fields: [loanId], references: [loanId])
+  returnDate DateTime @default(now()) @db.Timestamptz(3)
+  loan       Loan?    @relation(fields: [loanId], references: [loanId], onDelete: Cascade)
+  loanId     Int?     @unique
 
   @@map(name: "returns")
 }

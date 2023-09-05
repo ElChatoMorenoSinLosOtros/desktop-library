@@ -70,6 +70,8 @@ CREATE TABLE IF NOT EXISTS "materials_changes" (
     CONSTRAINT "materials_changes_officeId_fkey" FOREIGN KEY ("officeId") REFERENCES "office"("officeId") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+CREATE INDEX IF NOT EXISTS "materials_changes_officeId_index" ON "materials_changes"("officeId");
+
 CREATE TABLE IF NOT EXISTS "loan" (
     "loanId" SERIAL NOT NULL,
     "clientId" INTEGER NOT NULL,
@@ -78,12 +80,23 @@ CREATE TABLE IF NOT EXISTS "loan" (
     "returnDate" TIMESTAMPTZ(3) NOT NULL,
     "returned" BOOLEAN NOT NULL DEFAULT false,
 
-    CONSTRAINT "loan_pkey" PRIMARY KEY ("loanId")
+    CONSTRAINT "loan_pkey" PRIMARY KEY ("loanId"),
+    CONSTRAINT "loan_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "client"("clientId") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "loan_materialId_fkey" FOREIGN KEY ("materialId") REFERENCES "material"("materialId") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE UNIQUE INDEX IF NOT EXISTS "loan_loanId_key" ON "loan"("loanId");
 
-CREATE UNIQUE INDEX IF NOT EXISTS "loan_loanId_key" ON "loan"("loanId");
+CREATE TABLE IF NOT EXISTS "returns" (
+    "returnId" SERIAL NOT NULL,
+    "returnDate" TIMESTAMPTZ(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "loanId" INTEGER NOT NULL,
+
+    CONSTRAINT "returns_pkey" PRIMARY KEY ("returnId"),
+    CONSTRAINT "returns_loanId_fkey" FOREIGN KEY ("loanId") REFERENCES "loan"("loanId") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS "returns_loanId_key" ON "returns"("loanId");
 
 CREATE OR REPLACE FUNCTION update_updatedAt()
 RETURNS TRIGGER AS $$
@@ -104,7 +117,6 @@ BEFORE UPDATE
 ON "admin"
 FOR EACH ROW
 EXECUTE FUNCTION update_updatedAt();
-
 
 DO $$
 BEGIN

@@ -49,6 +49,9 @@
       "@offices/*": [
         "./src/offices/*"
       ],
+      "@returns/*": [
+        "./src/returns/*"
+      ],
     }
   },
   "include": [

@@ -38,7 +38,7 @@ export default class ReturnsService {
     const newQuantity = material.quantity + 1;
     const materialUpdateData = {
       quantity: newQuantity,
-      available: newQuantity > 0 ? material.available : false
+      available: newQuantity > 0
     };
     await this.prisma.material.update({
       where: { materialId },
