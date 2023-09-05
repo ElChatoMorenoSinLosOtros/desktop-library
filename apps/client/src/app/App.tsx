@@ -3,6 +3,7 @@ import DashboardPage from '@pages/dashboard/DashboardPage';
 import DeletePage from '@pages/delete/DeletePage';
 import FinesManagementPage from '@pages/fines-management/FinesManagementPage';
 import LoanManagementPage from '@pages/loan-management/LoanManagementPage';
+import InfoLoanPage from '@pages/loan-management/pages/info/InfoLoanPage';
 import LoginPage from '@pages/login/LoginPage';
 import LogoutPage from '@pages/logout/LogoutPage';
 import MaterialManagementPage from '@pages/material-management/MaterialManagementPage';
@@ -18,7 +19,6 @@ import ReportsPage from '@pages/reports/ReportsPage';
 import ReservationsManagementPage from '@pages/reservations-management/ReservationsManagementPage';
 import useAdminStore from '@store/AdminStore';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import InfoLoanPage from './pages/loan-management/components/info/InfoLoanPage';
 
 function App() {
   const admin = useAdminStore(state => state.admin);
