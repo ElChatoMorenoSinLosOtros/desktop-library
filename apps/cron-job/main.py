@@ -2,6 +2,7 @@ import datetime
 import psycopg2
 from tzlocal import get_localzone
 import pytz
+import sys
 
 local_timezone = pytz.timezone(get_localzone().__str__())
 
@@ -41,52 +42,53 @@ def last_changes(cursor, last_sync):
 
 
 def send_changes_to_main_server(changes):
+    if len(sys.argv) == 2:
+        destination_host = sys.argv[1]
+    else:
+        destination_host = "localhost"
+    
     try:
         conn_principal = psycopg2.connect(
-            host="192.168.1.254",
+            host=destination_host,
             database="main",
             user="root",
             password="root",
             port="4040"
         )
-
-    except (Exception, psycopg2.Error):
-        try:
-            conn_principal = psycopg2.connect(
-                host="localhost",
-                database="main",
-                user="root",
-                password="root",
-                port="4040"
-            )
-        except (Exception, psycopg2.Error):
-            print("Error while connecting to Destination PostgreSQL")
-            exit(0)
-
+    except psycopg2.Error:
+        print("Error while connecting to Destination PostgreSQL at host: " + destination_host)
+        exit(0)
+            
     cursor = conn_principal.cursor()
 
-    for change in changes:
-        (office_id, material_office_id, change_type, title, author, category, isbn,
-         publication_year, page_count, quantity, available, type_material) = change
-        if change_type == "insert":
-            cursor.execute("""
-                INSERT INTO "main_material" ("officeId", "materialOfficeId", "title", "author", "category",
-                "isbn", "publicationYear", "pageCount", "quantity", "available", "type_material")
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-            """, (office_id, material_office_id, title, author, category, isbn,
-                  publication_year, page_count, quantity, available, type_material))
-        elif change_type == "update":
-            cursor.execute("""
-                UPDATE main_material SET "officeId" = %s, "materialOfficeId" = %s, title = %s,
-                 author = %s, category = %s, isbn = %s, "publicationYear" = %s,
-                 "pageCount" = %s, quantity = %s, available = %s, type_material = %s
-                 WHERE "officeId" = %s AND "materialOfficeId" = %s;
-            """, (office_id, material_office_id, title, author, category, isbn,
-                  publication_year, page_count, quantity, available, type_material, office_id, material_office_id))
-        elif change_type == "delete":
-            cursor.execute("""
-                DELETE FROM main_material WHERE "materialOfficeId" = %s AND "officeId" = %s;
-            """, (material_office_id, office_id))
+    try:
+        for change in changes:
+            (office_id, material_office_id, change_type, title, author, category, isbn,
+             publication_year, page_count, quantity, available, type_material) = change
+            if change_type == "insert":
+                cursor.execute("""
+                    INSERT INTO "main_material" ("officeId", "materialOfficeId", "title", "author", "category",
+                    "isbn", "publicationYear", "pageCount", "quantity", "available", "type_material")
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                """, (office_id, material_office_id, title, author, category, isbn,
+                      publication_year, page_count, quantity, available, type_material))
+            elif change_type == "update":
+                cursor.execute("""
+                    UPDATE main_material SET "officeId" = %s, "materialOfficeId" = %s, title = %s,
+                     author = %s, category = %s, isbn = %s, "publicationYear" = %s,
+                     "pageCount" = %s, quantity = %s, available = %s, type_material = %s
+                     WHERE "officeId" = %s AND "materialOfficeId" = %s;
+                """, (office_id, material_office_id, title, author, category, isbn,
+                      publication_year, page_count, quantity, available, type_material, office_id, material_office_id))
+            elif change_type == "delete":
+                cursor.execute("""
+                    DELETE FROM main_material WHERE "materialOfficeId" = %s AND "officeId" = %s;
+                """, (material_office_id, office_id))
+    except psycopg2.Error:
+        conn_principal.close()
+        cursor.close()
+        print("Error while sending changes to Destination PostgreSQL")
+        exit(0)
 
     conn_principal.commit()
     cursor.close()
@@ -102,7 +104,7 @@ def main():
             password="password",
             port="3030"
         )
-    except (Exception, psycopg2.Error):
+    except psycopg2.Error:
         print("Error while connecting to Source PostgreSQL")
         exit(0)
 
@@ -113,12 +115,14 @@ def main():
     last_sync = actual_date - datetime.timedelta(minutes=5)
 
     last_sync_str = last_sync.strftime("%Y-%m-%d %H:%M:%S")
-    
+
     last_sync_utc = convert_to_utc(last_sync_str)
 
     changes = last_changes(local_cursor, last_sync_utc)
 
     if changes is None:
+        local_cursor.close()
+        local_conn.close()
         exit(0)
 
     send_changes_to_main_server(changes)

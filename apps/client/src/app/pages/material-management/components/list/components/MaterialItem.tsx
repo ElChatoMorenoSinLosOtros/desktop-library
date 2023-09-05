@@ -32,7 +32,7 @@ function MaterialItem({ material }: { material: Material }) {
       </MaterialActionButton>
       <DeleteButton
         className='text-center text-2xl'
-        type='Person'
+        type='Material'
         onClick={() => {
           (async () => {
             await removeMaterialById({
