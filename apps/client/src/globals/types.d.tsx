@@ -1,6 +1,6 @@
 import { NavigateFunction } from 'react-router-dom';
 
-export {};
+export { };
 
 declare global {
   interface TextFieldProps {
@@ -273,6 +273,14 @@ declare global {
     returned: boolean;
   };
 
+  type LoanWithOutID = {
+    clientId: number;
+    materialId: number;
+    loanDate: Date;
+    returnDate: Date;
+    returned: boolean;
+  };
+
   type MaterialWithOutID = {
     title: string;
     author: string;
@@ -298,6 +306,8 @@ declare global {
   type RemoveMaterialByIdResponse = Material;
 
   type UpdateMaterialByIdResponse = Material;
+
+  type CreateLoanResponse = Loan;
 
   type GetLoansResponse = Loan[];
 

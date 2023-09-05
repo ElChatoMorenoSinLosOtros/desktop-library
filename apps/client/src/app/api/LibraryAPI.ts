@@ -237,6 +237,18 @@ const LibraryAPIService = () => {
     });
   };
 
+  const createLoan = async ({
+    loan
+  }: {
+    loan: LoanWithOutID;
+  }): Promise<CreateLoanResponse> => {
+    return LibraryAPI.post<CreateLoanResponse>('/loans', loan, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
   const getLoans = async (): Promise<GetLoansResponse> => {
     return LibraryAPI.get<GetLoansResponse>('/loans', {
       headers: { Authorization: `Bearer ${admin.accessToken}` }
@@ -286,6 +298,7 @@ const LibraryAPIService = () => {
     removeOfficeById,
     updateOfficeById,
     createOffice,
+    createLoan,
     getLoans,
     removeLoanById,
     getUserActiveLoansById,
