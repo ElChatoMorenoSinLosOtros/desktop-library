@@ -1,0 +1,14 @@
+{
+  "name": "main-server",
+  "version": "0.0.1",
+  "description": "The main server for all Libraries",
+  "author": {
+    "name": "El Chato Moreno y los otros",
+    "email": "morales.patty.jose@gmail.com"
+  },
+  "license": "ISC",
+  "private": false,
+  "scripts": {
+    "start": "docker compose down && docker compose up -d"
+  }
+}
