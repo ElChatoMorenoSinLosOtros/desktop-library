@@ -9,12 +9,25 @@ import INITIAL_STATE from './states/InfoPersonStates';
 function InfoPersonPage() {
   const { id } = useParams<InfoPersonPageParams>();
 
-  const { getUserById } = LibraryAPIService();
+  const { getUserById, getUserActiveLoansById, getUserTotalReadById } =
+    LibraryAPIService();
   const [user, setUser] = useState<User>(INITIAL_STATE);
+  const [activeLoans, setActiveLoans] = useState<number>(0);
+  const [totalRead, setTotalRead] = useState<number>(0);
 
   useEffect(() => {
     getUserById({ id: id ?? '-1' })
       .then(resp => setUser(resp))
+      .catch((error: Error) => {
+        throw new Error(error.message);
+      });
+    getUserActiveLoansById({ id: Number(id) })
+      .then(resp => setActiveLoans(resp))
+      .catch((error: Error) => {
+        throw new Error(error.message);
+      });
+    getUserTotalReadById({ id: Number(id) })
+      .then(resp => setTotalRead(resp))
       .catch((error: Error) => {
         throw new Error(error.message);
       });
@@ -32,8 +45,8 @@ function InfoPersonPage() {
           <GlobalText title='Address:' text={user.address} />
         </div>
         <div className='col-span- flex flex-col gap-14 h-full justify-between '>
-          <InfoPerson title='Read' number={0} />
-          <InfoPerson title='Loans' number={0} />
+          <InfoPerson title='Read' number={totalRead} />
+          <InfoPerson title='Loans' number={activeLoans} />
           <InfoPerson title='Reservations' number={0} />
           <InfoPerson title='Total Fine' number={0} isDouble />
         </div>

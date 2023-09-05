@@ -264,6 +264,15 @@ declare global {
     type_material: string;
   };
 
+  type Loan = {
+    loanId: number;
+    clientId: number;
+    materialId: number;
+    loanDate: Date;
+    returnDate: Date;
+    returned: boolean;
+  };
+
   type MaterialWithOutID = {
     title: string;
     author: string;
@@ -280,11 +289,19 @@ declare global {
 
   type GetMaterialByIdResponse = Material;
 
+  type GetUserActiveLoansById = number;
+
+  type GetUserTotalReadById = number;
+
   type CreateMaterialResponse = Material;
 
   type RemoveMaterialByIdResponse = Material;
 
   type UpdateMaterialByIdResponse = Material;
+
+  type GetLoansResponse = Loan[];
+
+  type RemoveLoanByIdResponse = Loan;
 
   type NewDataMaterialPageParams = {
     id: string;

@@ -106,6 +106,33 @@ const LibraryAPIService = () => {
     });
   };
 
+  const getUserActiveLoansById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<GetUserActiveLoansById> => {
+    return LibraryAPI.get<GetUserActiveLoansById>(
+      `/clients/${id}/total-active-loans`,
+      {
+        headers: { Authorization: `Bearer ${admin.accessToken}` }
+      }
+    ).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const getUserTotalReadById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<GetUserTotalReadById> => {
+    return LibraryAPI.get<GetUserTotalReadById>(`/clients/${id}/total-read`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
   const createMaterial = async ({
     material
   }: {
@@ -210,6 +237,26 @@ const LibraryAPIService = () => {
     });
   };
 
+  const getLoans = async (): Promise<GetLoansResponse> => {
+    return LibraryAPI.get<GetLoansResponse>('/loans', {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const removeLoanById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<RemoveLoanByIdResponse> => {
+    return LibraryAPI.delete<RemoveLoanByIdResponse>(`/loans/${id}`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
   return {
     login,
     getUsers,
@@ -226,7 +273,11 @@ const LibraryAPIService = () => {
     getOfficeById,
     removeOfficeById,
     updateOfficeById,
-    createOffice
+    createOffice,
+    getLoans,
+    removeLoanById,
+    getUserActiveLoansById,
+    getUserTotalReadById
   };
 };
 
