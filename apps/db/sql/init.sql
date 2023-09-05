@@ -97,6 +97,17 @@ CREATE TABLE IF NOT EXISTS "reserve" (
     CONSTRAINT "reserve_pkey" PRIMARY KEY ("reserveId")
 );
 
+CREATE TABLE IF NOT EXISTS "reserve" (
+    "reserveId" SERIAL NOT NULL,
+    "clientId" INTEGER NOT NULL,
+    "materialId" INTEGER NOT NULL,
+    "checkDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "returnDate" TIMESTAMP(3) NOT NULL,
+    "returned" BOOLEAN NOT NULL DEFAULT false,
+
+    CONSTRAINT "reserve_pkey" PRIMARY KEY ("reserveId")
+);
+
 CREATE UNIQUE INDEX IF NOT EXISTS "loan_loanId_key" ON "loan"("loanId");
 
 CREATE TABLE IF NOT EXISTS "returns" (
