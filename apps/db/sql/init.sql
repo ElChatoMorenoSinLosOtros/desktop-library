@@ -85,6 +85,17 @@ CREATE TABLE IF NOT EXISTS "loan" (
     CONSTRAINT "loan_materialId_fkey" FOREIGN KEY ("materialId") REFERENCES "material"("materialId") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS "reserve" (
+    "reserveId" SERIAL NOT NULL,
+    "clientId" INTEGER NOT NULL,
+    "materialId" INTEGER NOT NULL,
+    "checkDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "returnDate" TIMESTAMP(3) NOT NULL,
+    "returned" BOOLEAN NOT NULL DEFAULT false,
+
+    CONSTRAINT "reserve_pkey" PRIMARY KEY ("reserveId")
+);
+
 CREATE UNIQUE INDEX IF NOT EXISTS "loan_loanId_key" ON "loan"("loanId");
 
 CREATE TABLE IF NOT EXISTS "returns" (
@@ -97,6 +108,8 @@ CREATE TABLE IF NOT EXISTS "returns" (
 );
 
 CREATE UNIQUE INDEX IF NOT EXISTS "returns_loanId_key" ON "returns"("loanId");
+
+CREATE UNIQUE INDEX IF NOT EXISTS "reserve_reserveId_key" ON "reserve"("reserveId");
 
 CREATE OR REPLACE FUNCTION update_updatedAt()
 RETURNS TRIGGER AS $$
@@ -137,5 +150,28 @@ BEGIN
         WHERE  constraint_name = 'loan_materialId_fkey'
     ) THEN
         ALTER TABLE "loan" ADD CONSTRAINT "loan_materialId_fkey" FOREIGN KEY ("materialId") REFERENCES "material"("materialId") ON DELETE RESTRICT ON UPDATE CASCADE;
+    END IF;
+END $$;
+
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1
+        FROM   information_schema.table_constraints
+        WHERE  constraint_name = 'reserve_clientId_fkey'
+    ) THEN
+        ALTER TABLE "reserve" ADD CONSTRAINT "reserve_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "client"("clientId") ON DELETE RESTRICT ON UPDATE CASCADE;
+    END IF;
+END $$;
+
+
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1
+        FROM   information_schema.table_constraints
+        WHERE  constraint_name = 'reserve_materialId_fkey'
+    ) THEN
+        ALTER TABLE "reserve" ADD CONSTRAINT "reserve_materialId_fkey" FOREIGN KEY ("materialId") REFERENCES "material"("materialId") ON DELETE RESTRICT ON UPDATE CASCADE;
     END IF;
 END $$;
