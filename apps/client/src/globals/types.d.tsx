@@ -273,6 +273,14 @@ declare global {
     returned: boolean;
   };
 
+  type LoanWithOutID = {
+    clientId: number;
+    materialId: number;
+    loanDate: Date | string;
+    returnDate: Date | string;
+    returned: boolean;
+  };
+
   type MaterialWithOutID = {
     title: string;
     author: string;
@@ -298,6 +306,8 @@ declare global {
   type RemoveMaterialByIdResponse = Material;
 
   type UpdateMaterialByIdResponse = Material;
+
+  type CreateLoanResponse = Loan;
 
   type GetLoansResponse = Loan[];
 
@@ -337,4 +347,8 @@ declare global {
   };
 
   type GetLoanByIdResponse = Loan[];
+
+  interface OfficeName {
+    office: string;
+  }
 }

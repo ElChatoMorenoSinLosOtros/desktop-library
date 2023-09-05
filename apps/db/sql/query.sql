@@ -43,6 +43,7 @@ INSERT INTO "material" ("title", "author", "category", "isbn", "publicationYear"
 
 INSERT INTO "office" ("name")
 VALUES ('Development');
+
 INSERT INTO "loan" ("clientId", "materialId", "returnDate", "returned") VALUES
 (1, 1, '2023-09-10 10:00:00', true),
 (1, 18, '2023-10-10 18:00:00', false),
