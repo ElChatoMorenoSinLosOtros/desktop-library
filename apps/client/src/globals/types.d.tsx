@@ -289,6 +289,10 @@ declare global {
 
   type GetMaterialByIdResponse = Material;
 
+  type GetUserActiveLoansById = number;
+
+  type GetUserTotalReadById = number;
+
   type CreateMaterialResponse = Material;
 
   type RemoveMaterialByIdResponse = Material;

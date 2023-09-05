@@ -106,6 +106,33 @@ const LibraryAPIService = () => {
     });
   };
 
+  const getUserActiveLoansById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<GetUserActiveLoansById> => {
+    return LibraryAPI.get<GetUserActiveLoansById>(
+      `/clients/${id}/total-active-loans`,
+      {
+        headers: { Authorization: `Bearer ${admin.accessToken}` }
+      }
+    ).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const getUserTotalReadById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<GetUserTotalReadById> => {
+    return LibraryAPI.get<GetUserTotalReadById>(`/clients/${id}/total-read`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
   const createMaterial = async ({
     material
   }: {
@@ -248,7 +275,9 @@ const LibraryAPIService = () => {
     updateOfficeById,
     createOffice,
     getLoans,
-    removeLoanById
+    removeLoanById,
+    getUserActiveLoansById,
+    getUserTotalReadById
   };
 };
 
