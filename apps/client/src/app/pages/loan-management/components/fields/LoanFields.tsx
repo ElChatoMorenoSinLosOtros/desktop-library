@@ -8,8 +8,6 @@ function LoanFields() {
       <div className='w-full'>Material Type</div>
       <div className='w-full'>Material Title</div>
       <div className='w-full'>Borrower</div>
-      <div className='w-full'>Material Id</div>
-      <div className='w-full'>Borrower Id</div>
       <div className='w-full'>Loan Date</div>
       <div className='w-full'>Return Date</div>
       <div className='w-full'>Status</div>
