@@ -252,7 +252,7 @@ declare global {
   }
 
   type UpdateLoanPageParams = {
-    loanId: number;
+    id: string;
   };
 
   type Material = {
@@ -272,8 +272,8 @@ declare global {
     loanId: number;
     clientId: number;
     materialId: number;
-    loanDate: Date;
-    returnDate: Date;
+    loanDate: Date | string;
+    returnDate: Date | string;
     returned: boolean;
   };
 
