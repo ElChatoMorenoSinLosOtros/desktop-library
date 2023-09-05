@@ -3,11 +3,11 @@ import GlobalButton from '@common-components/GlobalButton';
 import GlobalInfoForm from '@common-components/GlobalInfoForm';
 import GlobalText from '@common-components/GlobalText';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function InfoMaterialPage() {
   const { id } = useParams<InfoMaterialPageParams>();
-
+  const navigate = useNavigate();
   const { getMaterialById } = LibraryAPIService();
   const [material, setMaterial] = useState<Material>({} as Material);
 
@@ -59,7 +59,13 @@ function InfoMaterialPage() {
           className='w-3/5'
         />
         <div className='flex flex-col absolute bottom-0 right-0 mr-16 mb-16 gap-6'>
-          <GlobalButton onClick={() => {}}>Loan</GlobalButton>
+          <GlobalButton
+            onClick={() => {
+              navigate('/loan-management/add');
+            }}
+          >
+            Loan
+          </GlobalButton>
           <GlobalButton onClick={() => {}}>Reservation</GlobalButton>
         </div>
       </div>

@@ -25,8 +25,10 @@ function AddPersonPage() {
             .then()
             .catch((error: Error) => {
               throw new Error(error.message);
+            })
+            .finally(() => {
+              navigate('/person-management');
             });
-          navigate('/person-management');
         }}
       >
         <Form className='w-3/5 ml-36 flex flex-col gap-5'>

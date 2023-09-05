@@ -21,17 +21,20 @@ function InfoPersonPage() {
       .catch((error: Error) => {
         throw new Error(error.message);
       });
-    getUserActiveLoansById({ id: Number(id) })
+  }, []);
+
+  useEffect(() => {
+    getUserActiveLoansById({ id: user.clientId })
       .then(resp => setActiveLoans(resp))
       .catch((error: Error) => {
         throw new Error(error.message);
       });
-    getUserTotalReadById({ id: Number(id) })
+    getUserTotalReadById({ id: user.clientId })
       .then(resp => setTotalRead(resp))
       .catch((error: Error) => {
         throw new Error(error.message);
       });
-  }, []);
+  }, [user]);
 
   return (
     <GlobalInfoForm title='Person Info'>
