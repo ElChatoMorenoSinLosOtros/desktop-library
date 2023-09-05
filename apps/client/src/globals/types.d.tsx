@@ -1,6 +1,6 @@
 import { NavigateFunction } from 'react-router-dom';
 
-export { };
+export {};
 
 declare global {
   interface TextFieldProps {
