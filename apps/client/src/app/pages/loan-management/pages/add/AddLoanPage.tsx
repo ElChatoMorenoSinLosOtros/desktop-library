@@ -17,11 +17,18 @@ function AddLoanPage() {
           materialId: 0,
           loanDate: new Date(),
           returnDate: new Date(),
-          returned: false,
-          adminID: 0
+          returned: false
         }}
         onSubmit={(values: LoanWithOutID) => {
-          createLoan({ loan: values })
+          createLoan({
+            loan: {
+              clientId: values.clientId,
+              materialId: values.materialId,
+              loanDate: new Date(values.loanDate).toISOString(),
+              returnDate: new Date(values.returnDate).toISOString(),
+              returned: values.returned
+            }
+          })
             .then()
             .catch((error: Error) => {
               throw new Error(error.message);
@@ -32,14 +39,14 @@ function AddLoanPage() {
         }}
       >
         <Form className='w-3/5 ml-36 flex flex-col gap-5'>
-          <GlobalTextField title='User ID' name='client_id' type='number' />
+          <GlobalTextField title='User ID:' name='clientId' type='number' />
           <GlobalTextField
-            title='Material ID'
-            name='material_id'
+            title='Material ID:'
+            name='materialId'
             type='number'
           />
-          <GlobalTextField title='New Date' name='new_date' type='date' />
-          <GlobalTextField title='Return Date' name='return_date' type='date' />
+          <GlobalTextField title='Loan Date:' name='loanDate' type='date' />
+          <GlobalTextField title='Return Date:' name='returnDate' type='date' />
 
           <GlobalSubmitButton className='absolute right-0 bottom-0 mb-12 mr-12'>
             Add
