@@ -18,6 +18,7 @@ import ReportsPage from '@pages/reports/ReportsPage';
 import ReservationsManagementPage from '@pages/reservations-management/ReservationsManagementPage';
 import useAdminStore from '@store/AdminStore';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import InfoLoanPage from './pages/loan-management/components/info/InfoLoanPage';
 
 function App() {
   const admin = useAdminStore(state => state.admin);
@@ -70,6 +71,8 @@ function App() {
             path='/material-management/info/:id'
             element={<InfoMaterialPage />}
           />
+
+          <Route path='/loan-management/info/:id' element={<InfoLoanPage />} />
         </Routes>
       </div>
     </div>
