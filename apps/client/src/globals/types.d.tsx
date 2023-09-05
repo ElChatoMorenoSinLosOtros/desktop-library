@@ -251,6 +251,10 @@ declare global {
     isDouble?: boolean;
   }
 
+  type UpdateLoanPageParams = {
+    id: string;
+  };
+
   type Material = {
     materialId: number;
     title: string;
@@ -268,8 +272,8 @@ declare global {
     loanId: number;
     clientId: number;
     materialId: number;
-    loanDate: Date;
-    returnDate: Date;
+    loanDate: Date | string;
+    returnDate: Date | string;
     returned: boolean;
   };
 
@@ -312,6 +316,8 @@ declare global {
   type GetLoansResponse = Loan[];
 
   type RemoveLoanByIdResponse = Loan;
+
+  type UpdateLoanByIdResponse = Loan;
 
   type NewDataMaterialPageParams = {
     id: string;
