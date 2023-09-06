@@ -295,6 +295,18 @@ const LibraryAPIService = () => {
     });
   };
 
+  const createReturn = async ({
+    data
+  }: {
+    data: ReturnWithOutId;
+  }): Promise<CreateReturnResponse> => {
+    return LibraryAPI.post<CreateReturnResponse>(`/returns`, data, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
   return {
     login,
     getUsers,
@@ -318,7 +330,8 @@ const LibraryAPIService = () => {
     getUserActiveLoansById,
     getUserTotalReadById,
     updateLoanById,
-    getLoanById
+    getLoanById,
+    createReturn
   };
 };
 

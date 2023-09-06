@@ -57,6 +57,7 @@ model Loan {
   returned   Boolean   @default(false)
   client     Client    @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
   material   Material  @relation(fields: [materialId], references: [materialId], onDelete: Cascade)
+  return     Return?
 
   @@map(name: "loan")
 }
@@ -84,4 +85,13 @@ model MaterialsChanges {
 
   @@index([officeId], name: "materials_changes_officeId_index")
   @@map(name: "materials_changes")
+}
+
+model Return {
+  returnId   Int      @id @default(autoincrement())
+  returnDate DateTime @default(now()) @db.Timestamptz(3)
+  loan       Loan?    @relation(fields: [loanId], references: [loanId], onDelete: Cascade)
+  loanId     Int?     @unique
+
+  @@map(name: "returns")
 }

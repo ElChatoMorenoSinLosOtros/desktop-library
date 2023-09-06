@@ -5,7 +5,7 @@ import SideBarUser from './components/user/SideBarUser';
 
 function SideBar() {
   return (
-    <div className='h-full col-span-3 bg-[#0d1b2a] relative'>
+    <div className='h-screen w-full bg-[#0d1b2a] relative max-h-screen flex flex-col overflow-auto justify-between'>
       <SideBarHeader />
       <SideBarUser />
       <SideBarList />

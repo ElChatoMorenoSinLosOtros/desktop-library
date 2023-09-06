@@ -170,3 +170,19 @@
 select {
 	appearance: none;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #999999;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}

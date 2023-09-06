@@ -5,8 +5,8 @@ import MenuOptionButton from './MenuOptionButton';
 function OptionsMenuPage() {
   const navigate = useNavigate();
   return (
-    <div className='grid place-content-center  gap-32 h-full'>
-      <div className='flex gap-32 '>
+    <div className='flex flex-col justify-center place-items-center xl:gap-20 gap-10 h-full'>
+      <div className='flex xl:gap-28 gap-12'>
         {(optionsMenu as OptionsMenu).menu.slice(0, 3).map(option => {
           return (
             <MenuOptionButton
@@ -18,7 +18,7 @@ function OptionsMenuPage() {
           );
         })}
       </div>
-      <div className='flex gap-32 justify-center'>
+      <div className='flex xl:gap-28 gap-12'>
         {(optionsMenu as OptionsMenu).menu
           .slice(3, (optionsMenu as OptionsMenu).menu.length)
           .map(option => {

@@ -2,6 +2,7 @@ import ClientEntity from '@clients/entities/client.entity';
 import MaterialEntity from '@materials/entities/material.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { Loan } from '@prisma/client';
+import ReturnEntity from '@returns/entities/return.entity';
 
 export default class LoanEntity implements Loan {
   @ApiProperty()
@@ -27,4 +28,7 @@ export default class LoanEntity implements Loan {
 
   @ApiProperty({ type: () => MaterialEntity })
   material: MaterialEntity;
+
+  @ApiProperty({ type: () => ReturnEntity })
+  returns?: ReturnEntity;
 }

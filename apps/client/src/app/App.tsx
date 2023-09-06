@@ -20,14 +20,23 @@ import NewDataPersonPage from '@pages/person-management/pages/new-data/NewDataPe
 import ReportsPage from '@pages/reports/ReportsPage';
 import ReservationsManagementPage from '@pages/reservations-management/ReservationsManagementPage';
 import useAdminStore from '@store/AdminStore';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 function App() {
   const admin = useAdminStore(state => state.admin);
+  const location = useLocation();
+  const [isLoginPage, setIsLoginPage] = useState(true);
+
+  useEffect(() => {
+    setIsLoginPage(location.pathname === '/login');
+  }, [location.pathname]);
 
   return (
     <div className='h-screen grid grid-cols-12 w-screen bg-black'>
-      <SideBar />
+      <div className={`${isLoginPage ? 'hidden' : 'block'} col-span-3 w-full`}>
+        <SideBar />
+      </div>
       <div className='h-screen col-span-9 bg-[#d9d9d9]'>
         <Routes>
           <Route

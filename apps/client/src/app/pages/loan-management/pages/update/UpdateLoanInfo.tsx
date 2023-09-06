@@ -5,6 +5,7 @@ import GlobalTextField from '@common-components/GlobalTextField';
 import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import UpdateReturnLoan from './components/UpdateReturnLoan';
 
 function UpdateLoanPage() {
   const { updateLoanById, getLoanById } = LibraryAPIService();
@@ -26,7 +27,7 @@ function UpdateLoanPage() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className='h-full'>
       {isLoaded && (
         <GlobalForm title='Loan Management' subTitle='Update Loan'>
           <Formik
@@ -59,7 +60,12 @@ function UpdateLoanPage() {
             }}
           >
             <Form className='w-3/5 ml-36 flex flex-col gap-5'>
-              <GlobalTextField title='Loan Id:' name='loanId' type='number' />
+              <GlobalTextField
+                title='Loan Id:'
+                name='loanId'
+                type='number'
+                disabled
+              />
               <GlobalTextField
                 title='ClientId:'
                 name='clientId'
@@ -76,12 +82,16 @@ function UpdateLoanPage() {
                 name='returnDate'
                 type='date'
               />
-              <GlobalTextField title='Returned:' name='returned' />
-              <GlobalSubmitButton className='absolute right-0 bottom-0 mb-12 mr-12'>
+              <GlobalSubmitButton className='absolute bottom-0 right-0 mr-12 mb-12'>
                 Update
               </GlobalSubmitButton>
             </Form>
           </Formik>
+          <UpdateReturnLoan
+            className='absolute left-0 bottom-0 ml-36 mb-12'
+            isReturned={loan.returned}
+            loanId={loan.loanId}
+          />
         </GlobalForm>
       )}
     </div>
