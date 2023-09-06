@@ -23,7 +23,7 @@ export default class CreateReserveDto {
   @ApiProperty()
   @IsBoolean()
   @IsOptional()
-  returned?: boolean;
+  executed?: boolean;
 
   @ApiProperty()
   @IsInt()

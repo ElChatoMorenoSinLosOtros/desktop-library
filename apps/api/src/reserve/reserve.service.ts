@@ -14,7 +14,7 @@ export default class ReserveService {
       materialId: createReserveDto.materialId,
       checkDate: createReserveDto.checkDate,
       returnDate: createReserveDto.returnDate,
-      returned: createReserveDto.returned
+      executed: createReserveDto.executed
     };
     const createdReserve = await this.prisma.reserve.create({
       data: reserveData

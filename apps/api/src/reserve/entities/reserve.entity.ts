@@ -26,7 +26,7 @@ export default class ReserveEntity implements Reserve {
   returnDate: Date | null;
 
   @ApiProperty()
-  returned: boolean;
+  executed: boolean;
 
   @ApiProperty({ type: () => ClientEntity })
   client: ClientEntity;
