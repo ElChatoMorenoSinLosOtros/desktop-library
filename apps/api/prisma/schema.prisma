@@ -135,5 +135,5 @@ model Fine {
   client   Client? @relation(fields: [clientId], references: [clientId])
   loan     Loan?   @relation(fields: [loanId], references: [loanId])
   clientId Int?
-  loanId   Int?
+  loanId   Int?    @unique
 }

@@ -37,6 +37,7 @@ export default class FineService {
     const userLoans = await this.prisma.loan.findMany();
 
     const currentDate = new Date();
+    console.log(currentDate);
 
     if (userLoans.length <= 0) {
       throw new Error('No Loans Found');
