@@ -1,6 +1,11 @@
 import TextField from './TextField';
 
-function GlobalTextField({ title, name, type = 'text' }: GlobalTextFieldProps) {
+function GlobalTextField({
+  title,
+  name,
+  type = 'text',
+  disabled = false
+}: GlobalTextFieldProps) {
   return (
     <TextField
       title={title}
@@ -9,6 +14,7 @@ function GlobalTextField({ title, name, type = 'text' }: GlobalTextFieldProps) {
       type={type}
       className='text-lg font-roboto-mono font-bold'
       classNameTitle='font-bold font-roboto-mono text-xl'
+      disabled={disabled}
     />
   );
 }

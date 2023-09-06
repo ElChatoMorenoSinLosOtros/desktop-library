@@ -4,8 +4,8 @@ import LogOutButton from './components/LogOutButton';
 function SideBarFooter() {
   return (
     <div
-      className='absolute bottom-0 p-7 font-roboto-mono text-[#E0E1DD] font-bold text-xl
-    w-full grid place-content-center'
+      className='font-roboto-mono text-[#E0E1DD] font-bold text-xl
+    w-full grid place-content-center p-10'
     >
       <LogOutButton>
         <img

@@ -152,6 +152,7 @@ declare global {
     title: string;
     name: string;
     type?: 'text' | 'password' | 'email' | 'number' | 'date' | 'time';
+    disabled?: boolean;
   }
 
   interface GlobalSubmitButtonProps {
@@ -357,4 +358,16 @@ declare global {
   interface OfficeName {
     office: string;
   }
+
+  type Return = {
+    returnId: number;
+    loanId: number;
+    returnDate: Date | string;
+  };
+
+  type ReturnWithOutId = {
+    loanId: number;
+  };
+
+  type CreateReturnResponse = Return;
 }
