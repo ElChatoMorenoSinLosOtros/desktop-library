@@ -129,12 +129,11 @@ model Notification {
 }
 
 model Fine {
-  fineId     Int      @id @default(autoincrement())
-  debt       Decimal
-  createDate DateTime
-  payeed     Boolean
-  client     Client?  @relation(fields: [clientId], references: [clientId])
-  loan       Loan?    @relation(fields: [loanId], references: [loanId])
-  clientId   Int?
-  loanId     Int?
+  fineId   Int     @id @default(autoincrement())
+  debt     Decimal
+  payeed   Boolean
+  client   Client? @relation(fields: [clientId], references: [clientId])
+  loan     Loan?   @relation(fields: [loanId], references: [loanId])
+  clientId Int?
+  loanId   Int?
 }

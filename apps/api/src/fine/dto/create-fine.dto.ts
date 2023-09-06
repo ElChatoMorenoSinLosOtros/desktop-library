@@ -7,10 +7,6 @@ export default class CreateFineDto {
   debt: number;
 
   @ApiProperty()
-  @IsDecimal()
-  createDate: Date;
-
-  @ApiProperty()
   @IsBoolean()
   payeed: boolean;
 

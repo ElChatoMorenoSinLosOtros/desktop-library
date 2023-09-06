@@ -1,5 +1,6 @@
 import PrismaService from '@/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
+import { Decimal } from '@prisma/client/runtime/library';
 import CreateFineDto from './dto/create-fine.dto';
 import UpdateFineDto from './dto/update-fine.dto';
 
@@ -10,7 +11,6 @@ export default class FineService {
   async create(createFineDto: CreateFineDto) {
     const fineData = {
       debt: createFineDto.debt,
-      createDate: createFineDto.createDate,
       payeed: createFineDto.payeed,
       loanId: createFineDto.loanId,
       clientId: createFineDto.clientId
@@ -33,43 +33,49 @@ export default class FineService {
     return createdFine;
   }
 
-  async verifyUserFine(clientId: number) {
-    const userLoans = await this.prisma.loan.findMany({
-      where: { clientId }
-    });
+  async verifyUsersFine() {
+    const userLoans = await this.prisma.loan.findMany();
 
     const currentDate = new Date();
+
+    if (userLoans.length <= 0) {
+      throw new Error('No Loans Found');
+    }
 
     userLoans.forEach(async loan => {
       if (loan.loanDate <= currentDate) {
         await this.create({
-          debt: 10,
-          createDate: currentDate,
+          debt: 75.5,
           payeed: false,
           loanId: loan.loanId,
-          clientId
+          clientId: loan.clientId
         });
       }
     });
+  }
+
+  async userTotalFine(email: string) {
+    const userInformation = await this.prisma.client.findUnique({
+      where: { email },
+      select: { clientId: true }
+    });
+
+    if (!userInformation) {
+      throw new Error('User not found');
+    }
 
     const userFines = await this.prisma.fine.findMany({
-      where: { clientId, payeed: false }
+      where: { clientId: userInformation.clientId },
+      select: { debt: true }
     });
 
-    let totalDebt = 0;
+    let totalFine = new Decimal(0.0);
 
-    userFines.forEach(async fine => {
-      const daysPassed = Math.floor(
-        (currentDate.getTime() - fine.createDate.getTime()) / (1000 * 3600 * 24)
-      );
-      totalDebt += daysPassed * 2;
-      await this.prisma.fine.update({
-        where: { fineId: fine.fineId },
-        data: { debt: daysPassed * 2 }
-      });
+    userFines.forEach(fine => {
+      totalFine = totalFine.add(new Decimal(fine.debt));
     });
 
-    return totalDebt;
+    return totalFine;
   }
 
   findAll() {
