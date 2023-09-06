@@ -1,11 +1,13 @@
 import LibraryAPIService from '@api/LibraryAPI';
 import useAdminStore from '@store/AdminStore';
+import useAuthStore from '@store/AuthStore';
 import useOfficeStore from '@store/OfficeStore';
 import { useNavigate } from 'react-router-dom';
 
 export const useHandleLogin = ({ setError }: UseHandleLoginProps) => {
   const navigate = useNavigate();
   const { login, createOffice } = LibraryAPIService();
+  const auth = useAuthStore.getState();
 
   const useLogin = async ({
     email,
@@ -35,6 +37,7 @@ export const useHandleLogin = ({ setError }: UseHandleLoginProps) => {
       });
     }
     setAdmin({ admin: Admin });
+    auth.login();
     setOffice({ office });
     navigate('/menu');
   };

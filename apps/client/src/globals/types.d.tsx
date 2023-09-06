@@ -370,4 +370,14 @@ declare global {
   };
 
   type CreateReturnResponse = Return;
+
+  interface Auth {
+    isLoggedIn: boolean;
+  }
+
+  interface AuthStore {
+    auth: Auth;
+    login: () => void;
+    logout: () => void;
+  }
 }
