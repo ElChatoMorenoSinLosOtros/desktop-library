@@ -20,8 +20,8 @@ import UpdateReserveDto from './dto/update-reserve.dto';
 import ReserveEntity from './entities/reserve.entity';
 import ReserveService from './reserve.service';
 
-@Controller('materials')
-@ApiTags('materials')
+@Controller('Reserve')
+@ApiTags('Reserve')
 class ReserveController {
   constructor(private readonly reserveService: ReserveService) {}
 
