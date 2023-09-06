@@ -29,11 +29,8 @@ model Client {
   phoneNumber Int?      @unique
   typeUser    String
   loans       Loan[]
-  <<<<<<< HEAD
   Reserve     Reserve[]
-  =======
   fine        Fine[]
-  >>>>>>> feat: fines crud
 
   @@map(name: "client")
 }

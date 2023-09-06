@@ -97,6 +97,16 @@ CREATE TABLE IF NOT EXISTS "reserve" (
     CONSTRAINT "reserve_pkey" PRIMARY KEY ("reserveId")
 );
 
+CREATE TABLE IF NOT EXISTS "Fine" (
+    "fineId" SERIAL NOT NULL,
+    "debt" DECIMAL(65,30) NOT NULL,
+    "payeed" BOOLEAN NOT NULL,
+    "clientId" INTEGER,
+    "loanId" INTEGER,
+
+    CONSTRAINT "Fine_pkey" PRIMARY KEY ("fineId")
+)
+
 CREATE UNIQUE INDEX IF NOT EXISTS "loan_loanId_key" ON "loan"("loanId");
 
 CREATE TABLE IF NOT EXISTS "returns" (
@@ -125,6 +135,7 @@ CREATE TABLE IF NOT EXISTS "notification" (
 
 CREATE UNIQUE INDEX IF NOT EXISTS "notification_notificationId_key" ON "notification"("notificationId");
 
+CREATE UNIQUE INDEX "Fine_loanId_key" ON "Fine"("loanId");
 
 CREATE OR REPLACE FUNCTION update_updatedAt()
 RETURNS TRIGGER AS $$
@@ -190,3 +201,25 @@ BEGIN
         ALTER TABLE "reserve" ADD CONSTRAINT "reserve_materialId_fkey" FOREIGN KEY ("materialId") REFERENCES "material"("materialId") ON DELETE RESTRICT ON UPDATE CASCADE;
     END IF;
 END $$;
+
+DO $$
+BEGIN
+    IF NOT EXISTS  (
+      SELECT 1
+      FROM information_schema.table_constraints
+      WHERE constraint_name = 'Fine_clientId_fkey'
+    ) THEN
+        ALTER TABLE "Fine" ADD CONSTRAINT "Fine_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "client"("clientId") ON DELETE SET NULL ON UPDATE CASCADE;
+    END IF;
+END $$;
+
+DO $$
+BEGIN
+    IF NOT EXISTS  (
+      SELECT 1
+      FROM information_schema.table_constraints
+      WHERE constraint_name = 'Fine_loanId_fkey'
+    ) THEN
+        ALTER TABLE "Fine" ADD CONSTRAINT "Fine_loanId_fkey" FOREIGN KEY ("loanId") REFERENCES "loan"("loanId") ON DELETE SET NULL ON UPDATE CASCADE;
+    END IF;
+END $$

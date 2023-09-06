@@ -37,20 +37,28 @@ export default class FineService {
     const userLoans = await this.prisma.loan.findMany();
 
     const currentDate = new Date();
-    console.log(currentDate);
+    currentDate.setHours(0, 0, 0, 0);
 
     if (userLoans.length <= 0) {
       throw new Error('No Loans Found');
     }
 
     userLoans.forEach(async loan => {
-      if (loan.loanDate <= currentDate) {
-        await this.create({
-          debt: 75.5,
-          payeed: false,
-          loanId: loan.loanId,
-          clientId: loan.clientId
-        });
+      if (loan.returnDate <= currentDate) {
+        try {
+          await this.prisma.fine.upsert({
+            where: { loanId: loan.loanId },
+            create: {
+              debt: 75.5,
+              payeed: false,
+              loanId: loan.loanId,
+              clientId: loan.clientId
+            },
+            update: {}
+          });
+        } catch (error) {
+          throw new Error(`Error creating fine for loan ID`);
+        }
       }
     });
   }
