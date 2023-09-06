@@ -1,7 +1,9 @@
 import useAdminStore from '@store/AdminStore';
+import useAuthStore from '@store/AuthStore';
 
 const useLogOut = ({ navigate }: UseLogOutProps) => {
   const { logout } = useAdminStore();
+  const auth = useAuthStore();
 
   const handleCancel = () => {
     navigate('/menu');
@@ -9,6 +11,7 @@ const useLogOut = ({ navigate }: UseLogOutProps) => {
 
   const handleLogOut = () => {
     logout();
+    auth.logout();
     navigate('/login');
   };
 
