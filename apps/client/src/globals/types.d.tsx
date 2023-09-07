@@ -394,4 +394,31 @@ declare global {
     login: () => void;
     logout: () => void;
   }
+
+  type SubAdmin = {
+    adminId: number;
+    email: string;
+    name: string;
+    role: string;
+    actions: AdminActions;
+    createdAt: Date;
+    updatedAt: Date;
+  };
+
+  type SubAdminWithOutId = {
+    email: string;
+    name: string;
+    role: string;
+    actions: AdminActions;
+  };
+
+  type GetAdminsResponse = SubAdmin[];
+
+  type GetAdminByIdResponse = SubAdmin;
+
+  type CreateAdminResponse = SubAdmin;
+
+  type UpdateAdminByIdResponse = SubAdmin;
+
+  type RemoveAdminByIdResponse = SubAdmin;
 }

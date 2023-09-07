@@ -8,9 +8,6 @@ export default class AdminEntity implements Admin {
   adminId: number;
 
   @ApiProperty()
-  id: number;
-
-  @ApiProperty()
   email: string;
 
   @ApiProperty()

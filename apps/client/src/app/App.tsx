@@ -1,6 +1,7 @@
 import PrivateOutlet from '@common-components/PrivateOutlet';
 import SideBar from '@common-components/side-bar/SideBar';
 import AdminPage from '@pages/admin/AdminPage';
+import AdminAddPage from '@pages/admin/pages/add/AdminAddPage';
 import DeletePage from '@pages/delete/DeletePage';
 import FinesManagementPage from '@pages/fines-management/FinesManagementPage';
 import LoanManagementPage from '@pages/loan-management/LoanManagementPage';
@@ -23,6 +24,8 @@ import ReservationsManagementPage from '@pages/reservations-management/Reservati
 import useAuthStore from '@store/AuthStore';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import AdminInfoPage from './pages/admin/pages/info/AdminInfoPage';
+import AdminUpdatePage from './pages/admin/pages/update/AdminUpdatePage';
 
 function App() {
   const location = useLocation();
@@ -48,6 +51,9 @@ function App() {
             <Route path='*' element={<Navigate to='/menu' />} />
             <Route path='/' element={<Navigate to='/menu' />} />
             <Route path='/admin' element={<AdminPage />} />
+            <Route path='/admin/add' element={<AdminAddPage />} />
+            <Route path='/admin/info/:id' element={<AdminInfoPage />} />
+            <Route path='/admin/update/:id' element={<AdminUpdatePage />} />
             <Route path='/menu' element={<MenuPage />} />
             <Route
               path='/person-management'
