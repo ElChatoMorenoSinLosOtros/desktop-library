@@ -462,4 +462,12 @@ declare global {
     handleChange: ({ index }: { index: number }) => void;
     index: number;
   };
+
+  type Notify = {
+    notifyId: number;
+    name: string;
+    type: string;
+    date: Date | string;
+    information: string;
+  };
 }
