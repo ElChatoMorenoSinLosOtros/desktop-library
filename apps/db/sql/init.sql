@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS "reserve" (
     "materialId" INTEGER NOT NULL,
     "checkDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "returnDate" TIMESTAMP(3) NOT NULL,
-    "returned" BOOLEAN NOT NULL DEFAULT false,
+    "executed" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "reserve_pkey" PRIMARY KEY ("reserveId")
 );
