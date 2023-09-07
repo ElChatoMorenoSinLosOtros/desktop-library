@@ -1,6 +1,7 @@
 import LoanEntity from '@loans/entities/loan.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { Admin } from '@prisma/client';
+import AdminActions from './AdminActions';
 
 export default class AdminEntity implements Admin {
   @ApiProperty()
@@ -20,6 +21,9 @@ export default class AdminEntity implements Admin {
 
   @ApiProperty()
   role: string;
+
+  @ApiProperty()
+  actions: AdminActions;
 
   @ApiProperty()
   createdAt: Date;

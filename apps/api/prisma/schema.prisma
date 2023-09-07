@@ -13,6 +13,7 @@ model Admin {
   password  String
   name      String
   role      String
+  actions   Json
   createdAt DateTime @default(now()) @db.Timestamptz(3)
   updatedAt DateTime @default(now()) @db.Timestamptz(3)
 

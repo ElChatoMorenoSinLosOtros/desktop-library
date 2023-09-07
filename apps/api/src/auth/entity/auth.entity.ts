@@ -1,3 +1,4 @@
+import AdminActions from '@admins/entities/AdminActions';
 import { ApiProperty } from '@nestjs/swagger';
 
 export default class AuthEntity {
@@ -12,4 +13,7 @@ export default class AuthEntity {
 
   @ApiProperty()
   role: string;
+
+  @ApiProperty()
+  actions: AdminActions;
 }

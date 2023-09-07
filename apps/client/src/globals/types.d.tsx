@@ -28,6 +28,7 @@ declare global {
     accessToken?: string;
     statusCode?: number;
     message?: string;
+    actions?: AdminActions;
   }
 
   interface UseLoginProps {
@@ -42,11 +43,22 @@ declare global {
     password: string;
   }
 
+  type Action = {
+    id: number;
+    title: string;
+    url: string;
+  };
+
+  type AdminActions = {
+    menu: Action[];
+  };
+
   interface Admin {
     name: string;
     email: string;
     role: string;
     accessToken: string;
+    actions: AdminActions;
   }
 
   interface AdminStore {

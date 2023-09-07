@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 
 const LOCAL_STORAGE_KEY = 'officeSession';
 
-const saveOfficeData = localStorage.getItem(LOCAL_STORAGE_KEY);
+const saveOfficeData = sessionStorage.getItem(LOCAL_STORAGE_KEY);
 
 const initialOfficeState = saveOfficeData
   ? (JSON.parse(saveOfficeData) as OfficeName)
@@ -17,7 +17,7 @@ const useOfficeStore = create<OfficeStore>(set => ({
   setOffice: ({ office }) =>
     set(state => {
       const updateOffice = { ...state, office };
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updateOffice));
+      sessionStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updateOffice));
       return updateOffice;
     })
 }));

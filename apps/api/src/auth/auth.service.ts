@@ -1,3 +1,4 @@
+import AdminActions from '@admins/entities/AdminActions';
 import {
   Injectable,
   NotFoundException,
@@ -28,7 +29,8 @@ export default class AuthService {
       accessToken: this.jwtService.sign({ userId: user.adminId }),
       email: user.email,
       name: user.name,
-      role: user.role
+      role: user.role,
+      actions: JSON.parse(JSON.stringify(user.actions)) as AdminActions
     };
   }
 }

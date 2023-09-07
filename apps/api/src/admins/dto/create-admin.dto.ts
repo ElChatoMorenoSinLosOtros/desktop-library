@@ -1,5 +1,7 @@
 import { IsEmail, IsString } from '@nestjs/class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsJSON } from 'class-validator';
+import AdminActions from '../entities/AdminActions';
 
 export default class CreateAdminDto {
   @ApiProperty()
@@ -17,4 +19,8 @@ export default class CreateAdminDto {
   @ApiProperty()
   @IsString()
   role: string;
+
+  @ApiProperty()
+  @IsJSON()
+  actions: AdminActions;
 }
