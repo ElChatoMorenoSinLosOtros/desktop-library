@@ -3,6 +3,7 @@ import GlobalInfoForm from '@common-components/GlobalInfoForm';
 import GlobalText from '@common-components/GlobalText';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import HistoryRedirectButton from '@pages/person-management/components/users-list/components/user/components/info/HistoryRedirectButton';
 import InfoPerson from './components/InfoPerson';
 import INITIAL_STATE from './states/InfoPersonStates';
 
@@ -39,7 +40,7 @@ function InfoPersonPage() {
   return (
     <GlobalInfoForm title='Person Info'>
       <div className='grid grid-cols-5 w-full p-14 px-24'>
-        <div className='col-span-4 flex flex-col gap-7 h-full justify-center w-11/12'>
+        <div className='col-span-4 flex flex-col gap-4 h-full justify-center w-11/12'>
           <GlobalText title='Name:' text={user.name} />
           <GlobalText title='Last Name:' text={user.lastName} />
           <GlobalText title='Email:' text={user.email} />
@@ -47,11 +48,21 @@ function InfoPersonPage() {
           <GlobalText title='Phone Number:' text={String(user.phoneNumber)} />
           <GlobalText title='Address:' text={user.address} />
         </div>
-        <div className='col-span- flex flex-col gap-14 h-full justify-between '>
+        <div className='col-span-1 flex flex-col gap-15 h-full justify-between '>
           <InfoPerson title='Read' number={totalRead} />
           <InfoPerson title='Loans' number={activeLoans} />
           <InfoPerson title='Reservations' number={0} />
           <InfoPerson title='Total Fine' number={0} isDouble />
+          <HistoryRedirectButton
+            path='/loan-management'
+            text='Loan History'
+            id={String(id)}
+          />
+          <HistoryRedirectButton
+            path='/fines-management'
+            text='Fines History'
+            id={String(id)}
+          />
         </div>
       </div>
     </GlobalInfoForm>

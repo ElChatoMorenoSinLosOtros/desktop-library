@@ -26,6 +26,7 @@ import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import AdminInfoPage from './pages/admin/pages/info/AdminInfoPage';
 import AdminUpdatePage from './pages/admin/pages/update/AdminUpdatePage';
+import UserLoanHistoryPage from '@pages/loan-management/pages/client-history/UserLoanHistoryPage';
 
 function App() {
   const location = useLocation();
@@ -64,6 +65,10 @@ function App() {
               element={<MaterialManagementPage />}
             />
             <Route path='/loan-management' element={<LoanManagementPage />} />
+            <Route
+              path='/loan-management/:id'
+              element={<UserLoanHistoryPage />}
+            />
             <Route path='/loan-management/add' element={<AddLoanPage />} />
             <Route path='/fines-management' element={<FinesManagementPage />} />
             <Route
