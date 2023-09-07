@@ -28,8 +28,8 @@ import ReservationsManagementPage from '@pages/reservations-management/Reservati
 import useAuthStore from '@store/AuthStore';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import AddReservePage from '@pages/reservations-management/pages/add/AddReservePage.tsx';
-
+import UpdateReservePage from '@pages/reservations-management/pages/update/UpdateReserveInfo.tsx';
+import InfoReservePage from '@pages/reservations-management/pages/info/InfoReservePage.tsx';
 
 
 function App() {
@@ -118,7 +118,16 @@ function App() {
               element={<UpdateLoanPage />}
             />
           </Route>
-          <Route path='reservations-management/add' element={<AddReservePage />} />
+          <Route path='/loan-management/info/:id' element={<InfoLoanPage />} />
+          <Route
+            path='/loan-management/update/:id'
+            element={<UpdateLoanPage />}
+          />
+          <Route path='/reservations-management/info/:id' element={<InfoReservePage />} />
+          <Route
+            path='/reservations-management/update/:id'
+            element={<UpdateReservePage />}
+          />
 
         </Routes>
       </div>

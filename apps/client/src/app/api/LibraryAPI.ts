@@ -9,9 +9,9 @@ const LibraryAPIService = () => {
   const { admin } = useAdminStore();
 
   const login = async ({
-    email,
-    password
-  }: HandleLoginSubmitProps): Promise<AdminResponse> => {
+                         email,
+                         password
+                       }: HandleLoginSubmitProps): Promise<AdminResponse> => {
     return LibraryAPI.post<AdminResponse>('/auth/login', {
       email,
       password
@@ -99,8 +99,8 @@ const LibraryAPIService = () => {
   };
 
   const getUserById = async ({
-    id
-  }: {
+                               id
+                             }: {
     id: string;
   }): Promise<GetUserByIdResponse> => {
     return LibraryAPI.get<GetUsersResponse>(`/clients/${id}`, {
@@ -111,8 +111,8 @@ const LibraryAPIService = () => {
   };
 
   const removeUserById = async ({
-    id
-  }: {
+                                  id
+                                }: {
     id: string;
   }): Promise<RemoveUserByIdResponse> => {
     return LibraryAPI.delete<RemoveUserByIdResponse>(`/clients/${id}`, {
@@ -123,8 +123,8 @@ const LibraryAPIService = () => {
   };
 
   const createUser = async ({
-    client
-  }: {
+                              client
+                            }: {
     client: Client;
   }): Promise<CreateUserResponse> => {
     return LibraryAPI.post<CreateUserResponse>(`/clients`, client, {
@@ -135,9 +135,9 @@ const LibraryAPIService = () => {
   };
 
   const updateUserById = async ({
-    client,
-    id
-  }: {
+                                  client,
+                                  id
+                                }: {
     client: Client;
     id: number;
   }): Promise<UpdateUserByIdResponse> => {
@@ -157,8 +157,8 @@ const LibraryAPIService = () => {
   };
 
   const getMaterialById = async ({
-    id
-  }: {
+                                   id
+                                 }: {
     id: number;
   }): Promise<GetMaterialByIdResponse> => {
     return LibraryAPI.get<GetMaterialByIdResponse>(`/materials/${id}`, {
@@ -169,8 +169,8 @@ const LibraryAPIService = () => {
   };
 
   const getUserActiveLoansById = async ({
-    id
-  }: {
+                                          id
+                                        }: {
     id: number;
   }): Promise<GetUserActiveLoansById> => {
     return LibraryAPI.get<GetUserActiveLoansById>(
@@ -199,8 +199,8 @@ const LibraryAPIService = () => {
   };
 
   const getUserTotalReadById = async ({
-    id
-  }: {
+                                        id
+                                      }: {
     id: number;
   }): Promise<GetUserTotalReadById> => {
     return LibraryAPI.get<GetUserTotalReadById>(`/clients/${id}/total-read`, {
@@ -211,8 +211,8 @@ const LibraryAPIService = () => {
   };
 
   const createMaterial = async ({
-    material
-  }: {
+                                  material
+                                }: {
     material: MaterialWithOutID;
   }): Promise<CreateMaterialResponse> => {
     return LibraryAPI.post<CreateMaterialResponse>(`/materials`, material, {
@@ -223,8 +223,8 @@ const LibraryAPIService = () => {
   };
 
   const removeMaterialById = async ({
-    id
-  }: {
+                                      id
+                                    }: {
     id: number;
   }): Promise<RemoveMaterialByIdResponse> => {
     return LibraryAPI.delete<RemoveMaterialByIdResponse>(`/materials/${id}`, {
@@ -235,9 +235,9 @@ const LibraryAPIService = () => {
   };
 
   const updateMaterialById = async ({
-    id,
-    material
-  }: {
+                                      id,
+                                      material
+                                    }: {
     id: number;
     material: MaterialWithOutID;
   }): Promise<UpdateMaterialByIdResponse> => {
@@ -261,8 +261,8 @@ const LibraryAPIService = () => {
   };
 
   const getOfficeById = async ({
-    id
-  }: {
+                                 id
+                               }: {
     id: number;
   }): Promise<GetOfficeByIdResponse> => {
     return LibraryAPI.get<GetOfficeByIdResponse>(`/offices/${id}`, {
@@ -273,8 +273,8 @@ const LibraryAPIService = () => {
   };
 
   const removeOfficeById = async ({
-    id
-  }: {
+                                    id
+                                  }: {
     id: number;
   }): Promise<RemoveOfficeByIdResponse> => {
     return LibraryAPI.delete<RemoveOfficeByIdResponse>(`/offices/${id}`, {
@@ -285,9 +285,9 @@ const LibraryAPIService = () => {
   };
 
   const updateOfficeById = async ({
-    id,
-    office
-  }: {
+                                    id,
+                                    office
+                                  }: {
     id: number;
     office: OfficeWithoutId;
   }): Promise<UpdateOfficeByIdResponse> => {
@@ -303,8 +303,8 @@ const LibraryAPIService = () => {
   };
 
   const createOffice = async ({
-    office
-  }: {
+                                office
+                              }: {
     office: OfficeWithoutId;
   }): Promise<CreateOfficeResponse> => {
     return LibraryAPI.post<CreateOfficeResponse>(`/offices`, office, {
@@ -315,8 +315,8 @@ const LibraryAPIService = () => {
   };
 
   const createLoan = async ({
-    loan
-  }: {
+                              loan
+                            }: {
     loan: LoanWithOutID;
   }): Promise<CreateLoanResponse> => {
     return LibraryAPI.post<CreateLoanResponse>('/loans', loan, {
@@ -330,6 +330,7 @@ const LibraryAPIService = () => {
                               reserve
                             }: {
     reserve: ReserveWithOutID;
+
   }): Promise<CreateReserveResponse> => {
     return LibraryAPI.post<CreateReserveResponse>('/reserves', reserve, {
       headers: { Authorization: `Bearer ${admin.accessToken}` }
@@ -355,8 +356,8 @@ const LibraryAPIService = () => {
   };
 
   const removeLoanById = async ({
-    id
-  }: {
+                                  id
+                                }: {
     id: number;
   }): Promise<RemoveLoanByIdResponse> => {
     return LibraryAPI.delete<RemoveLoanByIdResponse>(`/loans/${id}`, {
@@ -369,6 +370,7 @@ const LibraryAPIService = () => {
   const removeReserveById = async ({
                                   id
                                 }: {
+
     id: number;
   }): Promise<RemoveReserveByIdResponse> => {
     return LibraryAPI.delete<RemoveReserveByIdResponse>(`/loans/${id}`, {
@@ -379,9 +381,9 @@ const LibraryAPIService = () => {
   };
 
   const updateLoanById = async ({
-    id,
-    loan
-  }: {
+                                  id,
+                                  loan
+                                }: {
     loan: Loan;
     id: number;
   }): Promise<UpdateLoanByIdResponse> => {
@@ -396,6 +398,7 @@ const LibraryAPIService = () => {
                                   id,
                                   reserve
                                 }: {
+
     reserve: Reserve;
     id: number;
   }): Promise<UpdateLoanByIdResponse> => {
@@ -407,8 +410,8 @@ const LibraryAPIService = () => {
   };
 
   const getLoanById = async ({
-    id
-  }: {
+                               id
+                             }: {
     id: number;
   }): Promise<GetLoanByIdResponse> => {
     return LibraryAPI.get<GetLoanByIdResponse>(`/loans/${id}`, {
@@ -419,8 +422,8 @@ const LibraryAPIService = () => {
   };
 
   const createReturn = async ({
-    data
-  }: {
+                                data
+                              }: {
     data: ReturnWithOutId;
   }): Promise<CreateReturnResponse> => {
     return LibraryAPI.post<CreateReturnResponse>(`/returns`, data, {
