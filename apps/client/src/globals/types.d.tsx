@@ -468,7 +468,7 @@ declare global {
     materialId: number;
     reserveDate: Date | string;
     returnDate: Date | string;
-    returned: boolean;
+    executed: boolean;
   };
 
   type ReserveWithOutID = {
@@ -476,7 +476,7 @@ declare global {
     materialId: number;
     reserveDate: Date | string;
     returnDate: Date | string;
-    returned: boolean;
+    executed: boolean;
   };
 
   type UpdateReservePageParams = {

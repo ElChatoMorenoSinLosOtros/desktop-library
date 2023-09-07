@@ -25,17 +25,12 @@ import AddPersonPage from '@pages/person-management/pages/add/AddPersonPage';
 import PersonInfoPage from '@pages/person-management/pages/info/InfoPersonPage';
 import NewDataPersonPage from '@pages/person-management/pages/new-data/NewDataPersonPage';
 import ReservationsManagementPage from '@pages/reservations-management/ReservationsManagementPage';
-<<<<<<< Updated upstream
 import useAuthStore from '@store/AuthStore';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-=======
-import useAdminStore from '@store/AdminStore';
-import { Navigate, Route, Routes } from 'react-router-dom';
 import AddReservePage from '@pages/reservations-management/pages/add/AddReservePage.tsx';
-import UpdateReservePage from '@pages/reservations-management/pages/update/UpdateReserveInfo.tsx';
-import InfoReservePage from '@pages/reservations-management/pages/info/InfoReservePage.tsx';
->>>>>>> Stashed changes
+
+
 
 function App() {
   const location = useLocation();
@@ -54,54 +49,9 @@ function App() {
       <div className='h-screen col-span-9 bg-[#d9d9d9]'>
         <Routes>
           <Route
-<<<<<<< Updated upstream
+
             path='/login'
             element={auth ? <Navigate to='/menu' /> : <LoginPage />}
-=======
-            path='*'
-            element={<Navigate to={`${admin?.email === '' ? '/' : '/menu'}`} />}
-          />
-          <Route path='/' element={<Navigate to='/login' />} />
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/menu' element={<MenuPage />} />
-          <Route path='/dashboard' element={<DashboardPage />} />
-          <Route path='/person-management' element={<PersonManagementPage />} />
-          <Route
-            path='/material-management'
-            element={<MaterialManagementPage />}
-          />
-          <Route path='/loan-management' element={<LoanManagementPage />} />
-          <Route path='/loan-management/add' element={<AddLoanPage />} />
-          <Route path='/fines-management' element={<FinesManagementPage />} />
-          <Route
-            path='/reservations-management'
-            element={<ReservationsManagementPage />}
-          />
-          <Route path='reservations-management/add' element={<AddReservePage /> } />
-          <Route path='/logout' element={<LogoutPage />} />
-          <Route path='/delete' element={<DeletePage />} />
-          <Route path='/reports' element={<ReportsPage />} />
-          <Route
-            path='/person-management/update/:id'
-            element={<NewDataPersonPage />}
-          />
-          <Route path='/person-management/add' element={<AddPersonPage />} />
-          <Route
-            path='/person-management/info/:id'
-            element={<PersonInfoPage />}
-          />
-          <Route
-            path='/material-management/add'
-            element={<AddMaterialPage />}
-          />
-          <Route
-            path='/material-management/update/:id'
-            element={<NewDataMaterialPage />}
-          />
-          <Route
-            path='/material-management/info/:id'
-            element={<InfoMaterialPage />}
->>>>>>> Stashed changes
           />
           <Route element={<PrivateOutlet />}>
             <Route path='*' element={<Navigate to='/menu' />} />
@@ -159,7 +109,6 @@ function App() {
               element={<InfoMaterialPage />}
             />
 
-<<<<<<< Updated upstream
             <Route
               path='/loan-management/info/:id'
               element={<InfoLoanPage />}
@@ -169,18 +118,8 @@ function App() {
               element={<UpdateLoanPage />}
             />
           </Route>
-=======
-          <Route path='/loan-management/info/:id' element={<InfoLoanPage />} />
-          <Route
-            path='/loan-management/update/:id'
-            element={<UpdateLoanPage />}
-          />
-          <Route path='/reservations-management/info/:id' element={<InfoReservePage />} />
-          <Route
-            path='/reservations-management/update/:id'
-            element={<UpdateReservePage />}
-          />
->>>>>>> Stashed changes
+          <Route path='reservations-management/add' element={<AddReservePage />} />
+
         </Routes>
       </div>
     </div>

@@ -329,7 +329,7 @@ const LibraryAPIService = () => {
   const createReserve = async ({
                               reserve
                             }: {
-    reserve: LoanWithOutID;
+    reserve: ReserveWithOutID;
   }): Promise<CreateReserveResponse> => {
     return LibraryAPI.post<CreateReserveResponse>('/reserves', reserve, {
       headers: { Authorization: `Bearer ${admin.accessToken}` }
