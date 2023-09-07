@@ -371,6 +371,8 @@ declare global {
 
   type CreateReturnResponse = Return;
 
+  type GetReturnByLoanIdResponse = Return;
+
   interface Auth {
     isLoggedIn: boolean;
   }
