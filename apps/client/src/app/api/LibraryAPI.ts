@@ -451,6 +451,7 @@ const LibraryAPIService = () => {
       headers: { Authorization: `Bearer ${admin.accessToken}` }
     }).then(resp => {
       return resp.data;
+
     });
   };
 
@@ -491,7 +492,6 @@ const LibraryAPIService = () => {
     removeReserveById,
     getUserActiveReservesById,
     updateReserveById
-
   };
 };
 
