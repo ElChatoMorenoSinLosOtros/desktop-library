@@ -66,4 +66,17 @@ export default class LoansService {
       where: { loanId }
     });
   }
+
+  async getOverdueLoans() {
+    const currentDate = new Date();
+
+    return this.prisma.loan.findMany({
+      where: {
+        returnDate: {
+          lt: currentDate
+        },
+        returned: false
+      }
+    });
+  }
 }

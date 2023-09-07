@@ -31,6 +31,18 @@ class MaterialsService {
   remove(materialId: number) {
     return this.prisma.material.delete({ where: { materialId } });
   }
+
+  async getLowStockMaterials() {
+    const lowStockThreshold = 5;
+
+    return this.prisma.material.findMany({
+      where: {
+        quantity: {
+          lt: lowStockThreshold
+        }
+      }
+    });
+  }
 }
 
 export default MaterialsService;
