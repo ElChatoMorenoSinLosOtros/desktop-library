@@ -30,6 +30,7 @@ import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import UpdateReservePage from '@pages/reservations-management/pages/update/UpdateReserveInfo.tsx';
 import InfoReservePage from '@pages/reservations-management/pages/info/InfoReservePage.tsx';
+import AddReservePage from '@pages/reservations-management/pages/add/AddReservePage.tsx';
 
 
 function App() {
@@ -128,6 +129,7 @@ function App() {
             path='/reservations-management/update/:id'
             element={<UpdateReservePage />}
           />
+          <Route path='reservations-management/add' element={<AddReservePage />} />
 
         </Routes>
       </div>

@@ -330,7 +330,6 @@ const LibraryAPIService = () => {
                               reserve
                             }: {
     reserve: ReserveWithOutID;
-
   }): Promise<CreateReserveResponse> => {
     return LibraryAPI.post<CreateReserveResponse>('/reserves', reserve, {
       headers: { Authorization: `Bearer ${admin.accessToken}` }
@@ -451,6 +450,7 @@ const LibraryAPIService = () => {
     loanId: number;
   }): Promise<Return> => {
     return LibraryAPI.get<Return>(`/returns/${loanId}`, {
+
       headers: { Authorization: `Bearer ${admin.accessToken}` }
     }).then(resp => {
       return resp.data;
