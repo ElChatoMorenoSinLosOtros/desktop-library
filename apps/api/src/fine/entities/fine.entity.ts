@@ -15,6 +15,12 @@ export default class FineEntity {
   @ApiProperty()
   payeed: boolean;
 
+  @ApiProperty()
+  loanId: number;
+
+  @ApiProperty()
+  clientId: boolean;
+
   @ApiProperty({ type: () => LoanEntity })
   loan: LoanEntity;
 
