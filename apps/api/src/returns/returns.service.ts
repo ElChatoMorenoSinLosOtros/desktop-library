@@ -56,7 +56,7 @@ export default class ReturnsService {
   }
 
   findOne(loanId: number) {
-    return this.prisma.return.findMany({
+    return this.prisma.return.findUnique({
       where: { loanId }
     });
   }

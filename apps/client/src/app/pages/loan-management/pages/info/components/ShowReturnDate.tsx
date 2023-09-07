@@ -7,17 +7,20 @@ function ShowReturnDate({ loanId }: { loanId: number }) {
   const [devolution, setDevolution] = useState<Return>({} as Return);
 
   useEffect(() => {
-    getReturnByLoanId({ loanId: Number(loanId) })
-      .then(resp => setDevolution(resp))
+    if (loanId === undefined) return;
+    getReturnByLoanId({ loanId })
+      .then(resp => {
+        setDevolution(resp);
+      })
       .catch((error: Error) => {
         throw new Error(error.message);
       });
-  });
+  }, [loanId]);
   return (
     <GlobalText
       title='Return Date'
       text={String(
-        devolution
+        devolution.loanId != null
           ? devolution.returnDate?.toString().substring(0, 10)
           : 'Not Returned'
       )}
