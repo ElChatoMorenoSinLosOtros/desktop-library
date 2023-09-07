@@ -312,10 +312,10 @@ const LibraryAPIService = () => {
   }: {
     loanId: number;
   }): Promise<Return> => {
-    return LibraryAPI.get<GetReturnByLoanIdResponse>(`/returns/${loanId}`, {
+    return LibraryAPI.get<Return>(`/returns/${loanId}`, {
       headers: { Authorization: `Bearer ${admin.accessToken}` }
     }).then(resp => {
-      return resp.data[0];
+      return resp.data;
     });
   };
 
