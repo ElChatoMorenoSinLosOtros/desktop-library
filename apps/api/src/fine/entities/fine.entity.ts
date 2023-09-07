@@ -1,6 +1,6 @@
+import { ApiProperty } from '@nestjs/swagger';
 import ClientEntity from '@/clients/entities/client.entity';
 import LoanEntity from '@/loans/entities/loan.entity';
-import { ApiProperty } from '@nestjs/swagger';
 
 export default class FineEntity {
   @ApiProperty()

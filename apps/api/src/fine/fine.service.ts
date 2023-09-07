@@ -1,6 +1,6 @@
-import PrismaService from '@/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { Decimal } from '@prisma/client/runtime/library';
+import PrismaService from '@/prisma/prisma.service';
 import CreateFineDto from './dto/create-fine.dto';
 import UpdateFineDto from './dto/update-fine.dto';
 
@@ -44,7 +44,8 @@ export default class FineService {
     }
 
     userLoans.forEach(async loan => {
-      if (loan.returnDate <= currentDate) {
+      loan.returnDate.setHours(0, 0, 0, 0);
+      if (loan.returnDate <= currentDate && loan.returned === false) {
         try {
           await this.prisma.fine.upsert({
             where: { loanId: loan.loanId },
@@ -63,20 +64,14 @@ export default class FineService {
     });
   }
 
-  async userTotalFine(email: string) {
-    const userInformation = await this.prisma.client.findUnique({
-      where: { email },
-      select: { clientId: true }
+  async userTotalFine(clientId: number) {
+    const userFines = await this.prisma.fine.findMany({
+      where: { clientId }
     });
 
-    if (!userInformation) {
+    if (!userFines) {
       throw new Error('User not found');
     }
-
-    const userFines = await this.prisma.fine.findMany({
-      where: { clientId: userInformation.clientId },
-      select: { debt: true }
-    });
 
     let totalFine = new Decimal(0.0);
 
