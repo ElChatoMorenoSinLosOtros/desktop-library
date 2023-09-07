@@ -54,12 +54,12 @@ function InfoPersonPage() {
           <InfoPerson title='Reservations' number={0} />
           <InfoPerson title='Total Fine' number={0} isDouble />
           <HistoryRedirectButton
-            path='/loan-management'
+            path='/loan-management/loan-history'
             text='Loan History'
             id={String(id)}
           />
           <HistoryRedirectButton
-            path='/fines-management'
+            path='/fine-management/fine-history'
             text='Fines History'
             id={String(id)}
           />

@@ -66,7 +66,7 @@ function App() {
             />
             <Route path='/loan-management' element={<LoanManagementPage />} />
             <Route
-              path='/loan-management/:id'
+              path='/loan-management/loan-history/:id'
               element={<UserLoanHistoryPage />}
             />
             <Route path='/loan-management/add' element={<AddLoanPage />} />
