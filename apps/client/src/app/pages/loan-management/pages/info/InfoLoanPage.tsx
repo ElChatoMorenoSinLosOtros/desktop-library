@@ -3,6 +3,7 @@ import GlobalInfoForm from '@common-components/GlobalInfoForm';
 import GlobalText from '@common-components/GlobalText';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ShowReturnDate from './components/ShowReturnDate';
 
 function InfoLoanPage() {
   const { id } = useParams<InfoLoanPageParams>();
@@ -33,7 +34,7 @@ function InfoLoanPage() {
 
   return (
     <GlobalInfoForm title='Loan Info'>
-      <div className='flex flex-col gap-7 h-full justify-center w-11/12 p-14 px-24'>
+      <div className='flex flex-col gap-7 h-full justify-center w-11/12 p-8 px-24'>
         <GlobalText title='Loan ID:' text={String(loan.loanId)} />
         <GlobalText title='User Name:' text={String(user.name)} />
         <GlobalText title='Material Title:' text={String(material.title)} />
@@ -42,9 +43,10 @@ function InfoLoanPage() {
           text={String(loan.loanDate?.toString().substring(0, 10))}
         />
         <GlobalText
-          title='Return Date:'
+          title='Expirationsss Date:'
           text={String(loan.returnDate?.toString().substring(0, 10))}
         />
+        <ShowReturnDate loanId={loan.loanId} />
       </div>
     </GlobalInfoForm>
   );

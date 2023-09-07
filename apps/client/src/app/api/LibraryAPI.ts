@@ -307,6 +307,18 @@ const LibraryAPIService = () => {
     });
   };
 
+  const getReturnByLoanId = async ({
+    loanId
+  }: {
+    loanId: number;
+  }): Promise<Return> => {
+    return LibraryAPI.get<Return>(`/returns/${loanId}`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
   return {
     login,
     getUsers,
@@ -331,7 +343,8 @@ const LibraryAPIService = () => {
     getUserTotalReadById,
     updateLoanById,
     getLoanById,
-    createReturn
+    createReturn,
+    getReturnByLoanId
   };
 };
 

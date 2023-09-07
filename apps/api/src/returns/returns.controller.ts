@@ -39,9 +39,9 @@ export default class ReturnsController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiCreatedResponse({ type: ReturnEntity })
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.returnsService.findOne(+id);
+  @Get(':loanid')
+  findOne(@Param('loanid') loanid: string) {
+    return this.returnsService.findOne(+loanid);
   }
 
   @UseGuards(JwtAuthGuard)
