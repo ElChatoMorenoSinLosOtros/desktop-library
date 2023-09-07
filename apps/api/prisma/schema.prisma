@@ -111,3 +111,12 @@ model Reserve {
 
   @@map(name: "reserve")
 }
+
+model Notification {
+  notificationId      Int       @id @unique @default(autoincrement())
+  notificationName    String
+  notificationType    String
+  notificationDate    DateTime  @default(now())
+  notificationContent String?
+  notificationRead    Boolean   @default(false)
+}

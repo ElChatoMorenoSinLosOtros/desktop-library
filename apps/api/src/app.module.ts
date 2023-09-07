@@ -4,6 +4,7 @@ import AuthModule from './auth/auth.module';
 import ClientsModule from './clients/clients.module';
 import LoansModule from './loans/loans.module';
 import MaterialsModule from './materials/materials.module';
+import NotificationsModule from './notifications/notifications.module';
 import OfficesModule from './offices/offices.module';
 import PrismaModule from './prisma/prisma.module';
 import ReserveModule from './reserve/reserve.module';
@@ -19,7 +20,8 @@ import ReturnsModule from './returns/returns.module';
     LoansModule,
     OfficesModule,
     ReturnsModule,
-    ReserveModule
+    ReserveModule,
+    NotificationsModule
   ]
 })
 export default class AppModule {}
