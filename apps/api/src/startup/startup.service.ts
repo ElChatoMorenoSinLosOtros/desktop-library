@@ -13,6 +13,7 @@ export default class StartupService implements OnModuleInit {
 
   async onModuleInit() {
     await this.createNotifications();
+    await this.loansService.verifyUsersReserve();
   }
 
   private async createNotifications() {

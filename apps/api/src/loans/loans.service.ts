@@ -53,10 +53,12 @@ export default class LoansService {
     if (userReserve.length <= 0) {
       throw new Error('No reserve Found');
     }
-    console.log(userReserve);
     userReserve.forEach(async reserve => {
       if (reserve.checkDate <= currentDate && reserve.executed === false) {
-        console.log('verga');
+        console.log('checkDate');
+        console.log(reserve.checkDate);
+        console.log('currentDate ');
+        console.log(currentDate);
         try {
           await this.prisma.loan.create({
             data: {
