@@ -1,4 +1,4 @@
-function DashboardFields() {
+function NotificationsFields() {
   return (
     <div
       className='p-5 grid place-items-center grid-cols-6 text-lg font-bold font-roboto-mono
@@ -14,4 +14,4 @@ function DashboardFields() {
   );
 }
 
-export default DashboardFields;
+export default NotificationsFields;

@@ -1,6 +1,6 @@
-import DashboardItem from './components/DashboardItem';
+import NotificationsItem from './components/NotificationsItem';
 
-function DashboardList({ notifies }: { notifies: Notify[] }) {
+function NotificationsList({ notifies }: { notifies: Notify[] }) {
   return (
     <div
       className={`h-full overflow-auto mt-2 ${
@@ -12,11 +12,11 @@ function DashboardList({ notifies }: { notifies: Notify[] }) {
       font-roboto-mono text-sm font-bold w-full gap-y-10'
       >
         {notifies.map((notify: Notify) => {
-          return <DashboardItem key={notify.notifyId} notify={notify} />;
+          return <NotificationsItem key={notify.notifyId} notify={notify} />;
         })}
       </div>
     </div>
   );
 }
 
-export default DashboardList;
+export default NotificationsList;

@@ -1,4 +1,4 @@
-function DashboardHeader() {
+function NotificationsHeader() {
   return (
     <div className='font-russo text-3xl text-[#0D1B2A]/75 text-start w-full'>
       Notifications
@@ -6,4 +6,4 @@ function DashboardHeader() {
   );
 }
 
-export default DashboardHeader;
+export default NotificationsHeader;

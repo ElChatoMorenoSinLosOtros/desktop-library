@@ -1,4 +1,4 @@
-function DashboardItem({ notify }: { notify: Notify }) {
+function NotificationsItem({ notify }: { notify: Notify }) {
   return (
     <div className='grid grid-cols-6 w-full px-6 gap-4'>
       <div>{notify.notifyId}</div>
@@ -10,4 +10,4 @@ function DashboardItem({ notify }: { notify: Notify }) {
   );
 }
 
-export default DashboardItem;
+export default NotificationsItem;
