@@ -11,6 +11,8 @@ declare global {
     className?: string;
     classNameTitle?: string;
     disabled?: boolean;
+    classNameDiv?: string;
+    notRequired?: boolean;
   }
 
   interface ButtonProps {
@@ -28,6 +30,7 @@ declare global {
     accessToken?: string;
     statusCode?: number;
     message?: string;
+    actions?: AdminActions;
   }
 
   interface UseLoginProps {
@@ -42,11 +45,22 @@ declare global {
     password: string;
   }
 
+  type Action = {
+    id: number;
+    title: string;
+    url: string;
+  };
+
+  type AdminActions = {
+    menu: Action[];
+  };
+
   interface Admin {
     name: string;
     email: string;
     role: string;
     accessToken: string;
+    actions: AdminActions;
   }
 
   interface AdminStore {
@@ -153,6 +167,8 @@ declare global {
     name: string;
     type?: 'text' | 'password' | 'email' | 'number' | 'date' | 'time';
     disabled?: boolean;
+    className?: string;
+    notRequired?: boolean;
   }
 
   interface GlobalSubmitButtonProps {
@@ -382,4 +398,68 @@ declare global {
     login: () => void;
     logout: () => void;
   }
+
+  type SubAdmin = {
+    adminId: number;
+    email: string;
+    name: string;
+    role: string;
+    actions: AdminActions;
+    createdAt: Date;
+    updatedAt: Date;
+  };
+
+  type SubAdminWithOutId = {
+    email: string;
+    name: string;
+    role: string;
+    actions: AdminActions;
+  };
+
+  type UpdateSubAdmin = {
+    email: string;
+    name: string;
+    role: string;
+    actions: AdminActions;
+    password: string;
+  };
+
+  type GetAdminsResponse = SubAdmin[];
+
+  type GetAdminByIdResponse = SubAdmin;
+
+  type CreateAdminResponse = SubAdmin;
+
+  type UpdateAdminByIdResponse = SubAdmin;
+
+  type RemoveAdminByIdResponse = SubAdmin;
+
+  type ActionChecked = {
+    id: number;
+    checked: boolean;
+    action: Action;
+  };
+
+  type AdminPermissionsProps = {
+    actions: ActionChecked[];
+    setActions: React.Dispatch<React.SetStateAction<ActionChecked[]>>;
+    disabled?: boolean;
+  };
+
+  type GlobalInfoFormProps = {
+    children: React.ReactNode;
+    title: string;
+    subTitle?: string;
+  };
+
+  type AdminInfoPageParams = {
+    id: string;
+  };
+
+  type ActionCardProps = {
+    action: ActionChecked;
+    disabled?: boolean;
+    handleChange: ({ index }: { index: number }) => void;
+    index: number;
+  };
 }

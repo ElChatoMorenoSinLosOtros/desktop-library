@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 const LOCAL_STORAGE_KEY_TYPE = 'deleteSessionType';
 
-const savedType = localStorage.getItem(LOCAL_STORAGE_KEY_TYPE);
+const savedType = sessionStorage.getItem(LOCAL_STORAGE_KEY_TYPE);
 
 const initialType = savedType || '';
 const initialOnClick = () => {};
@@ -13,7 +13,7 @@ const useDeleteStore = create<DeleteStore>(set => ({
   setType: ({ type }) =>
     set(state => {
       const updateDelete = { ...state, type };
-      localStorage.setItem(LOCAL_STORAGE_KEY_TYPE, JSON.stringify(type));
+      sessionStorage.setItem(LOCAL_STORAGE_KEY_TYPE, JSON.stringify(type));
       return updateDelete;
     }),
   setOnClick: ({ onClick }) =>

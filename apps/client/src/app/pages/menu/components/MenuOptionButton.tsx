@@ -1,26 +1,26 @@
 import finesImage from '@assets/images/fines-management.png';
 import loanImage from '@assets/images/loan-management.png';
 import materialImage from '@assets/images/material-management.png';
+import NotificationsImage from '@assets/images/notifications.png';
 import personImage from '@assets/images/person-management.png';
-import ReportsImage from '@assets/images/reports.png';
 import reservationImage from '@assets/images/reservations-management.png';
 import Button from '@common-components/Button';
 
 function MenuOptionButton({ src, title, navigate }: MenuOptionButtonProps) {
   function switchImage() {
     switch (title) {
-      case 'Persons':
+      case 'Persons Management':
         return personImage;
-      case 'Materials':
+      case 'Materials Management':
         return materialImage;
-      case 'Loans':
+      case 'Loans Management':
         return loanImage;
-      case 'Fines':
+      case 'Fines Management':
         return finesImage;
-      case 'Reservations':
+      case 'Reservations Management':
         return reservationImage;
-      case 'Reports':
-        return ReportsImage;
+      case 'Notifications':
+        return NotificationsImage;
       default:
         return '';
     }
@@ -35,7 +35,9 @@ function MenuOptionButton({ src, title, navigate }: MenuOptionButtonProps) {
       <div className='flex justify-center place-items-center'>
         <img src={switchImage()} alt={title} className='object-cover' />
       </div>
-      <h5 className='text-[10px] xl:text-lg md:text-base'>{title}</h5>
+      <h5 className='text-[10px] xl:text-lg md:text-base'>
+        {title.split(' ')[0]}
+      </h5>
     </Button>
   );
 }

@@ -28,6 +28,68 @@ const LibraryAPIService = () => {
       });
   };
 
+  const getAdmins = async (): Promise<GetAdminsResponse> => {
+    return LibraryAPI.get<GetAdminsResponse>('/admins', {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const getAdminById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<GetAdminByIdResponse> => {
+    return LibraryAPI.get<GetAdminsResponse>(`/admins/${id}`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data[0];
+    });
+  };
+
+  const removeAdminById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<RemoveAdminByIdResponse> => {
+    return LibraryAPI.delete<RemoveAdminByIdResponse>(`/admins/${id}`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const createAdmin = async ({
+    subAdmin
+  }: {
+    subAdmin: SubAdminWithOutId;
+  }): Promise<CreateUserResponse> => {
+    return LibraryAPI.post<CreateUserResponse>(`/admins`, subAdmin, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const updateAdminById = async ({
+    subAdmin,
+    id
+  }: {
+    subAdmin: UpdateSubAdmin;
+    id: number;
+  }): Promise<UpdateAdminByIdResponse> => {
+    return LibraryAPI.patch<UpdateAdminByIdResponse>(
+      `/admins/${id}`,
+      subAdmin,
+      {
+        headers: { Authorization: `Bearer ${admin.accessToken}` }
+      }
+    ).then(resp => {
+      return resp.data;
+    });
+  };
+
   const getUsers = async (): Promise<GetUsersResponse> => {
     return LibraryAPI.get<GetUsersResponse>('/clients', {
       headers: { Authorization: `Bearer ${admin.accessToken}` }
@@ -344,7 +406,12 @@ const LibraryAPIService = () => {
     updateLoanById,
     getLoanById,
     createReturn,
-    getReturnByLoanId
+    getReturnByLoanId,
+    getAdmins,
+    getAdminById,
+    removeAdminById,
+    createAdmin,
+    updateAdminById
   };
 };
 

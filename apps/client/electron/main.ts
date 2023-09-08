@@ -18,7 +18,9 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js')
     },
     width: 1400,
-    height: 950
+    height: 950,
+    minWidth: 800,
+    minHeight: 600
   });
 
   win.webContents.on('did-finish-load', () => {

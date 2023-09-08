@@ -24,7 +24,10 @@ export const useHandleLogin = ({ setError }: UseHandleLoginProps) => {
       name: data?.name || '',
       email: data?.email || '',
       role: data?.role || '',
-      accessToken: data?.accessToken || ''
+      accessToken: data?.accessToken || '',
+      actions: data?.actions || {
+        menu: []
+      }
     };
     const { setAdmin } = useAdminStore.getState();
     const { setOffice } = useOfficeStore.getState();

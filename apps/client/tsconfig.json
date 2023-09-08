@@ -55,7 +55,10 @@
       ],
       "@menus/*": [
         "./src/assets/menus/*"
-      ]
+      ],
+      "@services/*": [
+        "./src/app/services/*"
+      ],
     }
   },
   "types": [

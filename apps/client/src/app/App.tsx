@@ -1,7 +1,7 @@
 import PrivateOutlet from '@common-components/PrivateOutlet';
 import SideBar from '@common-components/side-bar/SideBar';
 import AdminPage from '@pages/admin/AdminPage';
-import DashboardPage from '@pages/dashboard/DashboardPage';
+import AdminAddPage from '@pages/admin/pages/add/AdminAddPage';
 import DeletePage from '@pages/delete/DeletePage';
 import FinesManagementPage from '@pages/fines-management/FinesManagementPage';
 import LoanManagementPage from '@pages/loan-management/LoanManagementPage';
@@ -15,15 +15,17 @@ import AddMaterialPage from '@pages/material-management/pages/add/AddMaterialPag
 import InfoMaterialPage from '@pages/material-management/pages/info/InfoMaterialPage';
 import NewDataMaterialPage from '@pages/material-management/pages/update/NewDataMaterialPage';
 import MenuPage from '@pages/menu/MenuPage';
+import NotificationsPage from '@pages/notifications/NotificationsPage';
 import PersonManagementPage from '@pages/person-management/PersonManagementPage';
 import AddPersonPage from '@pages/person-management/pages/add/AddPersonPage';
 import PersonInfoPage from '@pages/person-management/pages/info/InfoPersonPage';
 import NewDataPersonPage from '@pages/person-management/pages/new-data/NewDataPersonPage';
-import ReportsPage from '@pages/reports/ReportsPage';
 import ReservationsManagementPage from '@pages/reservations-management/ReservationsManagementPage';
 import useAuthStore from '@store/AuthStore';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import AdminInfoPage from './pages/admin/pages/info/AdminInfoPage';
+import AdminUpdatePage from './pages/admin/pages/update/AdminUpdatePage';
 
 function App() {
   const location = useLocation();
@@ -49,8 +51,10 @@ function App() {
             <Route path='*' element={<Navigate to='/menu' />} />
             <Route path='/' element={<Navigate to='/menu' />} />
             <Route path='/admin' element={<AdminPage />} />
+            <Route path='/admin/add' element={<AdminAddPage />} />
+            <Route path='/admin/info/:id' element={<AdminInfoPage />} />
+            <Route path='/admin/update/:id' element={<AdminUpdatePage />} />
             <Route path='/menu' element={<MenuPage />} />
-            <Route path='/dashboard' element={<DashboardPage />} />
             <Route
               path='/person-management'
               element={<PersonManagementPage />}
@@ -68,7 +72,7 @@ function App() {
             />
             <Route path='/logout' element={<LogoutPage />} />
             <Route path='/delete' element={<DeletePage />} />
-            <Route path='/reports' element={<ReportsPage />} />
+            <Route path='/notifications' element={<NotificationsPage />} />
             <Route
               path='/person-management/update/:id'
               element={<NewDataPersonPage />}

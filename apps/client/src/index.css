@@ -171,6 +171,10 @@ select {
 	appearance: none;
 }
 
+body {
+  list-style:none;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
