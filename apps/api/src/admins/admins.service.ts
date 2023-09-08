@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import PrismaService from '@pr-prisma/prisma.service';
-import { roundsOfHashing } from '@utils/constants';
+import constants from '@utils/constants';
 import * as bcrypt from 'bcrypt';
 import CreateAdminDto from './dto/create-admin.dto';
 import UpdateAdminDto from './dto/update-admin.dto';
@@ -12,7 +12,7 @@ export default class AdminsService {
   async create(createAdminDto: CreateAdminDto) {
     const hashedPassword = await bcrypt.hash(
       createAdminDto.password,
-      roundsOfHashing
+      constants.roundsOfHashing
     );
     const adminData = {
       ...createAdminDto,
@@ -34,11 +34,15 @@ export default class AdminsService {
   }
 
   async update(adminId: number, updateAdminDto: UpdateAdminDto) {
-    let hashedPassword = '';
-    if (updateAdminDto.password) {
+    const admin = await this.prisma.admin.findUnique({
+      where: { adminId }
+    });
+
+    let hashedPassword = admin.password;
+    if (updateAdminDto.password && updateAdminDto.password !== '') {
       hashedPassword = await bcrypt.hash(
         updateAdminDto.password,
-        roundsOfHashing
+        constants.roundsOfHashing
       );
     }
     const updateAdminData = {

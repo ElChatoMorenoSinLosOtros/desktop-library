@@ -8,7 +8,8 @@ function TextField({
   className = '',
   classNameTitle = '',
   disabled = false,
-  classNameDiv = ''
+  classNameDiv = '',
+  notRequired = false
 }: TextFieldProps) {
   return (
     <div className={`flex flex-col gap-5 ${classNameDiv}`}>
@@ -23,7 +24,7 @@ function TextField({
         }`}
         placeholder={placeholder}
         type={type}
-        required
+        required={!notRequired}
         disabled={disabled}
       />
     </div>

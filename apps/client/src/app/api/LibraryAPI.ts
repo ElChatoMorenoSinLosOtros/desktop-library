@@ -41,10 +41,10 @@ const LibraryAPIService = () => {
   }: {
     id: number;
   }): Promise<GetAdminByIdResponse> => {
-    return LibraryAPI.get<GetAdminByIdResponse>(`/admins/${id}`, {
+    return LibraryAPI.get<GetAdminsResponse>(`/admins/${id}`, {
       headers: { Authorization: `Bearer ${admin.accessToken}` }
     }).then(resp => {
-      return resp.data;
+      return resp.data[0];
     });
   };
 
@@ -76,7 +76,7 @@ const LibraryAPIService = () => {
     subAdmin,
     id
   }: {
-    subAdmin: SubAdmin;
+    subAdmin: UpdateSubAdmin;
     id: number;
   }): Promise<UpdateAdminByIdResponse> => {
     return LibraryAPI.patch<UpdateAdminByIdResponse>(

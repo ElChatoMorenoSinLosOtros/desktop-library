@@ -1,18 +1,19 @@
 import AdminActions from '@admins/entities/AdminActions';
 import { PrismaClient } from '@prisma/client';
-import { roundsOfHashing } from '@utils/constants';
 import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
+const roundsOfHashing = 10;
+
 async function main() {
   const passwordSabin = await bcrypt.hash('password-sabin', roundsOfHashing);
   const passwordTechnician = await bcrypt.hash(
-    'password-librarian',
+    'password-technician',
     roundsOfHashing
   );
   const passwordLibrarian = await bcrypt.hash(
-    'password-technician',
+    'password-librarian',
     roundsOfHashing
   );
   const actions: AdminActions = {
@@ -73,7 +74,9 @@ async function main() {
       name: 'Librarian',
       password: passwordLibrarian,
       role: 'librarian',
-      actions: actions.menu.slice(0, 4)
+      actions: {
+        menu: actions.menu.slice(0, 4)
+      }
     }
   });
 
@@ -87,7 +90,9 @@ async function main() {
       name: 'Technician',
       password: passwordTechnician,
       role: 'technician',
-      actions: actions.menu.slice(3, 6)
+      actions: {
+        menu: actions.menu.slice(3, 6)
+      }
     }
   });
 }

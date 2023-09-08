@@ -4,4 +4,4 @@ const jwtConstants = {
 
 const roundsOfHashing = 10;
 
-export { jwtConstants, roundsOfHashing };
+export default { jwtConstants, roundsOfHashing };

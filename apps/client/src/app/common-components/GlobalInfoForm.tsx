@@ -3,17 +3,13 @@ import Line from './Line';
 
 function GlobalInfoForm({
   children,
-  title
-}: {
-  children: React.ReactNode;
-  title: string;
-}) {
+  title,
+  subTitle = ''
+}: GlobalInfoFormProps) {
   return (
     <div className='flex flex-col h-screen'>
-      <CommonHeader title={title} />
-      <div className='px-8'>
-        <Line />
-      </div>
+      <CommonHeader title={title} subTitle={subTitle} />
+      <div className='px-8'>{subTitle === '' ? <Line /> : <div />}</div>
       {children}
     </div>
   );

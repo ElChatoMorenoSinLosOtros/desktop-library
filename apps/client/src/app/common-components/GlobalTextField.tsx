@@ -5,7 +5,8 @@ function GlobalTextField({
   name,
   type = 'text',
   disabled = false,
-  className = ''
+  className = '',
+  notRequired = false
 }: GlobalTextFieldProps) {
   return (
     <TextField
@@ -17,6 +18,7 @@ function GlobalTextField({
       classNameTitle='font-bold font-roboto-mono text-xl'
       disabled={disabled}
       classNameDiv={className}
+      notRequired={notRequired}
     />
   );
 }
