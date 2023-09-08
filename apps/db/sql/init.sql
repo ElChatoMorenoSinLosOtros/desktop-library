@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS "notification" (
 
 CREATE UNIQUE INDEX IF NOT EXISTS "notification_notificationId_key" ON "notification"("notificationId");
 
-CREATE TABLE "Fine" (
+CREATE TABLE IF NOT EXISTS "Fine" (
     "fineId" SERIAL NOT NULL,
     "debt" DECIMAL(65,30) NOT NULL,
     "payeed" BOOLEAN NOT NULL,
