@@ -44,6 +44,36 @@ export default class LoansService {
     return createdLoan;
   }
 
+  async verifyUsersReserve() {
+    const userReserve = await this.prisma.reserve.findMany();
+
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+
+    if (userReserve.length <= 0) {
+      throw new Error('No reserve Found');
+    }
+    console.log(userReserve);
+    userReserve.forEach(async reserve => {
+      if (reserve.checkDate <= currentDate && reserve.executed === false) {
+        console.log('verga');
+        try {
+          await this.prisma.loan.create({
+            data: {
+              clientId: reserve.clientId,
+              materialId: reserve.materialId,
+              loanDate: reserve.checkDate,
+              returnDate: reserve.returnDate,
+              returned: reserve.executed
+            }
+          });
+        } catch (error) {
+          throw new Error(`Error creating loan for reserve `);
+        }
+      }
+    });
+  }
+
   findAll() {
     return this.prisma.loan.findMany();
   }

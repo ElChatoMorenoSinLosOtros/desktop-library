@@ -52,7 +52,7 @@ model Material {
 }
 
 model Loan {
-  loanId     Int       @id @unique @default(autoincrement())
+  loanId     Int       @id @default(autoincrement())
   clientId   Int
   materialId Int
   loanDate   DateTime  @default(now()) @db.Timestamptz(3)
@@ -100,7 +100,7 @@ model Return {
 }
 
 model Reserve {
-  reserveId  Int       @id @unique @default(autoincrement())
+  reserveId  Int       @id @default(autoincrement())
   clientId   Int
   materialId Int
   checkDate  DateTime  @default(now()) @db.Timestamptz()
