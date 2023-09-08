@@ -1,6 +1,12 @@
 import NotificationsItem from './components/NotificationsItem';
 
-function NotificationsList({ notifies }: { notifies: Notify[] }) {
+function NotificationsList({
+  notifies,
+  loading
+}: {
+  notifies: Notify[];
+  loading: boolean;
+}) {
   return (
     <div
       className={`h-full overflow-auto mt-2 ${
@@ -11,9 +17,12 @@ function NotificationsList({ notifies }: { notifies: Notify[] }) {
         className='h-full flex flex-col
       font-roboto-mono text-sm font-bold w-full gap-y-10'
       >
-        {notifies.map((notify: Notify) => {
-          return <NotificationsItem key={notify.notifyId} notify={notify} />;
-        })}
+        {!loading &&
+          notifies.map((notify: Notify) => {
+            return (
+              <NotificationsItem key={notify.notificationId} notify={notify} />
+            );
+          })}
       </div>
     </div>
   );

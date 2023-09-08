@@ -34,13 +34,12 @@ function MaterialItem({ material }: { material: Material }) {
         className='text-center text-2xl'
         type='Material'
         onClick={() => {
-          (async () => {
-            await removeMaterialById({
-              id: material.materialId
-            });
-          })().catch((error: Error) => {
-            throw new Error(error.message);
-          });
+          removeMaterialById({ id: material.materialId })
+            .then()
+            .catch((e: Error) => {
+              throw new Error(e.message);
+            })
+            .finally(() => navigate('/material-management'));
         }}
       />
     </div>

@@ -13,7 +13,7 @@ import UpdateOfficeDto from './dto/update-office.dto';
 import OfficeEntity from './entities/office.entity';
 import OfficesService from './offices.service';
 
-@ApiTags('Offices')
+@ApiTags('offices')
 @Controller('offices')
 export default class OfficesController {
   constructor(private readonly officesService: OfficesService) {}

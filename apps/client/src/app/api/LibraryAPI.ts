@@ -381,6 +381,30 @@ const LibraryAPIService = () => {
     });
   };
 
+  const getAllNotifications =
+    async (): Promise<GetAllNotifiactionsResponse> => {
+      return LibraryAPI.get<GetAllNotifiactionsResponse>('/notifications', {
+        headers: { Authorization: `Bearer ${admin.accessToken}` }
+      }).then(resp => {
+        return resp.data;
+      });
+    };
+
+  const removeNotificationById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<RemoveNotificationByIdResponse> => {
+    return LibraryAPI.delete<RemoveNotificationByIdResponse>(
+      `/notifications/${id}`,
+      {
+        headers: { Authorization: `Bearer ${admin.accessToken}` }
+      }
+    ).then(resp => {
+      return resp.data;
+    });
+  };
+
   return {
     login,
     getUsers,
@@ -411,7 +435,9 @@ const LibraryAPIService = () => {
     getAdminById,
     removeAdminById,
     createAdmin,
-    updateAdminById
+    updateAdminById,
+    getAllNotifications,
+    removeNotificationById
   };
 };
 

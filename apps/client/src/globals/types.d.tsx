@@ -464,10 +464,15 @@ declare global {
   };
 
   type Notify = {
-    notifyId: number;
-    name: string;
-    type: string;
-    date: Date | string;
-    information: string;
+    notificationId: number;
+    notificationName: string;
+    notificationType: string;
+    notificationDate: Date | string;
+    notificationContent: string;
+    notificationRead: boolean;
   };
+
+  type GetAllNotifiactionsResponse = Notify[];
+
+  type RemoveNotificationByIdResponse = Notify;
 }

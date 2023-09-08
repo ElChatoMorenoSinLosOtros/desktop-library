@@ -1,44 +1,29 @@
+import LibraryAPIService from '@api/LibraryAPI';
 import GlobalList from '@common-components/GlobalList.tsx';
 import Line from '@common-components/Line.tsx';
+import { useEffect, useState } from 'react';
 import NotificationsFields from './components/NotificationsFields';
-import NotificationsHeader from './components/hearder/NotificationsHearder';
 import NotificationsList from './components/list/NotificationsList';
 
 function NotificationsPage() {
-  const notifies: Notify[] = [
-    {
-      notifyId: 1,
-      name: 'Loan 1',
-      type: 'Personal Loan',
-      date: new Date('2023-09-06'),
-      information:
-        'The deadline to return he Game of Thrones,  the user ID has not been returned.'
-    },
-    {
-      notifyId: 2,
-      name: 'Loan 2',
-      type: 'Mortgage',
-      date: '2023-09-10',
-      information:
-        'The deadline to return he Game of Thrones,  the user ID has not been returned.'
-    },
-    {
-      notifyId: 3,
-      name: 'Loan 3',
-      type: 'Car Loan',
-      date: new Date('2023-09-15'),
-      information:
-        'The deadline to return he Game of Thrones,  the user ID has not been returned.'
+  const [loading, setLoading] = useState(true);
+  const [notifies, setNotifies] = useState<Notify[]>([]);
+  const { getAllNotifications } = LibraryAPIService();
+
+  useEffect(() => {
+    async function fetch() {
+      const response = await getAllNotifications();
+      setNotifies(response);
+      setLoading(false);
     }
-  ];
+    fetch();
+  }, []);
 
   return (
-    <GlobalList title='Dashboard'>
-      <NotificationsHeader />
-      <Line />
+    <GlobalList title='Notifications Management'>
       <NotificationsFields />
       <Line />
-      <NotificationsList notifies={notifies} />
+      <NotificationsList notifies={notifies} loading={loading} />
     </GlobalList>
   );
 }

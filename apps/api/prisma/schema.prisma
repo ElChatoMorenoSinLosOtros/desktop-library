@@ -84,7 +84,7 @@ model MaterialsChanges {
   oldData    Json?
   newData    Json?
 
-  office Office @relation(fields: [officeId], references: [officeId])
+  office Office @relation(fields: [officeId], references: [officeId], onDelete: Cascade)
 
   @@index([officeId], name: "materials_changes_officeId_index")
   @@map(name: "materials_changes")
@@ -100,23 +100,25 @@ model Return {
 }
 
 model Reserve {
-  reserveId  Int       @id @unique @default(autoincrement())
+  reserveId  Int       @id @default(autoincrement())
   clientId   Int
   materialId Int
   checkDate  DateTime  @default(now()) @db.Timestamptz()
   returnDate DateTime  @db.Timestamptz()
   executed   Boolean   @default(false)
-  client     Client?   @relation(fields: [clientId], references: [clientId])
-  material   Material? @relation(fields: [materialId], references: [materialId])
+  client     Client?   @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
+  material   Material? @relation(fields: [materialId], references: [materialId], onDelete: Cascade)
 
   @@map(name: "reserve")
 }
 
 model Notification {
-  notificationId      Int      @id @unique @default(autoincrement())
+  notificationId      Int      @id @default(autoincrement())
   notificationName    String
   notificationType    String
   notificationDate    DateTime @default(now()) @db.Timestamptz()
   notificationContent String?
   notificationRead    Boolean  @default(false)
+
+  @@map(name: "notification")
 }
