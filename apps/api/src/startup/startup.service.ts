@@ -1,7 +1,7 @@
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import LoansService from '@/loans/loans.service';
 import MaterialsService from '@/materials/materials.service';
 import NotificationsService from '@/notifications/notifications.service';
-import { Injectable, OnModuleInit } from '@nestjs/common';
 
 @Injectable()
 export default class StartupService implements OnModuleInit {

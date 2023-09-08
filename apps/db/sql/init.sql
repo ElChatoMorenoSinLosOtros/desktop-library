@@ -112,6 +112,20 @@ CREATE UNIQUE INDEX IF NOT EXISTS "returns_loanId_key" ON "returns"("loanId");
 
 CREATE UNIQUE INDEX IF NOT EXISTS "reserve_reserveId_key" ON "reserve"("reserveId");
 
+CREATE TABLE IF NOT EXISTS "Notification" (
+    "notificationId" SERIAL NOT NULL,
+    "notificationName" TEXT NOT NULL,
+    "notificationType" TEXT NOT NULL,
+    "notificationDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "notificationContent" TEXT,
+    "notificationRead" BOOLEAN NOT NULL DEFAULT false,
+
+    CONSTRAINT "Notification_pkey" PRIMARY KEY ("notificationId")
+);
+
+CREATE UNIQUE IF NOT EXISTS INDEX "Notification_notificationId_key" ON "Notification"("notificationId");
+
+
 CREATE OR REPLACE FUNCTION update_updatedAt()
 RETURNS TRIGGER AS $$
 BEGIN
