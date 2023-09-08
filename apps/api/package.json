@@ -97,7 +97,8 @@
       "@loans/(.*)": "<rootDir>/src/loans/$1",
       "@offices/(.*)": "<rootDir>/src/offices/$1",
       "@returns/(.*)": "<rootDir>/src/returns/$1",
-      "@reserve/(.*)": "<rootDir>/src/reserve/$1"
+      "@reserve/(.*)": "<rootDir>/src/reserve/$1",
+      "@notifications/(.*)": "<rootDir>/src/notifications/$1"
     },
     "moduleDirectories": [
       "src",

@@ -55,7 +55,9 @@
       "@reserve/*": [
         "./src/reserve/*"
       ],
-
+      "@notifications/*": [
+        "./src/notifications/*"
+      ],
     }
   },
   "include": [

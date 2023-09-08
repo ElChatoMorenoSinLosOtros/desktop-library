@@ -103,11 +103,20 @@ model Reserve {
   reserveId  Int       @id @unique @default(autoincrement())
   clientId   Int
   materialId Int
-  checkDate  DateTime  @default(now())
-  returnDate DateTime
+  checkDate  DateTime  @default(now()) @db.Timestamptz()
+  returnDate DateTime  @db.Timestamptz()
   executed   Boolean   @default(false)
   client     Client?   @relation(fields: [clientId], references: [clientId])
   material   Material? @relation(fields: [materialId], references: [materialId])
 
   @@map(name: "reserve")
+}
+
+model Notification {
+  notificationId      Int      @id @unique @default(autoincrement())
+  notificationName    String
+  notificationType    String
+  notificationDate    DateTime @default(now()) @db.Timestamptz()
+  notificationContent String?
+  notificationRead    Boolean  @default(false)
 }

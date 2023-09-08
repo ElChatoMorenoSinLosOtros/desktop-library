@@ -22,8 +22,8 @@ INSERT INTO "client" ("name", "lastName", "address", "email", "phoneNumber", "ty
 ('Sarah', 'Miller', '303 Cedar St', 'sarah.miller@gmail.com', 33333, 'Teacher');
 
 INSERT INTO "material" ("title", "author", "category", "isbn", "publicationYear", "pageCount", "quantity", "available", "type_material") VALUES
-('El Gran Gatsby', 'F. Scott Fitzgerald', 'Novela', '978-0141182636', 1925, 218, 20, true, 'Book'),
-('Crimen y Castigo', 'Fiodor Dostoievski', 'Novela', '978-8420609064', 1866, 672, 15, true, 'Book'),
+('El Gran Gatsby', 'F. Scott Fitzgerald', 'Novela', '978-0141182636', 1925, 218, 1, true, 'Book'),
+('Crimen y Castigo', 'Fiodor Dostoievski', 'Novela', '978-8420609064', 1866, 672, 1, true, 'Book'),
 ('Los Juegos del Hambre', 'Suzanne Collins', 'Ciencia Ficción', '978-8427202135', 2008, 396, 12, true, 'Book'),
 ('Orgullo y Prejuicio', 'Jane Austen', 'Romance', '978-8491050390', 1813, 416, 18, true, 'Book'),
 ('El Hobbit', 'J.R.R. Tolkien', 'Fantasía', '978-8445071659', 1937, 320, 25, true, 'Book'),
@@ -36,19 +36,19 @@ INSERT INTO "material" ("title", "author", "category", "isbn", "publicationYear"
 ('Cien años de soledad', 'Gabriel García Márquez', 'Realismo mágico', '978-0307350481', 1967, 432, 20, true, 'Book'),
 ('Harry Potter y la piedra filosofal', 'J.K. Rowling', 'Fantasía', '978-8478884454', 1997, 256, 30, true, 'Book'),
 ('Moby-Dick', 'Herman Melville', 'Aventura', '978-0142437247', 1851, 720, 12, true, 'Book'),
-('National Geographic Kids', 'Varios autores', 'Infantil', '555-9999', 2023, 32, 40, true, 'Magazine'),
+('National Geographic Kids', 'Varios autores', 'Infantil', '555-9999', 2023, 32, 4, true, 'Magazine'),
 ('Smithsonian Magazine', 'Varios autores', 'Cultura', '987-6543', 2023, 60, 18, true, 'Magazine'),
-('New Scientist', 'Varios autores', 'Tecnología', '456-7890', 2023, 68, 15, true, 'Magazine'),
+('New Scientist', 'Varios autores', 'Tecnología', '456-7890', 2023, 68, 2, true, 'Magazine'),
 ('Lonely Planet Traveller', 'Varios autores', 'Viajes', '555-9876', 2023, 50, 22, true, 'Magazine');
 
 INSERT INTO "office" ("name")
 VALUES ('Development');
 
 INSERT INTO "loan" ("clientId", "materialId", "returnDate", "returned") VALUES
-(1, 1, '2023-09-10 10:00:00', true),
-(1, 18, '2023-10-10 18:00:00', false),
+(1, 1, '2023-09-2 10:00:00', true),
+(1, 18, '2022-10-10 18:00:00', false),
 (2, 2, '2023-09-11 11:00:00', true),
-(2, 17, '2023-10-11 17:00:00', false),
+(2, 17, '2022-10-11 17:00:00', false),
 (3, 3, '2023-09-12 12:00:00', true),
 (3, 16, '2023-10-12 16:00:00', false),
 (4, 4, '2023-09-13 13:00:00', true),
