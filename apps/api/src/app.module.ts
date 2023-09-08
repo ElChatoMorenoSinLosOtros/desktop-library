@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import AdminsModule from './admins/admins.module';
 import AuthModule from './auth/auth.module';
 import ClientsModule from './clients/clients.module';
+import FineModule from './fine/fine.module';
 import FineService from './fine/fine.service';
 import LoansModule from './loans/loans.module';
 import LoansService from './loans/loans.service';
@@ -23,6 +24,7 @@ import StartupService from './startup/startup.service';
     AdminsModule,
     MaterialsModule,
     ClientsModule,
+    FineModule,
     LoansModule,
     OfficesModule,
     ReturnsModule,

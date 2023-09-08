@@ -1,3 +1,4 @@
+import FineService from '@/fine/fine.service';
 import LoansService from '@loans/loans.service';
 import MaterialsService from '@materials/materials.service';
 import { Injectable, OnModuleInit } from '@nestjs/common';
@@ -8,11 +9,33 @@ export default class StartupService implements OnModuleInit {
   constructor(
     private readonly notificationsService: NotificationsService,
     private readonly loansService: LoansService,
-    private readonly materialService: MaterialsService
+    private readonly materialService: MaterialsService,
+    private readonly fineService: FineService
   ) {}
 
   async onModuleInit() {
     await this.createNotifications();
+    await this.createFines();
+  }
+
+  private async createFines() {
+    await this.deletePreviousFines();
+    const fines = await this.checkFineService();
+    await this.fineService.createBatch(fines);
+  }
+
+  private async deletePreviousFines() {
+    await this.fineService.removeAll();
+  }
+
+  private async checkFineService() {
+    const overdueLoans = await this.loansService.getOverdueLoans();
+    return overdueLoans.map(loan => ({
+      debt: 75.5,
+      payeed: false,
+      loanId: loan.loanId,
+      clientId: loan.clientId
+    }));
   }
 
   private async createNotifications() {

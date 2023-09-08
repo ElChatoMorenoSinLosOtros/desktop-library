@@ -1,3 +1,4 @@
+import JwtAuthGuard from '@/auth/jwt-auth.guard';
 import {
   Body,
   Controller,
@@ -14,14 +15,13 @@ import {
   ApiOkResponse,
   ApiTags
 } from '@nestjs/swagger';
-import JwtAuthGuard from '@/auth/jwt-auth.guard';
 import CreateFineDto from './dto/create-fine.dto';
 import UpdateFineDto from './dto/update-fine.dto';
 import FineEntity from './entities/fine.entity';
 import FineService from './fine.service';
 
-@Controller('Fine')
-@ApiTags('Fine')
+@ApiTags('fine')
+@Controller('fine')
 export default class FineController {
   constructor(private readonly fineService: FineService) {}
 

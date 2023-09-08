@@ -1,6 +1,6 @@
+import PrismaService from '@/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { Decimal } from '@prisma/client/runtime/library';
-import PrismaService from '@/prisma/prisma.service';
 import CreateFineDto from './dto/create-fine.dto';
 import UpdateFineDto from './dto/update-fine.dto';
 
@@ -9,58 +9,26 @@ export default class FineService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createFineDto: CreateFineDto) {
-    const fineData = {
-      debt: createFineDto.debt,
-      payeed: createFineDto.payeed,
-      loanId: createFineDto.loanId,
-      clientId: createFineDto.clientId
-    };
-
-    const { loanId } = createFineDto;
-
-    const loan = this.prisma.loan.findUnique({
-      where: { loanId }
+    const existingFine = await this.prisma.fine.findFirst({
+      where: { loanId: createFineDto.loanId }
     });
-
-    if (!loan) {
-      throw new Error('Loan not available');
+    if (!existingFine) {
+      return this.prisma.fine.create({
+        data: createFineDto
+      });
     }
-
-    const createdFine = await this.prisma.fine.create({
-      data: fineData
-    });
-
-    return createdFine;
+    throw new Error('A fine with this loanId already exists');
   }
 
-  async verifyUsersFine() {
-    const userLoans = await this.prisma.loan.findMany();
-
-    const currentDate = new Date();
-    currentDate.setHours(0, 0, 0, 0);
-
-    if (userLoans.length <= 0) {
-      throw new Error('No Loans Found');
-    }
-
-    userLoans.forEach(async loan => {
-      loan.returnDate.setHours(0, 0, 0, 0);
-      if (loan.returnDate <= currentDate && loan.returned === false) {
-        try {
-          await this.prisma.fine.upsert({
-            where: { loanId: loan.loanId },
-            create: {
-              debt: 75.5,
-              payeed: false,
-              loanId: loan.loanId,
-              clientId: loan.clientId
-            },
-            update: {}
-          });
-        } catch (error) {
-          throw new Error(`Error creating fine for loan ID`);
-        }
-      }
+  async createBatch(fines: CreateFineDto[]) {
+    const finesData = fines.map(fine => ({
+      debt: fine.debt,
+      payeed: fine.payeed,
+      loanId: fine.loanId,
+      clientId: fine.clientId
+    }));
+    return this.prisma.fine.createMany({
+      data: finesData
     });
   }
 
@@ -103,5 +71,9 @@ export default class FineService {
     return this.prisma.fine.delete({
       where: { fineId }
     });
+  }
+
+  removeAll() {
+    return this.prisma.fine.deleteMany();
   }
 }

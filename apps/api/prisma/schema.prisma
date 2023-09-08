@@ -62,7 +62,7 @@ model Loan {
   client     Client    @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
   material   Material  @relation(fields: [materialId], references: [materialId], onDelete: Cascade)
   return     Return?
-  Fine       Fine[]
+  fine       Fine?
 
   @@map(name: "loan")
 }
