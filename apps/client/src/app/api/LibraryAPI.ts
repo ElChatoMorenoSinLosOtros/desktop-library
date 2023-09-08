@@ -331,7 +331,7 @@ const LibraryAPIService = () => {
                             }: {
     reserve: ReserveWithOutID;
   }): Promise<CreateReserveResponse> => {
-    return LibraryAPI.post<CreateReserveResponse>('/reserves', reserve, {
+    return LibraryAPI.post<CreateReserveResponse>('/Reserve', reserve, {
       headers: { Authorization: `Bearer ${admin.accessToken}` }
     }).then(resp => {
       return resp.data;
@@ -347,7 +347,7 @@ const LibraryAPIService = () => {
   };
 
   const getReserves = async (): Promise<GetReservesResponse> => {
-    return LibraryAPI.get<GetReservesResponse>('/reserves', {
+    return LibraryAPI.get<GetReservesResponse>('/Reserve', {
       headers: { Authorization: `Bearer ${admin.accessToken}` }
     }).then(resp => {
       return resp.data;
@@ -372,7 +372,7 @@ const LibraryAPIService = () => {
 
     id: number;
   }): Promise<RemoveReserveByIdResponse> => {
-    return LibraryAPI.delete<RemoveReserveByIdResponse>(`/loans/${id}`, {
+    return LibraryAPI.delete<RemoveReserveByIdResponse>(`/Reserve/${id}`, {
       headers: { Authorization: `Bearer ${admin.accessToken}` }
     }).then(resp => {
       return resp.data;
@@ -400,8 +400,8 @@ const LibraryAPIService = () => {
 
     reserve: Reserve;
     id: number;
-  }): Promise<UpdateLoanByIdResponse> => {
-    return LibraryAPI.patch<UpdateLoanByIdResponse>(`/reserves/${id}`, reserve, {
+  }): Promise<UpdateReserveByIdResponse> => {
+    return LibraryAPI.patch<UpdateReserveByIdResponse>(`/Reserve/${id}`, reserve, {
       headers: { Authorization: `Bearer ${admin.accessToken}` }
     }).then(resp => {
       return resp.data;
@@ -437,7 +437,7 @@ const LibraryAPIService = () => {
                              }: {
     id: number;
   }): Promise<GetReserveByIdResponse> => {
-    return LibraryAPI.get<GetReserveByIdResponse>(`/reserves/${id}`, {
+    return LibraryAPI.get<GetReserveByIdResponse>(`/Reserve/${id}`, {
       headers: { Authorization: `Bearer ${admin.accessToken}` }
     }).then(resp => {
       return resp.data;

@@ -6,7 +6,7 @@ function ReservesFields() {
     >
       <div className='w-full'>ID</div>
       <div className='w-full'>Material Type</div>
-      <div className='w-full'>Order Date</div>
+      <div className='w-full'>Expected Loan Date</div>
       <div className='w-full'>Reserved By</div>
       <div className='w-full text-center'>Info</div>
       <div className='w-full text-center'>Edit</div>

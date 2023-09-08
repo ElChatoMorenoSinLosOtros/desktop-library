@@ -12,7 +12,10 @@ function ReserveList({ reserves }: { reserves: Reserve[] }) {
       font-roboto-mono text-sm font-bold w-full gap-y-10'
       >
         {reserves.map((reserve: Reserve) => {
-          return <ReserveItem key={reserve.reserveId} reserve={reserve} />;
+          if (!reserve.executed) {
+            return <ReserveItem key={reserve.reserveId} reserve={reserve} />;
+          }
+
         })}
       </div>
     </div>

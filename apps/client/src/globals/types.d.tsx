@@ -466,7 +466,7 @@ declare global {
     reserveId: number;
     clientId: number;
     materialId: number;
-    reserveDate: Date | string;
+    checkDate: Date | string;
     returnDate: Date | string;
     executed: boolean;
   };
@@ -492,7 +492,7 @@ declare global {
 
   type UpdateReserveByIdResponse = Reserve;
 
-  type GetReserveByIdResponse = Reserve[];
+  type GetReserveByIdResponse = Reserve;
 
   type GetUserActiveReservesById = number;
 

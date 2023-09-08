@@ -15,7 +15,7 @@ function UpdateReservePage() {
   useEffect(() => {
     getReserveById({ id: Number(id) })
       .then(resp => {
-        setReserve(resp[0]);
+        setReserve(resp);
       })
       .catch((error: Error) => {
         throw new Error(error.message);
@@ -26,28 +26,28 @@ function UpdateReservePage() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className='h-full'>
       {isLoaded && (
         <GlobalForm title='Reserve Management' subTitle='Update Reserve'>
           <Formik
             initialValues={{
-              reserveId: Number(reserve.reserveId),
+              reserveId: reserve.reserveId,
               clientId: Number(reserve.clientId),
               materialId: Number(reserve.materialId),
-              reserveDate: `${reserve.reserveDate.toString().slice(0, 10)}`,
-              returned: reserve.returned ? 'true' : 'false'
+              returnDate: `${reserve.returnDate.toString().slice(0,10)}`,
+              executed: reserve.executed
             }}
             enableReinitialize
             onSubmit={values => {
               updateReserveById({
                 id: Number(id),
                 reserve: {
-                  reserveId: values.reserveId,
-                  clientId: values.clientId,
+                  reserveId: reserve.reserveId,
+                  clientId: reserve.clientId,
                   materialId: values.materialId,
-                  reserveDate: values.reserveDate,
-                  returnDate: values.reserveDate,
-                  returned: JSON.parse(values.returned)
+                  checkDate: reserve.checkDate,
+                  returnDate: new Date(values.returnDate).toISOString(),
+                  executed: reserve.executed
                 }
               })
                 .then()
@@ -58,25 +58,17 @@ function UpdateReservePage() {
             }}
           >
             <Form className='w-3/5 ml-36 flex flex-col gap-5'>
-              <GlobalTextField title='Reserve Id:' name='reserveId' type='number' />
               <GlobalTextField
-                title='ClientId:'
-                name='clientId'
-                type='number'
-              />
-              <GlobalTextField
-                title='MaterialId:'
+                title='Material Id:'
                 name='materialId'
                 type='number'
               />
-              <GlobalTextField title='ReserveDate:' name='reserveDate' type='date' />
               <GlobalTextField
                 title='Return Date:'
                 name='returnDate'
                 type='date'
               />
-              <GlobalTextField title='Returned:' name='returned' />
-              <GlobalSubmitButton className='absolute right-0 bottom-0 mb-12 mr-12'>
+              <GlobalSubmitButton className='absolute bottom-0 right-0 mr-12 mb-12'>
                 Update
               </GlobalSubmitButton>
             </Form>

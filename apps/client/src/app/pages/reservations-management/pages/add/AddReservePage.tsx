@@ -17,16 +17,16 @@ function AddReservePage() {
           materialId: 0,
           reserveDate: new Date(),
           returnDate: new Date(),
-          returned: false
+          executed: false
         }}
         onSubmit={(values: ReserveWithOutID) => {
           createReserve({
             reserve: {
               clientId: values.clientId,
               materialId: values.materialId,
-              loanDate: new Date(values.reserveDate).toISOString(),
+              reserveDate: new Date(values.reserveDate).toISOString(),
               returnDate: new Date(values.returnDate).toISOString(),
-              returned: values.returned
+              executed: values.executed
             }
           })
             .then()
@@ -45,7 +45,6 @@ function AddReservePage() {
             name='materialId'
             type='number'
           />
-          <GlobalTextField title='Reserve Date:' name='reserveDate' type='date' />
           <GlobalTextField title='Return Date:' name='returnDate' type='date' />
 
           <GlobalSubmitButton className='absolute right-0 bottom-0 mb-12 mr-12'>

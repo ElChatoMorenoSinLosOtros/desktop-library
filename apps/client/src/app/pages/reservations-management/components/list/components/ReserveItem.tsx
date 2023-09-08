@@ -32,25 +32,25 @@ function ReserveItem({ reserve }: { reserve: Reserve }) {
     <div className='grid grid-cols-10 w-full px-6 gap-4'>
       <div>{reserve.reserveId}</div>
       <div>{material.type_material}</div>
-      <div>{reserve.reserveDate.toString().substring(0, 10)}</div>
+      <div>{reserve.returnDate.toString().substring(0, 10)}</div>
       <div>{client.name}</div>
       <ReservesActionButton
         onClick={() => {
-          navigate(`/loan-management/info/${reserve.reserveId}`);
+          navigate(`/reservations-management/info/${reserve.reserveId}`);
         }}
       >
         <InfoIcon />
       </ReservesActionButton>
       <ReservesActionButton
         onClick={() => {
-          navigate(`/loan-management/update/${reserve.reserveId}`);
+          navigate(`/reservations-management/update/${reserve.reserveId}`);
         }}
       >
         <EditIcon />
       </ReservesActionButton>
       <DeleteButton
         className='text-center text-2xl'
-        type='Loan'
+        type='Reserve'
         onClick={() => {
           (async () => {
             await removeReserveById({
