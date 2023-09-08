@@ -9,15 +9,19 @@ export default class FineService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createFineDto: CreateFineDto) {
-    const existingFine = await this.prisma.fine.findFirst({
-      where: { loanId: createFineDto.loanId }
-    });
-    if (!existingFine) {
-      return this.prisma.fine.create({
-        data: createFineDto
+    try {
+      const existingFine = await this.prisma.fine.findFirst({
+        where: { loanId: createFineDto.loanId }
       });
+      if (!existingFine) {
+        return await this.prisma.fine.create({
+          data: createFineDto
+        });
+      }
+      return null;
+    } catch (error) {
+      throw new Error('A fine with this loanId already exists');
     }
-    throw new Error('A fine with this loanId already exists');
   }
 
   async createBatch(fines: CreateFineDto[]) {
@@ -27,9 +31,13 @@ export default class FineService {
       loanId: fine.loanId,
       clientId: fine.clientId
     }));
-    return this.prisma.fine.createMany({
-      data: finesData
-    });
+    const fineTable = await this.prisma.fine.findMany();
+    if (fineTable.length <= 0) {
+      return this.prisma.fine.createMany({
+        data: finesData
+      });
+    }
+    return null;
   }
 
   async userTotalFine(clientId: number) {

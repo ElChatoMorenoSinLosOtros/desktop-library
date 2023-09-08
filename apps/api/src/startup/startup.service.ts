@@ -19,13 +19,8 @@ export default class StartupService implements OnModuleInit {
   }
 
   private async createFines() {
-    await this.deletePreviousFines();
     const fines = await this.checkFineService();
     await this.fineService.createBatch(fines);
-  }
-
-  private async deletePreviousFines() {
-    await this.fineService.removeAll();
   }
 
   private async checkFineService() {
