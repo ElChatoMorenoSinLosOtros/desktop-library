@@ -55,13 +55,12 @@ function LoanItem({ loan }: { loan: Loan }) {
         className='text-center text-2xl'
         type='Loan'
         onClick={() => {
-          (async () => {
-            await removeLoanById({
-              id: loan.loanId
-            });
-          })().catch((error: Error) => {
-            throw new Error(error.message);
-          });
+          removeLoanById({ id: loan.loanId })
+            .then()
+            .catch((e: Error) => {
+              throw new Error(e.message);
+            })
+            .finally(() => navigate('/loan-management'));
         }}
       />
     </div>

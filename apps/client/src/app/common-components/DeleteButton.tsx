@@ -22,7 +22,6 @@ function DeleteButton({
         setOnClick({
           onClick: () => {
             onClick();
-            navigate(-1);
           }
         });
         setType({ type });

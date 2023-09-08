@@ -2,10 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export default class NotificationEntity {
   @ApiProperty()
-  notificationId!: string;
-
-  @ApiProperty()
-  name!: string;
+  notificationId!: number;
 
   @ApiProperty()
   notificationName!: string;
@@ -14,8 +11,11 @@ export default class NotificationEntity {
   notificationType!: string;
 
   @ApiProperty()
+  notificationDate!: Date;
+
+  @ApiProperty()
   notificationContent!: string;
 
   @ApiProperty()
-  createdAt!: Date;
+  notificationRead: boolean;
 }

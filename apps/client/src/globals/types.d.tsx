@@ -462,4 +462,17 @@ declare global {
     handleChange: ({ index }: { index: number }) => void;
     index: number;
   };
+
+  type Notify = {
+    notificationId: number;
+    notificationName: string;
+    notificationType: string;
+    notificationDate: Date | string;
+    notificationContent: string;
+    notificationRead: boolean;
+  };
+
+  type GetAllNotifiactionsResponse = Notify[];
+
+  type RemoveNotificationByIdResponse = Notify;
 }

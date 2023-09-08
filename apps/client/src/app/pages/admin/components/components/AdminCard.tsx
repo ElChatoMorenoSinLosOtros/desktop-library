@@ -34,13 +34,12 @@ function AdminCard({ admin }: { admin: SubAdmin }) {
         className='text-center text-2xl'
         type='Admin'
         onClick={() => {
-          (async () => {
-            await removeAdminById({
-              id: admin.adminId
-            });
-          })().catch((error: Error) => {
-            throw new Error(error.message);
-          });
+          removeAdminById({ id: admin.adminId })
+            .then()
+            .catch((e: Error) => {
+              throw new Error(e.message);
+            })
+            .finally(() => navigate('/admin'));
         }}
       />
     </div>

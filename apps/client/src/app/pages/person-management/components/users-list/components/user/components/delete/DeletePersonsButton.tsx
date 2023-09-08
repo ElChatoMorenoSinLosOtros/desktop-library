@@ -1,7 +1,9 @@
 import LibraryAPIService from '@api/LibraryAPI';
 import DeleteButton from '@common-components/DeleteButton';
+import { useNavigate } from 'react-router-dom';
 
 export default function DeletePersonsButton({ id }: { id: number }) {
+  const navigate = useNavigate();
   const { removeUserById } = LibraryAPIService();
 
   return (
@@ -9,13 +11,12 @@ export default function DeletePersonsButton({ id }: { id: number }) {
       className='text-center text-2xl'
       type='Person'
       onClick={() => {
-        (async () => {
-          await removeUserById({
-            id: id.toString()
-          });
-        })().catch((error: Error) => {
-          throw new Error(error.message);
-        });
+        removeUserById({ id: String(id) })
+          .then()
+          .catch((e: Error) => {
+            throw new Error(e.message);
+          })
+          .finally(() => navigate('/person-management'));
       }}
     />
   );
