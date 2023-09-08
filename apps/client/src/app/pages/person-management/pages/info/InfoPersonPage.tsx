@@ -1,9 +1,9 @@
 import LibraryAPIService from '@api/LibraryAPI';
 import GlobalInfoForm from '@common-components/GlobalInfoForm';
 import GlobalText from '@common-components/GlobalText';
+import HistoryRedirectButton from '@pages/person-management/components/users-list/components/user/components/info/HistoryRedirectButton';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import HistoryRedirectButton from '@pages/person-management/components/users-list/components/user/components/info/HistoryRedirectButton';
 import InfoPerson from './components/InfoPerson';
 import INITIAL_STATE from './states/InfoPersonStates';
 
@@ -59,7 +59,7 @@ function InfoPersonPage() {
             id={String(id)}
           />
           <HistoryRedirectButton
-            path='/fine-management/fine-history'
+            path='/fines-management/fine-history'
             text='Fines History'
             id={String(id)}
           />

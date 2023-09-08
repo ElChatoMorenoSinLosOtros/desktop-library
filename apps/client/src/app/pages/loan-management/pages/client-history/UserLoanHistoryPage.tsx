@@ -24,7 +24,6 @@ function UserLoanHistory() {
 
   return (
     <GlobalList title='User Loans History'>
-      <Line />
       <LoanFields />
       <Line />
       <LoanList loans={loans} />
