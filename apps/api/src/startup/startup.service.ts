@@ -1,7 +1,7 @@
-import LoansService from '@/loans/loans.service';
-import MaterialsService from '@/materials/materials.service';
-import NotificationsService from '@/notifications/notifications.service';
+import LoansService from '@loans/loans.service';
+import MaterialsService from '@materials/materials.service';
 import { Injectable, OnModuleInit } from '@nestjs/common';
+import NotificationsService from '@notifications/notifications.service';
 
 @Injectable()
 export default class StartupService implements OnModuleInit {
@@ -16,10 +16,15 @@ export default class StartupService implements OnModuleInit {
   }
 
   private async createNotifications() {
+    await this.deletePreviousNotifications();
     const loanNotifications = await this.checkLoanService();
     const materialNotifications = await this.checkMaterialsService();
     const notifications = [...loanNotifications, ...materialNotifications];
     await this.notificationsService.createBatch(notifications);
+  }
+
+  private async deletePreviousNotifications() {
+    await this.notificationsService.removeAll();
   }
 
   private async checkLoanService() {
@@ -34,8 +39,6 @@ export default class StartupService implements OnModuleInit {
 
   private async checkMaterialsService() {
     const lowStockMaterials = await this.materialService.getLowStockMaterials();
-    console.log('material service');
-    console.log();
     return lowStockMaterials.map(material => ({
       name: 'Low Stock Material',
       notificationName: `Material ${material.materialId} has low stock`,

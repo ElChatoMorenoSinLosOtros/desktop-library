@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS "Notification" (
     "notificationId" SERIAL NOT NULL,
     "notificationName" TEXT NOT NULL,
     "notificationType" TEXT NOT NULL,
-    "notificationDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "notificationDate" TIMESTAMPTZ(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "notificationContent" TEXT,
     "notificationRead" BOOLEAN NOT NULL DEFAULT false,
 

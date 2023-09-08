@@ -46,4 +46,8 @@ export default class NotificationsService {
       where: { notificationId }
     });
   }
+
+  removeAll() {
+    return this.prisma.notification.deleteMany();
+  }
 }

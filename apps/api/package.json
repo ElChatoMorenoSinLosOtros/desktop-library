@@ -14,7 +14,7 @@
     "format:check": "prettier --check",
     "dev": "nest start --watch --preserveWatchOutput",
     "prisma": "prisma generate",
-    "prisma:seed": "prisma db push --accept-data-loss  && prisma db seed",
+    "prisma:seed": "prisma db push && prisma db seed",
     "dev:windows": "nest start --watch --preserveWatchOutput",
     "start:debug": "nest start --debug --watch",
     "start": "node dist/src/main.js",
@@ -97,7 +97,8 @@
       "@loans/(.*)": "<rootDir>/src/loans/$1",
       "@offices/(.*)": "<rootDir>/src/offices/$1",
       "@returns/(.*)": "<rootDir>/src/returns/$1",
-      "@reserve/(.*)": "<rootDir>/src/reserve/$1"
+      "@reserve/(.*)": "<rootDir>/src/reserve/$1",
+      "@notifications/(.*)": "<rootDir>/src/notifications/$1"
     },
     "moduleDirectories": [
       "src",
