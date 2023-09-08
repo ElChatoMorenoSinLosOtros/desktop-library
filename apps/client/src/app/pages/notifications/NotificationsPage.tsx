@@ -4,7 +4,7 @@ import NotificationsFields from './components/NotificationsFields';
 import NotificationsHeader from './components/hearder/NotificationsHearder';
 import NotificationsList from './components/list/NotificationsList';
 
-function DashboardPage() {
+function NotificationsPage() {
   const notifies: Notify[] = [
     {
       notifyId: 1,
@@ -43,4 +43,4 @@ function DashboardPage() {
   );
 }
 
-export default DashboardPage;
+export default NotificationsPage;
