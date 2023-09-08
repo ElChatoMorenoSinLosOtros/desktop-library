@@ -2,10 +2,14 @@ import PrivateOutlet from '@common-components/PrivateOutlet';
 import SideBar from '@common-components/side-bar/SideBar';
 import AdminPage from '@pages/admin/AdminPage';
 import AdminAddPage from '@pages/admin/pages/add/AdminAddPage';
+import AdminInfoPage from '@pages/admin/pages/info/AdminInfoPage';
+import AdminUpdatePage from '@pages/admin/pages/update/AdminUpdatePage';
 import DeletePage from '@pages/delete/DeletePage';
 import FinesManagementPage from '@pages/fines-management/FinesManagementPage';
+import FinesClientHistoryPage from '@pages/fines-management/client-history/FinesClientHistoryPage';
 import LoanManagementPage from '@pages/loan-management/LoanManagementPage';
 import AddLoanPage from '@pages/loan-management/pages/add/AddLoanPage';
+import UserLoanHistoryPage from '@pages/loan-management/pages/client-history/UserLoanHistoryPage';
 import InfoLoanPage from '@pages/loan-management/pages/info/InfoLoanPage';
 import UpdateLoanPage from '@pages/loan-management/pages/update/UpdateLoanInfo';
 import LoginPage from '@pages/login/LoginPage';
@@ -24,8 +28,6 @@ import ReservationsManagementPage from '@pages/reservations-management/Reservati
 import useAuthStore from '@store/AuthStore';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import AdminInfoPage from './pages/admin/pages/info/AdminInfoPage';
-import AdminUpdatePage from './pages/admin/pages/update/AdminUpdatePage';
 
 function App() {
   const location = useLocation();
@@ -64,8 +66,16 @@ function App() {
               element={<MaterialManagementPage />}
             />
             <Route path='/loan-management' element={<LoanManagementPage />} />
+            <Route
+              path='/loan-management/loan-history/:id'
+              element={<UserLoanHistoryPage />}
+            />
             <Route path='/loan-management/add' element={<AddLoanPage />} />
             <Route path='/fines-management' element={<FinesManagementPage />} />
+            <Route
+              path='/fines-management/fine-history/:id'
+              element={<FinesClientHistoryPage />}
+            />
             <Route
               path='/reservations-management'
               element={<ReservationsManagementPage />}
