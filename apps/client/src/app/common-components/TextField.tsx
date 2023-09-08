@@ -7,10 +7,11 @@ function TextField({
   type = 'text',
   className = '',
   classNameTitle = '',
-  disabled = false
+  disabled = false,
+  classNameDiv = ''
 }: TextFieldProps) {
   return (
-    <div className='flex flex-col gap-5'>
+    <div className={`flex flex-col gap-5 ${classNameDiv}`}>
       <label htmlFor={name} className={classNameTitle}>
         {title}
       </label>

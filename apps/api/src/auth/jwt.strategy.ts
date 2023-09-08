@@ -1,7 +1,7 @@
 import AdminsService from '@admins/admins.service';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import jwtConstants from '@utils/constants';
+import { jwtConstants } from '@utils/constants';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
 @Injectable()

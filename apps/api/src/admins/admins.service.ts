@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import PrismaService from '@pr-prisma/prisma.service';
+import { roundsOfHashing } from '@utils/constants';
 import * as bcrypt from 'bcrypt';
 import CreateAdminDto from './dto/create-admin.dto';
 import UpdateAdminDto from './dto/update-admin.dto';
-
-export const roundsOfHashing = 10;
 
 @Injectable()
 export default class AdminsService {

@@ -11,6 +11,7 @@ declare global {
     className?: string;
     classNameTitle?: string;
     disabled?: boolean;
+    classNameDiv?: string;
   }
 
   interface ButtonProps {
@@ -165,6 +166,7 @@ declare global {
     name: string;
     type?: 'text' | 'password' | 'email' | 'number' | 'date' | 'time';
     disabled?: boolean;
+    className?: string;
   }
 
   interface GlobalSubmitButtonProps {
@@ -421,4 +423,16 @@ declare global {
   type UpdateAdminByIdResponse = SubAdmin;
 
   type RemoveAdminByIdResponse = SubAdmin;
+
+  type ActionChecked = {
+    id: number;
+    checked: boolean;
+    action: Action;
+  };
+
+  type AdminPermissionsProps = {
+    actions: ActionChecked[];
+    setActions: React.Dispatch<React.SetStateAction<ActionChecked[]>>;
+    disabled?: boolean;
+  };
 }

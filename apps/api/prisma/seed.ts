@@ -1,13 +1,20 @@
 import AdminActions from '@admins/entities/AdminActions';
 import { PrismaClient } from '@prisma/client';
+import { roundsOfHashing } from '@utils/constants';
 import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
-const roundsOfHashing = 10;
-
 async function main() {
   const passwordSabin = await bcrypt.hash('password-sabin', roundsOfHashing);
+  const passwordTechnician = await bcrypt.hash(
+    'password-librarian',
+    roundsOfHashing
+  );
+  const passwordLibrarian = await bcrypt.hash(
+    'password-technician',
+    roundsOfHashing
+  );
   const actions: AdminActions = {
     menu: [
       {
@@ -53,6 +60,34 @@ async function main() {
       password: passwordSabin,
       role: 'admin',
       actions
+    }
+  });
+
+  await prisma.admin.upsert({
+    where: { email: 'librarian@librarian.com' },
+    update: {
+      password: passwordLibrarian
+    },
+    create: {
+      email: 'librarian@librarian.com',
+      name: 'Librarian',
+      password: passwordLibrarian,
+      role: 'librarian',
+      actions: actions.menu.slice(0, 4)
+    }
+  });
+
+  await prisma.admin.upsert({
+    where: { email: 'technician@technician.com' },
+    update: {
+      password: passwordLibrarian
+    },
+    create: {
+      email: 'technician@technician.com',
+      name: 'Technician',
+      password: passwordTechnician,
+      role: 'technician',
+      actions: actions.menu.slice(3, 6)
     }
   });
 }

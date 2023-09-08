@@ -12,7 +12,7 @@ function AdminList({ admins }: { admins: SubAdmin[] }) {
       font-roboto-mono text-sm font-bold w-full gap-y-10'
       >
         {admins
-          // .filter(admin => admin.role !== 'admin')
+          .filter(admin => admin.role !== 'admin')
           .map((admin: SubAdmin) => {
             return <AdminCard key={admin.adminId} admin={admin} />;
           })}

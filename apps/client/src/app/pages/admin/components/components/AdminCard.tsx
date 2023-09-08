@@ -10,9 +10,9 @@ function AdminCard({ admin }: { admin: SubAdmin }) {
   const { removeAdminById } = LibraryAPIService();
 
   return (
-    <div className='grid grid-cols-8 w-full px-6 gap-4'>
+    <div className='grid grid-cols-9 w-full px-6 gap-4'>
       <div>{admin.adminId}</div>
-      <div className='underline'>{admin.email}</div>
+      <div className='col-span-2 underline'>{admin.email}</div>
       <div>{admin.name}</div>
       <div>{admin.role}</div>
       <div>{admin.actions.menu.length}</div>
