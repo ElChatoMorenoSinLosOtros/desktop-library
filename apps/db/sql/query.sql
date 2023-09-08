@@ -22,8 +22,8 @@ INSERT INTO "client" ("name", "lastName", "address", "email", "phoneNumber", "ty
 ('Sarah', 'Miller', '303 Cedar St', 'sarah.miller@gmail.com', 33333, 'Teacher');
 
 INSERT INTO "material" ("title", "author", "category", "isbn", "publicationYear", "pageCount", "quantity", "available", "type_material") VALUES
-('El Gran Gatsby', 'F. Scott Fitzgerald', 'Novela', '978-0141182636', 1925, 218, 20, true, 'Book'),
-('Crimen y Castigo', 'Fiodor Dostoievski', 'Novela', '978-8420609064', 1866, 672, 15, true, 'Book'),
+('El Gran Gatsby', 'F. Scott Fitzgerald', 'Novela', '978-0141182636', 1925, 218, 1, true, 'Book'),
+('Crimen y Castigo', 'Fiodor Dostoievski', 'Novela', '978-8420609064', 1866, 672, 1, true, 'Book'),
 ('Los Juegos del Hambre', 'Suzanne Collins', 'Ciencia Ficción', '978-8427202135', 2008, 396, 12, true, 'Book'),
 ('Orgullo y Prejuicio', 'Jane Austen', 'Romance', '978-8491050390', 1813, 416, 18, true, 'Book'),
 ('El Hobbit', 'J.R.R. Tolkien', 'Fantasía', '978-8445071659', 1937, 320, 25, true, 'Book'),

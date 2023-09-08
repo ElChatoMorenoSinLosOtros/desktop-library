@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
 import PrismaService from '@/prisma/prisma.service';
+import { Injectable } from '@nestjs/common';
 import CreateNotificationDto from './dto/create-notification.dto';
 import UpdateNotificationDto from './dto/update-notification.dto';
 
@@ -14,8 +14,13 @@ export default class NotificationsService {
   }
 
   async createBatch(notifications: CreateNotificationDto[]) {
+    const notificationData = notifications.map(notification => ({
+      notificationName: notification.notificationName,
+      notificationType: notification.notificationType,
+      notificationContent: notification.notificationContent
+    }));
     return this.prisma.notification.createMany({
-      data: notifications
+      data: notificationData
     });
   }
 

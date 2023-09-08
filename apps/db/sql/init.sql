@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS "Notification" (
     CONSTRAINT "Notification_pkey" PRIMARY KEY ("notificationId")
 );
 
-CREATE UNIQUE IF NOT EXISTS INDEX "Notification_notificationId_key" ON "Notification"("notificationId");
+CREATE UNIQUE  INDEX IF NOT EXISTS "Notification_notificationId_key" ON "Notification"("notificationId");
 
 
 CREATE OR REPLACE FUNCTION update_updatedAt()
