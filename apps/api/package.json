@@ -1,29 +1,7 @@
 {
-  "name": "api",
-  "version": "0.0.1",
-  "description": "A Api for the library",
   "author": {
-    "name": "El Chato Moreno y los otros",
-    "email": "morales.patty.jose@gmail.com"
-  },
-  "license": "ISC",
-  "private": false,
-  "scripts": {
-    "build": "prisma generate && nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "format:check": "prettier --check",
-    "dev": "nest start --watch --preserveWatchOutput",
-    "prisma": "prisma generate",
-    "prisma:seed": "prisma db push && prisma db seed",
-    "dev:windows": "nest start --watch --preserveWatchOutput",
-    "start:debug": "nest start --debug --watch",
-    "start": "node dist/src/main.js",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest --coverageThreshold '{}' --passWithNoTests --no-cache",
-    "test:watch": "jest --watch --no-cache",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --no-cache",
-    "test:e2e": "jest --config ./test/jest-e2e.json --passWithNoTests",
-    "test:unit": "concurrently \"npm:test\" \"npm:test:e2e\""
+    "email": "morales.patty.jose@gmail.com",
+    "name": "El Chato Moreno y los otros"
   },
   "dependencies": {
     "@nestjs/class-validator": "^0.13.4",
@@ -38,12 +16,14 @@
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "moment": "^2.29.4",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
     "supertest": "^6.3.3"
   },
+  "description": "A Api for the library",
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
@@ -73,44 +53,66 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.6"
   },
+  "eslintConfig": {
+    "extends": [
+      "./.eslintrc.js"
+    ]
+  },
   "jest": {
+    "moduleDirectories": [
+      "src",
+      "node_modules"
+    ],
     "moduleFileExtensions": [
       "js",
       "json",
       "ts"
     ],
+    "moduleNameMapper": {
+      "@/(.*)": "<rootDir>/src/$1",
+      "@admins/(.*)": "<rootDir>/src/admins/$1",
+      "@auth/(.*)": "<rootDir>/src/auth/$1",
+      "@clients/(.*)": "<rootDir>/src/clients/$1",
+      "@fine/(.*)": "<rootDir>/src/fine/$1",
+      "@loans/(.*)": "<rootDir>/src/loans/$1",
+      "@materials/(.*)": "<rootDir>/src/materials/$1",
+      "@notifications/(.*)": "<rootDir>/src/notifications/$1",
+      "@offices/(.*)": "<rootDir>/src/offices/$1",
+      "@pr-prisma/(.*)": "<rootDir>/src/prisma/$1",
+      "@reserve/(.*)": "<rootDir>/src/reserve/$1",
+      "@returns/(.*)": "<rootDir>/src/returns/$1",
+      "@test/(.*)": "<rootDir>/test/$1",
+      "@utils/(.*)": "<rootDir>/src/utils/$1"
+    },
     "rootDir": ".",
+    "testEnvironment": "node",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "testEnvironment": "node",
-    "moduleNameMapper": {
-      "@/(.*)": "<rootDir>/src/$1",
-      "@test/(.*)": "<rootDir>/test/$1",
-      "@pr-prisma/(.*)": "<rootDir>/src/prisma/$1",
-      "@materials/(.*)": "<rootDir>/src/materials/$1",
-      "@auth/(.*)": "<rootDir>/src/auth/$1",
-      "@clients/(.*)": "<rootDir>/src/clients/$1",
-      "@admins/(.*)": "<rootDir>/src/admins/$1",
-      "@utils/(.*)": "<rootDir>/src/utils/$1",
-      "@loans/(.*)": "<rootDir>/src/loans/$1",
-      "@offices/(.*)": "<rootDir>/src/offices/$1",
-      "@returns/(.*)": "<rootDir>/src/returns/$1",
-      "@reserve/(.*)": "<rootDir>/src/reserve/$1",
-      "@notifications/(.*)": "<rootDir>/src/notifications/$1"
-    },
-    "moduleDirectories": [
-      "src",
-      "node_modules"
-    ]
+    }
   },
+  "license": "ISC",
+  "name": "api",
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
   },
-  "eslintConfig": {
-    "extends": [
-      "./.eslintrc.js"
-    ]
-  }
+  "private": false,
+  "scripts": {
+    "build": "prisma generate && nest build",
+    "dev": "nest start --watch --preserveWatchOutput",
+    "dev:windows": "nest start --watch --preserveWatchOutput",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format:check": "prettier --check",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --report-unused-disable-directives --max-warnings 0",
+    "prisma": "prisma generate",
+    "prisma:seed": "prisma db push && prisma db seed",
+    "start": "node dist/src/main.js",
+    "start:debug": "nest start --debug --watch",
+    "test": "jest --coverageThreshold '{}' --passWithNoTests --no-cache",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --no-cache",
+    "test:e2e": "jest --config ./test/jest-e2e.json --passWithNoTests",
+    "test:unit": "concurrently \"npm:test\" \"npm:test:e2e\"",
+    "test:watch": "jest --watch --no-cache"
+  },
+  "version": "0.0.1"
 }

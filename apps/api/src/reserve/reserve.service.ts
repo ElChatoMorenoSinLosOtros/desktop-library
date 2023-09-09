@@ -8,18 +8,10 @@ import UpdateReserveDto from './dto/update-reserve.dto';
 export default class ReserveService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createReserveDto: CreateReserveDto) {
-    const reserveData = {
-      clientId: createReserveDto.clientId,
-      materialId: createReserveDto.materialId,
-      checkDate: createReserveDto.checkDate,
-      returnDate: createReserveDto.returnDate,
-      executed: createReserveDto.executed
-    };
-    const createdReserve = await this.prisma.reserve.create({
-      data: reserveData
+  create(createReserveDto: CreateReserveDto) {
+    return this.prisma.reserve.create({
+      data: createReserveDto
     });
-    return createdReserve;
   }
 
   findAll() {
@@ -42,6 +34,47 @@ export default class ReserveService {
   remove(reserveId: number) {
     return this.prisma.reserve.delete({
       where: { reserveId }
+    });
+  }
+
+  async executeReserves() {
+    const currentDate = new Date();
+    const reserves = await this.prisma.reserve.findMany({
+      where: {
+        executed: false,
+        executeDate: {
+          lte: currentDate
+        }
+      }
+    });
+
+    if (reserves.length <= 0) {
+      return;
+    }
+
+    reserves.forEach(async reserve => {
+      try {
+        await this.prisma.loan.create({
+          data: {
+            clientId: reserve.clientId,
+            materialId: reserve.materialId,
+            returnDate: reserve.returnDate
+          }
+        });
+      } catch (error) {
+        throw new Error(`Error creating loan for reserve `);
+      }
+    });
+
+    reserves.map(async reserve => {
+      try {
+        await this.prisma.reserve.update({
+          where: { reserveId: reserve.reserveId },
+          data: { executed: true }
+        });
+      } catch (error) {
+        throw new Error(`Error updating reserve ${reserve.reserveId}`);
+      }
     });
   }
 }

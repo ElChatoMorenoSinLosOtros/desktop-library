@@ -15,6 +15,8 @@ function InfoPersonPage() {
   const [user, setUser] = useState<User>(INITIAL_STATE);
   const [activeLoans, setActiveLoans] = useState<number>(0);
   const [totalRead, setTotalRead] = useState<number>(0);
+  const [totalFine] = useState<number>(0);
+  const [reservations] = useState<number>(0);
 
   useEffect(() => {
     getUserById({ id: id ?? '-1' })
@@ -51,8 +53,8 @@ function InfoPersonPage() {
         <div className='col-span-1 flex flex-col gap-15 h-full justify-between '>
           <InfoPerson title='Read' number={totalRead} />
           <InfoPerson title='Loans' number={activeLoans} />
-          <InfoPerson title='Reservations' number={0} />
-          <InfoPerson title='Total Fine' number={0} isDouble />
+          <InfoPerson title='Reservations' number={reservations} />
+          <InfoPerson title='Total Fine' number={totalFine} isDouble />
           <HistoryRedirectButton
             path='/loan-management/loan-history'
             text='Loan History'

@@ -13,19 +13,18 @@ export default class CreateReserveDto {
   @ApiProperty()
   @IsDate()
   @IsOptional()
-  checkDate?: Date;
+  reserveDate?: Date;
 
   @ApiProperty()
   @IsDate()
-  @IsOptional()
-  returnDate?: Date | null;
+  executeDate: Date;
+
+  @ApiProperty()
+  @IsDate()
+  returnDate: Date;
 
   @ApiProperty()
   @IsBoolean()
   @IsOptional()
   executed?: boolean;
-
-  @ApiProperty()
-  @IsInt()
-  adminID: number;
 }

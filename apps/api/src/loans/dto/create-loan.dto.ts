@@ -18,7 +18,7 @@ export default class CreateLoanDto {
   @ApiProperty()
   @IsDate()
   @IsOptional()
-  returnDate?: Date | null;
+  returnDate?: Date;
 
   @ApiProperty()
   @IsBoolean()

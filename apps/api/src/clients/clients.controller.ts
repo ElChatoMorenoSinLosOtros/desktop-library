@@ -78,6 +78,13 @@ class ClientsController {
   getTotalActiveLoans(@Param('clientId') clientId: string) {
     return this.clientsService.getTotalActiveLoans(+clientId);
   }
+
+  @Get(':clientId/total-fine')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  getTotalFine(@Param('clientId') clientId: string) {
+    return this.clientsService.getTotalFine(+clientId);
+  }
 }
 
 export default ClientsController;

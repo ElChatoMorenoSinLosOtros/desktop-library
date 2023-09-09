@@ -18,4 +18,10 @@ export default class NotificationEntity {
 
   @ApiProperty()
   notificationRead: boolean;
+
+  @ApiProperty()
+  loanId?: number;
+
+  @ApiProperty()
+  materialId?: number;
 }
