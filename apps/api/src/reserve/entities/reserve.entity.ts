@@ -8,22 +8,19 @@ export default class ReserveEntity implements Reserve {
   reserveId: number;
 
   @ApiProperty()
-  loanId: number;
-
-  @ApiProperty()
-  adminId: number;
-
-  @ApiProperty()
   clientId: number;
 
   @ApiProperty()
   materialId: number;
 
   @ApiProperty()
-  checkDate: Date;
+  reserveDate: Date;
 
   @ApiProperty()
-  returnDate: Date | null;
+  executeDate: Date;
+
+  @ApiProperty()
+  returnDate: Date;
 
   @ApiProperty()
   executed: boolean;

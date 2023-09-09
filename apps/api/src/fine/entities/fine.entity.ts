@@ -1,5 +1,5 @@
-import ClientEntity from '@/clients/entities/client.entity';
-import LoanEntity from '@/loans/entities/loan.entity';
+import ClientEntity from '@clients/entities/client.entity';
+import LoanEntity from '@loans/entities/loan.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
 export default class FineEntity {
@@ -13,7 +13,7 @@ export default class FineEntity {
   createDate: Date;
 
   @ApiProperty()
-  payeed: boolean;
+  paid: boolean;
 
   @ApiProperty()
   loanId: number;

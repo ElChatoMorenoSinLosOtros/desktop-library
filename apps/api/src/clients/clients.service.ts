@@ -53,6 +53,24 @@ class ClientsService {
       }
     });
   }
+
+  async getTotalFine(clientId: number) {
+    const userFines = await this.prisma.fine.findMany({
+      where: { clientId }
+    });
+
+    if (!userFines) {
+      throw new Error('User not found');
+    }
+
+    let totalFine = 0.0;
+
+    userFines.forEach(fine => {
+      totalFine = +fine.debt;
+    });
+
+    return totalFine;
+  }
 }
 
 export default ClientsService;

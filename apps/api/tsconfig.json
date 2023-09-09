@@ -58,6 +58,9 @@
       "@notifications/*": [
         "./src/notifications/*"
       ],
+      "@fine/*": [
+        "./src/fine/*"
+      ],
     }
   },
   "include": [

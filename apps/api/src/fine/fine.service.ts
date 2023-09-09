@@ -1,6 +1,5 @@
-import PrismaService from '@/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
-import { Decimal } from '@prisma/client/runtime/library';
+import PrismaService from '@pr-prisma/prisma.service';
 import CreateFineDto from './dto/create-fine.dto';
 import UpdateFineDto from './dto/update-fine.dto';
 
@@ -27,7 +26,7 @@ export default class FineService {
   async createBatch(fines: CreateFineDto[]) {
     const finesData = fines.map(fine => ({
       debt: fine.debt,
-      payeed: fine.payeed,
+      paid: fine.paid,
       loanId: fine.loanId,
       clientId: fine.clientId
     }));
@@ -38,24 +37,6 @@ export default class FineService {
       });
     }
     return null;
-  }
-
-  async userTotalFine(clientId: number) {
-    const userFines = await this.prisma.fine.findMany({
-      where: { clientId }
-    });
-
-    if (!userFines) {
-      throw new Error('User not found');
-    }
-
-    let totalFine = new Decimal(0.0);
-
-    userFines.forEach(fine => {
-      totalFine = totalFine.add(new Decimal(fine.debt));
-    });
-
-    return totalFine;
   }
 
   findAll() {

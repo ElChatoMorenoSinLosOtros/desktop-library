@@ -36,11 +36,11 @@ model Client {
 }
 
 model Material {
-  materialId      Int       @id @default(autoincrement())
+  materialId      Int           @id @default(autoincrement())
   title           String?
   author          String?
   category        String?
-  isbn            String?   @unique
+  isbn            String?       @unique
   publicationYear Int?
   pageCount       Int?
   quantity        Int?
@@ -48,21 +48,23 @@ model Material {
   type_material   String
   loans           Loan[]
   Reserve         Reserve[]
+  Notification    Notification?
 
   @@map(name: "material")
 }
 
 model Loan {
-  loanId     Int       @id @unique @default(autoincrement())
-  clientId   Int
-  materialId Int
-  loanDate   DateTime  @default(now()) @db.Timestamptz(3)
-  returnDate DateTime? @db.Timestamptz(3)
-  returned   Boolean   @default(false)
-  client     Client    @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
-  material   Material  @relation(fields: [materialId], references: [materialId], onDelete: Cascade)
-  return     Return?
-  fine       Fine?
+  loanId       Int           @id @unique @default(autoincrement())
+  clientId     Int
+  materialId   Int
+  loanDate     DateTime      @default(now()) @db.Timestamptz(3)
+  returnDate   DateTime?     @db.Timestamptz(3)
+  returned     Boolean       @default(false)
+  client       Client        @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
+  material     Material      @relation(fields: [materialId], references: [materialId], onDelete: Cascade)
+  return       Return?
+  fine         Fine?
+  Notification Notification?
 
   @@map(name: "loan")
 }
@@ -102,25 +104,30 @@ model Return {
 }
 
 model Reserve {
-  reserveId  Int       @id @default(autoincrement())
-  clientId   Int
-  materialId Int
-  checkDate  DateTime  @default(now()) @db.Timestamptz()
-  returnDate DateTime  @db.Timestamptz()
-  executed   Boolean   @default(false)
-  client     Client?   @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
-  material   Material? @relation(fields: [materialId], references: [materialId], onDelete: Cascade)
+  reserveId   Int       @id @default(autoincrement())
+  clientId    Int
+  materialId  Int
+  reserveDate DateTime? @default(now()) @db.Timestamptz()
+  executeDate DateTime  @db.Timestamptz()
+  returnDate  DateTime  @db.Timestamptz()
+  executed    Boolean?  @default(false)
+  client      Client?   @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
+  material    Material? @relation(fields: [materialId], references: [materialId], onDelete: Cascade)
 
   @@map(name: "reserve")
 }
 
 model Notification {
-  notificationId      Int      @id @default(autoincrement())
+  notificationId      Int       @id @default(autoincrement())
   notificationName    String
   notificationType    String
-  notificationDate    DateTime @default(now()) @db.Timestamptz()
+  notificationDate    DateTime  @default(now()) @db.Timestamptz()
   notificationContent String?
-  notificationRead    Boolean  @default(false)
+  notificationRead    Boolean   @default(false)
+  loan                Loan?     @relation(fields: [loanId], references: [loanId], onDelete: Cascade)
+  material            Material? @relation(fields: [materialId], references: [materialId], onDelete: Cascade)
+  loanId              Int?      @unique
+  materialId          Int?      @unique
 
   @@map(name: "notification")
 }
@@ -128,9 +135,11 @@ model Notification {
 model Fine {
   fineId   Int     @id @default(autoincrement())
   debt     Decimal
-  payeed   Boolean
-  client   Client? @relation(fields: [clientId], references: [clientId])
-  loan     Loan?   @relation(fields: [loanId], references: [loanId])
+  paid     Boolean
+  client   Client? @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
+  loan     Loan?   @relation(fields: [loanId], references: [loanId], onDelete: Cascade)
   clientId Int?
   loanId   Int?    @unique
+
+  @@map(name: "fine")
 }

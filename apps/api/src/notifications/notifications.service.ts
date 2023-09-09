@@ -14,13 +14,8 @@ export default class NotificationsService {
   }
 
   async createBatch(notifications: CreateNotificationDto[]) {
-    const notificationData = notifications.map(notification => ({
-      notificationName: notification.notificationName,
-      notificationType: notification.notificationType,
-      notificationContent: notification.notificationContent
-    }));
     return this.prisma.notification.createMany({
-      data: notificationData
+      data: notifications
     });
   }
 

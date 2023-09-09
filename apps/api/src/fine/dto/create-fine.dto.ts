@@ -8,7 +8,7 @@ export default class CreateFineDto {
 
   @ApiProperty()
   @IsBoolean()
-  payeed: boolean;
+  paid: boolean;
 
   @ApiProperty()
   @IsInt()
