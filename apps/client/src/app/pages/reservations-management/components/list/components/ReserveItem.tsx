@@ -57,10 +57,11 @@ function ReserveItem({ reserve }: { reserve: Reserve }) {
             await removeReserveById({
               id: reserve.reserveId
             });
-          })().catch((error: Error) => {
-            throw new Error(error.message);
-          })
-        .finally(() => navigate('/reservations-management'));
+          })()
+            .catch((error: Error) => {
+              throw new Error(error.message);
+            })
+            .finally(() => navigate('/reservations-management'));
         }}
       />
     </div>
