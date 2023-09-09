@@ -382,8 +382,8 @@ const LibraryAPIService = () => {
   };
 
   const getAllNotifications =
-    async (): Promise<GetAllNotifiactionsResponse> => {
-      return LibraryAPI.get<GetAllNotifiactionsResponse>('/notifications', {
+    async (): Promise<GetAllNotificationsResponse> => {
+      return LibraryAPI.get<GetAllNotificationsResponse>('/notifications', {
         headers: { Authorization: `Bearer ${admin.accessToken}` }
       }).then(resp => {
         return resp.data;
@@ -401,6 +401,45 @@ const LibraryAPIService = () => {
         headers: { Authorization: `Bearer ${admin.accessToken}` }
       }
     ).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const getClientMoreInfo = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<GetClientMoreInfoByIdResponse> => {
+    return LibraryAPI.get<GetClientMoreInfoByIdResponse>(
+      `/clients/${id}/more-info`,
+      {
+        headers: { Authorization: `Bearer ${admin.accessToken}` }
+      }
+    ).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const getClientLoans = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<GetClientLoansByIdResponse> => {
+    return LibraryAPI.get<GetClientLoansByIdResponse>(`/clients/${id}/loans`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const getClientFines = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<GetClientFinesByIdResponse> => {
+    return LibraryAPI.get<GetClientFinesByIdResponse>(`/clients/${id}/fines`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
       return resp.data;
     });
   };
@@ -437,7 +476,10 @@ const LibraryAPIService = () => {
     createAdmin,
     updateAdminById,
     getAllNotifications,
-    removeNotificationById
+    removeNotificationById,
+    getClientMoreInfo,
+    getClientLoans,
+    getClientFines
   };
 };
 

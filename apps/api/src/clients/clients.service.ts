@@ -71,6 +71,37 @@ class ClientsService {
 
     return totalFine;
   }
+
+  async getTotalReserves(clientId: number) {
+    return this.prisma.reserve.count({
+      where: { clientId, executed: false }
+    });
+  }
+
+  async getMoreInfo(clientId: number) {
+    const totalRead = await this.getTotalRead(clientId);
+    const totalActiveLoans = await this.getTotalActiveLoans(clientId);
+    const totalFine = await this.getTotalFine(clientId);
+    const totalReserves = await this.getTotalReserves(clientId);
+    return {
+      totalRead,
+      totalActiveLoans,
+      totalFine,
+      totalReserves
+    };
+  }
+
+  async getAllFines(clientId: number) {
+    return this.prisma.fine.findMany({
+      where: { clientId }
+    });
+  }
+
+  async getAllLoans(clientId: number) {
+    return this.prisma.loan.findMany({
+      where: { clientId }
+    });
+  }
 }
 
 export default ClientsService;
