@@ -9,13 +9,16 @@ import { useEffect, useState } from 'react';
 function LoanManagementPage() {
   const { getLoans } = LibraryAPIService();
   const [loans, setLoans] = useState<Loan[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    getLoans()
-      .then(res => setLoans(res))
-      .catch((error: Error) => {
-        throw new Error(error.message);
-      });
+    async function fetchData() {
+      const response = await getLoans();
+      setLoans(response);
+      setIsLoading(false);
+    }
+
+    fetchData();
   }, []);
 
   return (
@@ -24,7 +27,7 @@ function LoanManagementPage() {
       <Line />
       <LoanFields />
       <Line />
-      <LoanList loans={loans} />
+      <LoanList loans={loans} isLoading={isLoading} />
     </GlobalList>
   );
 }

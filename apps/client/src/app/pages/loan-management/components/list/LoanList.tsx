@@ -1,6 +1,6 @@
 import LoanItem from './components/LoanItem';
 
-function LoanList({ loans }: { loans: Loan[] }) {
+function LoanList({ loans, isLoading }: { loans: Loan[]; isLoading: boolean }) {
   return (
     <div
       className={`h-full overflow-auto mt-2 ${
@@ -11,9 +11,10 @@ function LoanList({ loans }: { loans: Loan[] }) {
         className='h-full flex flex-col
       font-roboto-mono text-sm font-bold w-full gap-y-10'
       >
-        {loans.map((loan: Loan) => {
-          return <LoanItem key={loan.loanId} loan={loan} />;
-        })}
+        {!isLoading &&
+          loans.map((loan: Loan) => {
+            return <LoanItem key={loan.loanId} loan={loan} />;
+          })}
       </div>
     </div>
   );

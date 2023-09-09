@@ -472,7 +472,20 @@ declare global {
     notificationRead: boolean;
   };
 
-  type GetAllNotifiactionsResponse = Notify[];
+  type GetAllNotificationsResponse = Notify[];
 
   type RemoveNotificationByIdResponse = Notify;
+
+  type ClientMoreInfo = {
+    totalRead: number;
+    totalActiveLoans: number;
+    totalFine: number;
+    totalReserves: number;
+  };
+
+  type GetClientMoreInfoByIdResponse = ClientMoreInfo;
+
+  type GetClientLoansByIdResponse = Loan[];
+
+  type GetClientFinesByIdResponse = Return[];
 }
