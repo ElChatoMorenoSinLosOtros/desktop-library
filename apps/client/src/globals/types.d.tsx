@@ -488,4 +488,18 @@ declare global {
   type GetClientLoansByIdResponse = Loan[];
 
   type GetClientFinesByIdResponse = Return[];
+
+  type Fine = {
+    fineId: number;
+    debt: number;
+    createDate: Date | string;
+    paid: boolean;
+    loanId: number;
+    clientId: number;
+  };
+
+  type GetFinesResponse = Fine[];
+  type GetFinesByIdResponse = Fine[];
+  type RemoveFineByIdResponse = Fine;
+  type UpdateFineByIdResponse = Fine;
 }

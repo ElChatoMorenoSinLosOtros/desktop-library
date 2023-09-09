@@ -381,6 +381,52 @@ const LibraryAPIService = () => {
     });
   };
 
+  const getFines = async (): Promise<GetFinesResponse> => {
+    return LibraryAPI.get<GetFinesResponse>('/fine', {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const updateFineById = async ({
+    id,
+    fine
+  }: {
+    fine: Fine;
+    id: number;
+  }): Promise<UpdateFineByIdResponse> => {
+    return LibraryAPI.patch<UpdateFineByIdResponse>(`/fine/${id}`, fine, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const removeFineById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<RemoveFineByIdResponse> => {
+    return LibraryAPI.delete<RemoveFineByIdResponse>(`/fine/${id}`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const getFinesById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<GetFinesByIdResponse> => {
+    return LibraryAPI.get<GetFinesByIdResponse>(`/fine/${id}`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
   const getAllNotifications =
     async (): Promise<GetAllNotificationsResponse> => {
       return LibraryAPI.get<GetAllNotificationsResponse>('/notifications', {
@@ -472,6 +518,10 @@ const LibraryAPIService = () => {
     getReturnByLoanId,
     getAdmins,
     getAdminById,
+    getFines,
+    removeFineById,
+    getFinesById,
+    updateFineById,
     removeAdminById,
     createAdmin,
     updateAdminById,
