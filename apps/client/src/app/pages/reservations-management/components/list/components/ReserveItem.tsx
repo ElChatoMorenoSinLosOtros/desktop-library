@@ -59,7 +59,8 @@ function ReserveItem({ reserve }: { reserve: Reserve }) {
             });
           })().catch((error: Error) => {
             throw new Error(error.message);
-          });
+          })
+        .finally(() => navigate('/reservations-management'));
         }}
       />
     </div>
