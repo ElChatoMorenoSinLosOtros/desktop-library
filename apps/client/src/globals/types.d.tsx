@@ -505,4 +505,41 @@ declare global {
   type RemoveFineByIdResponse = Fine;
 
   type UpdateFineByIdResponse = Fine;
+
+  type Reserve = {
+    reserveId: number;
+    clientId: number;
+    materialId: number;
+    checkDate: Date | string;
+    returnDate: Date | string;
+    executed: boolean;
+  };
+
+  type ReserveWithOutID = {
+    clientId: number;
+    materialId: number;
+    reserveDate: Date | string;
+    returnDate: Date | string;
+    executed: boolean;
+  };
+
+  type UpdateReservePageParams = {
+    id: string;
+  };
+
+  type InfoReservePageParams = {
+    id: string;
+  };
+
+  type RemoveReserveByIdResponse = Reserve;
+
+  type UpdateReserveByIdResponse = Reserve;
+
+  type GetReserveByIdResponse = Reserve;
+
+  type GetUserActiveReservesById = number;
+
+  type CreateReserveResponse = Reserve;
+
+  type GetReservesResponse = Reserve[];
 }
