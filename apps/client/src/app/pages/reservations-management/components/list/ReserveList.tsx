@@ -1,6 +1,12 @@
 import ReserveItem from './components/ReserveItem';
 
-function ReserveList({ reserves }: { reserves: Reserve[] }) {
+function ReserveList({
+  reserves,
+  isLoading
+}: {
+  reserves: Reserve[];
+  isLoading: boolean;
+}) {
   return (
     <div
       className={`h-full overflow-auto mt-2 ${
@@ -11,12 +17,10 @@ function ReserveList({ reserves }: { reserves: Reserve[] }) {
         className='h-full flex flex-col
       font-roboto-mono text-sm font-bold w-full gap-y-10'
       >
-        {reserves.map((reserve: Reserve) => {
-          if (!reserve.executed) {
+        {!isLoading &&
+          reserves.map((reserve: Reserve) => {
             return <ReserveItem key={reserve.reserveId} reserve={reserve} />;
-          }
-          return null;
-        })}
+          })}
       </div>
     </div>
   );

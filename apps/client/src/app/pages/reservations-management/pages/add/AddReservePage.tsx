@@ -10,23 +10,21 @@ function AddReservePage() {
   const navigate = useNavigate();
 
   return (
-    <GlobalForm title='Reserve Management' subTitle='Add Reserve'>
+    <GlobalForm title='Reserves Management' subTitle='Add Reserve'>
       <Formik
         initialValues={{
           clientId: 0,
           materialId: 0,
-          reserveDate: new Date(),
-          returnDate: new Date(),
-          executed: false
+          executeDate: new Date(),
+          returnDate: new Date()
         }}
-        onSubmit={(values: ReserveWithOutID) => {
+        onSubmit={values => {
           createReserve({
             reserve: {
               clientId: values.clientId,
               materialId: values.materialId,
-              reserveDate: new Date(values.reserveDate).toISOString(),
-              returnDate: new Date(values.returnDate).toISOString(),
-              executed: values.executed
+              executeDate: new Date(values.executeDate).toISOString(),
+              returnDate: new Date(values.returnDate).toISOString()
             }
           })
             .then()
@@ -38,12 +36,17 @@ function AddReservePage() {
             });
         }}
       >
-        <Form className='w-3/5 ml-36 flex flex-col gap-5'>
+        <Form className='w-3/5 ml-36 flex flex-col gap-5 h-2/3 justify-center mb-32'>
           <GlobalTextField title='User ID:' name='clientId' type='number' />
           <GlobalTextField
             title='Material ID:'
             name='materialId'
             type='number'
+          />
+          <GlobalTextField
+            title='Execute Date:'
+            name='executeDate'
+            type='date'
           />
           <GlobalTextField title='Return Date:' name='returnDate' type='date' />
 

@@ -117,10 +117,6 @@ function App() {
               element={<UpdateLoanPage />}
             />
             <Route
-              path='/reservations-management'
-              element={<ReservationsManagementPage />}
-            />
-            <Route
               path='/reservations-management/info/:id'
               element={<InfoReservePage />}
             />

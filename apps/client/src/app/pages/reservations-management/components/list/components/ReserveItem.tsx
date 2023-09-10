@@ -14,27 +14,31 @@ function ReserveItem({ reserve }: { reserve: Reserve }) {
   const [client, setClient] = useState<Client>({} as Client);
 
   useEffect(() => {
-    getMaterialById({ id: reserve.materialId })
-      .then(res => setMaterial(res))
-      .catch((error: Error) => {
-        throw new Error(error.message);
+    async function fetchData() {
+      const materialResponse = await getMaterialById({
+        id: reserve.materialId
       });
-  }, [reserve]);
+      setMaterial(materialResponse);
+      const clientResponse = await getUserById({
+        id: String(reserve.clientId)
+      });
+      setClient(clientResponse);
+    }
 
-  useEffect(() => {
-    getUserById({ id: String(reserve.clientId) })
-      .then(res => setClient(res))
-      .catch((error: Error) => {
-        throw new Error(error.message);
-      });
+    fetchData();
   }, [reserve]);
 
   return (
-    <div className='grid grid-cols-10 w-full px-6 gap-4'>
+    <div className='grid grid-cols-12 w-full px-6 gap-4'>
       <div>{reserve.reserveId}</div>
-      <div>{material.type_material}</div>
-      <div>{reserve.returnDate.toString().substring(0, 10)}</div>
-      <div>{client.name}</div>
+      <div className='col-span-2'>{material.type_material}</div>
+      <div className='col-span-2'>
+        {reserve.executeDate.toString().substring(0, 10)}
+      </div>
+      <div className='col-span-2'>{client.name}</div>
+      <div className='col-span-2'>
+        {reserve.executed ? 'Executed' : 'Not executed'}
+      </div>
       <ReservesActionButton
         onClick={() => {
           navigate(`/reservations-management/info/${reserve.reserveId}`);

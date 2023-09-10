@@ -180,6 +180,7 @@ declare global {
     children: React.ReactNode;
     className?: string;
     onClick: () => void;
+    disabled?: boolean;
   }
 
   type User = {
@@ -510,7 +511,8 @@ declare global {
     reserveId: number;
     clientId: number;
     materialId: number;
-    checkDate: Date | string;
+    reserveDate: Date | string;
+    executeDate: Date | string;
     returnDate: Date | string;
     executed: boolean;
   };
@@ -519,8 +521,16 @@ declare global {
     clientId: number;
     materialId: number;
     reserveDate: Date | string;
+    executeDate: Date | string;
     returnDate: Date | string;
     executed: boolean;
+  };
+
+  type CreateReserve = {
+    clientId: number;
+    materialId: number;
+    executeDate: Date | string;
+    returnDate: Date | string;
   };
 
   type UpdateReservePageParams = {

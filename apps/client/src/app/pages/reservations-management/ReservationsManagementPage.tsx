@@ -8,14 +8,17 @@ import { useEffect, useState } from 'react';
 
 function ReservationsManagementPage() {
   const { getReserves } = LibraryAPIService();
-  const [reserves, setReserves] = useState<Reserve[]>([]);
+  const [reserves, setReserves] = useState<Reserve[]>([] as Reserve[]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    getReserves()
-      .then(res => setReserves(res))
-      .catch((error: Error) => {
-        throw new Error(error.message);
-      });
+    async function fetchData() {
+      const response = await getReserves();
+      setReserves(response);
+      setIsLoading(false);
+    }
+
+    fetchData();
   }, []);
 
   return (
@@ -24,7 +27,7 @@ function ReservationsManagementPage() {
       <Line />
       <ReservesFields />
       <Line />
-      <ReserveList reserves={reserves} />
+      <ReserveList reserves={reserves} isLoading={isLoading} />
     </GlobalList>
   );
 }
