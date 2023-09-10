@@ -37,7 +37,7 @@ function ReservesHeader() {
       <GlobalSelectFilter
         handleSelectChange={handleSelectChange}
         defaultValue='Filter'
-        options={['ID', 'Material Type', 'Order Date', 'Reserved By']}
+        options={['ID', 'Material Type', 'Loan Date', 'Reserved By', 'Status']}
       />
       <GlobalSearchInput
         inputValue={inputValue}
