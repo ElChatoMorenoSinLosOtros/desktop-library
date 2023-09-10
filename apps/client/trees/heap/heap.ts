@@ -50,7 +50,7 @@ export default class Heap<T> {
     }
   }
 
-  public searchByProperty(property: keyof T, value: any): T[] {
+  public searchByProperty(property: keyof T, value: T): T[] {
     const results: T[] = [];
     this.data.forEach(item => {
       if (item[property] === value) {
@@ -68,8 +68,11 @@ export default class Heap<T> {
       return this.data.pop();
     }
     const root = this.data[0];
-    this.data[0] = this.data.pop()!;
-    this.heapify(0);
+    const poppedItem = this.data.pop();
+    if (poppedItem !== undefined) {
+      this.data[0] = poppedItem;
+      this.heapify(0);
+    }
     return root;
   }
 
