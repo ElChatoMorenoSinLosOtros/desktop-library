@@ -68,8 +68,13 @@ export class Heap<T> {
     }
 
     const root = this.data[0];
-    this.data[0] = this.data.pop()!;
-    this.heapify(0);
+    const lastItem = this.data.pop();
+
+    if (lastItem !== undefined) {
+      this.data[0] = lastItem;
+      this.heapify(0);
+    }
+
     return root;
   }
 
