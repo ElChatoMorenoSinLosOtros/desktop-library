@@ -8,14 +8,17 @@ import FinesList from './components/list/FinesLists';
 
 function FinesManagementPage() {
   const { getFines } = LibraryAPIService();
-  const [fines, setFines] = useState<Fine[]>([]);
+  const [fines, setFines] = useState<Fine[]>([] as Fine[]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    getFines()
-      .then(res => setFines(res))
-      .catch((error: Error) => {
-        throw new Error(error.message);
-      });
+    async function fetchData() {
+      const response = await getFines();
+      setFines(response);
+      setIsLoading(false);
+    }
+
+    fetchData();
   }, []);
 
   return (
@@ -24,7 +27,7 @@ function FinesManagementPage() {
       <Line />
       <FinesFields />
       <Line />
-      <FinesList fines={fines} />
+      <FinesList fines={fines} isLoading={isLoading} />
     </GlobalList>
   );
 }

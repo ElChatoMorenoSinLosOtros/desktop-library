@@ -56,7 +56,7 @@ class ClientsService {
 
   async getTotalFine(clientId: number) {
     const userFines = await this.prisma.fine.findMany({
-      where: { clientId }
+      where: { clientId, paid: false }
     });
 
     if (!userFines) {

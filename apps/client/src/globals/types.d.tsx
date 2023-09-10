@@ -487,7 +487,7 @@ declare global {
 
   type GetClientLoansByIdResponse = Loan[];
 
-  type GetClientFinesByIdResponse = Return[];
+  type GetClientFinesByIdResponse = Fine[];
 
   type Fine = {
     fineId: number;
@@ -499,7 +499,10 @@ declare global {
   };
 
   type GetFinesResponse = Fine[];
+
   type GetFinesByIdResponse = Fine[];
+
   type RemoveFineByIdResponse = Fine;
+
   type UpdateFineByIdResponse = Fine;
 }
