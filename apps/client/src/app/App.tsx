@@ -25,6 +25,9 @@ import AddPersonPage from '@pages/person-management/pages/add/AddPersonPage';
 import PersonInfoPage from '@pages/person-management/pages/info/InfoPersonPage';
 import NewDataPersonPage from '@pages/person-management/pages/new-data/NewDataPersonPage';
 import ReservationsManagementPage from '@pages/reservations-management/ReservationsManagementPage';
+import AddReservePage from '@pages/reservations-management/pages/add/AddReservePage';
+import InfoReservePage from '@pages/reservations-management/pages/info/InfoReservePage';
+import UpdateReservePage from '@pages/reservations-management/pages/update/UpdateReserveInfo';
 import useAuthStore from '@store/AuthStore';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
@@ -112,6 +115,18 @@ function App() {
             <Route
               path='/loan-management/update/:id'
               element={<UpdateLoanPage />}
+            />
+            <Route
+              path='/reservations-management/info/:id'
+              element={<InfoReservePage />}
+            />
+            <Route
+              path='/reservations-management/update/:id'
+              element={<UpdateReservePage />}
+            />
+            <Route
+              path='reservations-management/add'
+              element={<AddReservePage />}
             />
           </Route>
         </Routes>

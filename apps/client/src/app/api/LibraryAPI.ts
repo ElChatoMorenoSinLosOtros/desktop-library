@@ -490,6 +490,68 @@ const LibraryAPIService = () => {
     });
   };
 
+  const createReserve = async ({
+    reserve
+  }: {
+    reserve: CreateReserve;
+  }): Promise<CreateReserveResponse> => {
+    return LibraryAPI.post<CreateReserveResponse>('/reserve', reserve, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const getReserves = async (): Promise<GetReservesResponse> => {
+    return LibraryAPI.get<GetReservesResponse>('/reserve', {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const removeReserveById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<RemoveReserveByIdResponse> => {
+    return LibraryAPI.delete<RemoveReserveByIdResponse>(`/reserve/${id}`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const updateReserveById = async ({
+    id,
+    reserve
+  }: {
+    reserve: Reserve;
+    id: number;
+  }): Promise<UpdateReserveByIdResponse> => {
+    return LibraryAPI.patch<UpdateReserveByIdResponse>(
+      `/reserve/${id}`,
+      reserve,
+      {
+        headers: { Authorization: `Bearer ${admin.accessToken}` }
+      }
+    ).then(resp => {
+      return resp.data;
+    });
+  };
+
+  const getReserveById = async ({
+    id
+  }: {
+    id: number;
+  }): Promise<GetReserveByIdResponse> => {
+    return LibraryAPI.get<GetReserveByIdResponse>(`/reserve/${id}`, {
+      headers: { Authorization: `Bearer ${admin.accessToken}` }
+    }).then(resp => {
+      return resp.data;
+    });
+  };
+
   return {
     login,
     getUsers,
@@ -529,7 +591,12 @@ const LibraryAPIService = () => {
     removeNotificationById,
     getClientMoreInfo,
     getClientLoans,
-    getClientFines
+    getClientFines,
+    createReserve,
+    getReserves,
+    removeReserveById,
+    updateReserveById,
+    getReserveById
   };
 };
 
