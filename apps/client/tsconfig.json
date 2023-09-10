@@ -67,6 +67,7 @@
   "include": [
     "src",
     "electron",
+    "trees",
     "*.ts",
     "*.js",
     "*.tsx",
@@ -79,6 +80,7 @@
     "src/*.tsx",
     "src/**/*.ts",
     "src/**/*.tsx",
+    "trees/**/.ts",
     "test/*.ts",
     "test/*.tsx",
     "test/**/*.ts",
