@@ -46,7 +46,18 @@ function InfoMaterialPage() {
             className='ml-5 col-span-2'
           />
         </div>
-        <GlobalText title='Author:' text={material.author} className='w-3/5' />
+        <div className='grid w-full justify-between grid-cols-5'>
+          <GlobalText
+            title='Author:'
+            text={material.author}
+            className='col-span-3'
+          />
+          <GlobalText
+            title='Quantity'
+            text={material.quantity.toString()}
+            className='ml-5 col-span-2'
+          />
+        </div>
         <GlobalText
           title='Category:'
           text={material.category}
