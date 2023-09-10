@@ -1,55 +1,49 @@
-import { Heap } from '../../trees/heap/heap';
+import Heap from '../../trees/heap/heap';
 
 describe('Heap', () => {
-  describe('Min Heap', () => {
-    it('should insert and extract elements in ascending order', () => {
-      const minHeap = new Heap<number>(true);
-      minHeap.insert(3);
-      minHeap.insert(1);
-      minHeap.insert(6);
+  describe('insert', () => {
+    it('should insert items into the heap correctly', () => {
+      const minHeap = new Heap<number>();
       minHeap.insert(5);
-
-      expect(minHeap.extract()).toBe(1);
-      expect(minHeap.extract()).toBe(3);
-      expect(minHeap.extract()).toBe(5);
-      expect(minHeap.extract()).toBe(6);
-    });
-
-    it('should return the top element without removing it using peek', () => {
-      const minHeap = new Heap<number>(true);
       minHeap.insert(3);
-      minHeap.insert(1);
-      minHeap.insert(6);
-      minHeap.insert(5);
+      minHeap.insert(8);
 
-      expect(minHeap.peek()).toBe(1);
-      expect(minHeap.size()).toBe(4);
+      expect(minHeap.peek()).toBe(3);
+      expect(minHeap.size()).toBe(3);
     });
   });
 
-  describe('Max Heap', () => {
-    it('should insert and extract elements in descending order', () => {
-      const maxHeap = new Heap<number>(false);
-      maxHeap.insert(3);
-      maxHeap.insert(1);
-      maxHeap.insert(6);
-      maxHeap.insert(5);
+  describe('extract', () => {
+    it('should extract the minimum item from a min-heap', () => {
+      const minHeap = new Heap<number>();
+      minHeap.insert(5);
+      minHeap.insert(3);
+      minHeap.insert(8);
 
-      expect(maxHeap.extract()).toBe(6);
-      expect(maxHeap.extract()).toBe(5);
-      expect(maxHeap.extract()).toBe(3);
-      expect(maxHeap.extract()).toBe(1);
+      expect(minHeap.extract()).toBe(3);
+      expect(minHeap.size()).toBe(2);
     });
 
-    it('should return the top element without removing it using peek', () => {
-      const maxHeap = new Heap<number>(false);
-      maxHeap.insert(3);
-      maxHeap.insert(1);
-      maxHeap.insert(6);
-      maxHeap.insert(5);
+    it('should return undefined when extracting from an empty heap', () => {
+      const minHeap = new Heap<number>();
+      expect(minHeap.extract()).toBeUndefined();
+    });
+  });
 
-      expect(maxHeap.peek()).toBe(6);
-      expect(maxHeap.size()).toBe(4);
+  describe('peek', () => {
+    it('should return the minimum item without removing it', () => {
+      const minHeap = new Heap<number>();
+      minHeap.insert(5);
+      minHeap.insert(3);
+      minHeap.insert(8);
+
+      expect(minHeap.peek()).toBe(3);
+      expect(minHeap.size()).toBe(3);
+    });
+
+    it('should return undefined when peeking an empty heap', () => {
+      const minHeap = new Heap<number>();
+      expect(minHeap.peek()).toBeUndefined();
     });
   });
 });

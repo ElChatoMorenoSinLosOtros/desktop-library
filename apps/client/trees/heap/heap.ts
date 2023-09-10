@@ -1,4 +1,4 @@
-export class Heap<T> {
+export default class Heap<T> {
   private data: T[] = [];
 
   private isMinHeap: boolean;
