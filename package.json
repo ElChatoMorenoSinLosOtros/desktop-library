@@ -1,34 +1,35 @@
 {
-  "name": "library-desktop",
-  "private": false,
-  "version": "0.0.1",
-  "description": "A desktop app for the library",
   "author": {
-    "name": "El Chato Moreno y los otros",
-    "email": "morales.patty.jose@gmail.com"
+    "email": "morales.patty.jose@gmail.com",
+    "name": "El Chato Moreno y los otros"
   },
-  "scripts": {
-    "dev": "concurrently \"turbo dev -F api\" \"turbo dev -F db && turbo prisma -F api && turbo prisma:seed -F api && turbo dev -F client \"",
-    "dev:windows": "concurrently \"turbo dev -F api\" \"turbo prisma -F api && turbo prisma:seed -F api && turbo dev -F client \"",
-    "up": "turbo up -F db",
-    "build": "turbo build -F client -F api",
-    "lint": "turbo lint -F client -F api",
-    "format": "turbo format -F client -F api",
-    "format:check": "turbo format:check -F client -F api",
-    "test:unit": "turbo test:unit -F client -F api",
-    "test:cov": "turbo test:cov -F client -F api",
-    "start": "turbo start -F db && concurrently \"turbo start -F api\" \"turbo prisma -F api && turbo prisma:seed -F api && turbo start -F client \"",
-    "prisma": "turbo prisma -F api",
-    "prisma:seed": "turbo prisma:seed -F api",
-    "start:server": "turbo start -F main-server",
-    "start:local": "turbo start -F db && turbo start -F main-server && concurrently \"turbo start -F api\" \"turbo prisma -F api && turbo prisma:seed -F api && turbo start -F client \""
-  },
-  "license": "ISC",
-  "workspaces": [
-    "apps/*"
-  ],
+  "description": "A desktop app for the library",
   "devDependencies": {
     "concurrently": "^8.2.1",
     "turbo": "v1.10.13"
-  }
+  },
+  "license": "ISC",
+  "name": "library-desktop",
+  "private": false,
+  "scripts": {
+    "build": "turbo build -F client -F api",
+    "dev": "concurrently \"turbo dev -F api\" \"turbo dev -F db && turbo prisma -F api && turbo prisma:seed -F api && turbo dev -F client \"",
+    "dev:windows": "concurrently \"turbo dev -F api\" \"turbo prisma -F api && turbo prisma:seed -F api && turbo dev -F client \"",
+    "format": "turbo format -F client -F api",
+    "format:check": "turbo format:check -F client -F api",
+    "lint": "turbo lint -F client -F api",
+    "prisma": "turbo prisma -F api",
+    "prisma:seed": "turbo prisma:seed -F api",
+    "start": "turbo start -F db && concurrently \"turbo start -F api\" \"turbo prisma -F api && turbo prisma:seed -F api && turbo start -F client \"",
+    "start:api": "turbo start -F db && concurrently \"turbo start -F api\" \"turbo prisma -F api && turbo prisma:seed -F api\"",
+    "start:local": "turbo start -F db && turbo start -F main-server && concurrently \"turbo start -F api\" \"turbo prisma -F api && turbo prisma:seed -F api && turbo start -F client \"",
+    "start:server": "turbo start -F main-server",
+    "test:cov": "turbo test:cov -F client -F api",
+    "test:unit": "turbo test:unit -F client -F api",
+    "up": "turbo up -F db"
+  },
+  "version": "0.0.1",
+  "workspaces": [
+    "apps/*"
+  ]
 }

@@ -9,36 +9,32 @@
     "dist-electron",
     "dist"
   ],
-  "mac": {
-    "artifactName": "${productName}_${version}.${ext}",
-    "target": [
-      "dmg"
-    ],
-    "icon": "./src/assets/logos/mac.icns"
-  },
-  "win": {
-    "target": [
-      {
-        "target": "nsis",
-        "arch": [
-          "x64"
-        ]
-      }
-    ],
-    "artifactName": "${productName}_${version}.${ext}",
-    "icon": "./src/assets/logos/windows.ico"
-  },
   "linux": {
+    "artifactName": "library_${version}.${ext}",
+    "category": "Utility",
+    "executableName": "Library",
+    "icon": "./public/library-logo.icns",
     "target": [
       "deb"
-    ],
-    "category": "Development",
-    "icon": "./src/assets/logos/linux.png"
+    ]
   },
   "nsis": {
-    "oneClick": false,
-    "perMachine": false,
     "allowToChangeInstallationDirectory": true,
-    "deleteAppDataOnUninstall": false
+    "deleteAppDataOnUninstall": true,
+    "oneClick": false,
+    "perMachine": false
+  },
+  "productName": "Library",
+  "win": {
+    "artifactName": "${productName}_${version}.${ext}",
+    "icon": "./src/assets/logos/windows.ico",
+    "target": [
+      {
+        "arch": [
+          "x64"
+        ],
+        "target": "msi"
+      }
+    ]
   }
 }
