@@ -1,25 +1,7 @@
 {
-  "name": "client",
-  "private": false,
-  "version": "0.0.1",
-  "description": "The client for a desktop app for the library",
   "author": {
-    "name": "El Chato Moreno y los otros",
-    "email": "morales.patty.jose@gmail.com"
-  },
-  "homepage": "http://localhost:5173",
-  "license": "ISC",
-  "scripts": {
-    "dev": "vite --host",
-    "dev:windows": "vite --host",
-    "build": "tsc && vite build && electron-builder",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --log-level warn --write \"**/**/*.{jsx,js,ts,tsx}\"",
-    "format:check": "prettier --check",
-    "preview": "vite preview",
-    "test:unit": "jest --coverageThreshold '{}' --passWithNoTests --no-cache",
-    "test": "jest --coverageThreshold '{}' --passWithNoTests --no-cache",
-    "start": "electron dist-electron/main.js "
+    "email": "morales.patty.jose@gmail.com",
+    "name": "El Chato Moreno y los otros"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -39,6 +21,7 @@
     "vite-tsconfig-paths": "^4.2.0",
     "zustand": "^4.4.1"
   },
+  "description": "The client for a desktop app for the library",
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.2",
     "@testing-library/react": "^14.0.0",
@@ -66,27 +49,44 @@
     "tailwindcss": "^3.3.3",
     "typescript": "^5.1.6"
   },
+  "eslintConfig": {
+    "extends": [
+      "./.eslintrc.cjs"
+    ]
+  },
+  "homepage": "http://localhost:5173",
   "jest": {
+    "moduleDirectories": [
+      "src",
+      "node_modules"
+    ],
     "moduleFileExtensions": [
       "js",
       "json",
       "ts"
     ],
     "rootDir": ".",
+    "testEnvironment": "node",
     "testRegex": ".*\\.test\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "testEnvironment": "node",
-    "moduleDirectories": [
-      "src",
-      "node_modules"
-    ]
+    }
   },
-  "eslintConfig": {
-    "extends": [
-      "./.eslintrc.cjs"
-    ]
+  "license": "ISC",
+  "main": "dist-electron/main.js",
+  "name": "client",
+  "private": false,
+  "scripts": {
+    "build": "tsc && vite build && electron-builder -l --config.extraMetadata.name=Library",
+    "dev": "vite --host",
+    "dev:windows": "vite --host",
+    "format": "prettier --log-level warn --write \"**/**/*.{jsx,js,ts,tsx}\"",
+    "format:check": "prettier --check",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "start": "electron dist-electron/main.js ",
+    "test": "jest --coverageThreshold '{}' --passWithNoTests --no-cache",
+    "test:unit": "jest --coverageThreshold '{}' --passWithNoTests --no-cache"
   },
-  "main": "dist-electron/main.js"
+  "version": "1.0.0"
 }
