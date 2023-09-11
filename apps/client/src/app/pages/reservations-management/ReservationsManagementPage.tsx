@@ -9,12 +9,14 @@ import { useEffect, useState } from 'react';
 function ReservationsManagementPage() {
   const { getReserves } = LibraryAPIService();
   const [reserves, setReserves] = useState<Reserve[]>([] as Reserve[]);
+  const [initState, setInitState] = useState<Reserve[]>([] as Reserve[]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function fetchData() {
       const response = await getReserves();
       setReserves(response);
+      setInitState(response);
       setIsLoading(false);
     }
 
@@ -23,11 +25,15 @@ function ReservationsManagementPage() {
 
   return (
     <GlobalList title='Reserves Management'>
-      <ReservesHeader />
-      <Line />
-      <ReservesFields />
-      <Line />
-      <ReserveList reserves={reserves} isLoading={isLoading} />
+      {!isLoading && (
+        <>
+          <ReservesHeader setReserves={setReserves} reserves={initState} />
+          <Line />
+          <ReservesFields />
+          <Line />
+          <ReserveList reserves={reserves} />
+        </>
+      )}
     </GlobalList>
   );
 }

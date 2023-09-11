@@ -24,9 +24,13 @@ function UserLoanHistory() {
 
   return (
     <GlobalList title='User Loans History'>
-      <LoanFields />
-      <Line />
-      <LoanList loans={loans} isLoading={isLoading} />
+      {!isLoading && (
+        <>
+          <LoanFields />
+          <Line />
+          <LoanList loans={loans} />
+        </>
+      )}
     </GlobalList>
   );
 }

@@ -10,11 +10,13 @@ function LoanManagementPage() {
   const { getLoans } = LibraryAPIService();
   const [loans, setLoans] = useState<Loan[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [initState, setInitState] = useState<Loan[]>([] as Loan[]);
 
   useEffect(() => {
     async function fetchData() {
       const response = await getLoans();
       setLoans(response);
+      setInitState(response);
       setIsLoading(false);
     }
 
@@ -23,11 +25,15 @@ function LoanManagementPage() {
 
   return (
     <GlobalList title='Loans Management'>
-      <LoanHeader />
-      <Line />
-      <LoanFields />
-      <Line />
-      <LoanList loans={loans} isLoading={isLoading} />
+      {!isLoading && (
+        <>
+          <LoanHeader setLoans={setLoans} loans={initState} />
+          <Line />
+          <LoanFields />
+          <Line />
+          <LoanList loans={loans} />
+        </>
+      )}
     </GlobalList>
   );
 }
