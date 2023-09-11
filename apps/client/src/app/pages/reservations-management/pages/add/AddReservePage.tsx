@@ -1,12 +1,16 @@
 import LibraryAPIService from '@api/LibraryAPI';
+import ErrorPopup from '@common-components/ErrorPopup';
 import GlobalForm from '@common-components/GlobalFrom';
 import GlobalSubmitButton from '@common-components/GlobalSubmitButton';
 import GlobalTextField from '@common-components/GlobalTextField';
+import { AxiosError } from 'axios';
 import { Form, Formik } from 'formik';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function AddReservePage() {
   const { createReserve } = LibraryAPIService();
+  const [error, setError] = useState<string>('');
   const navigate = useNavigate();
 
   return (
@@ -18,25 +22,30 @@ function AddReservePage() {
           executeDate: new Date(),
           returnDate: new Date()
         }}
-        onSubmit={values => {
-          createReserve({
-            reserve: {
-              clientId: values.clientId,
-              materialId: values.materialId,
-              executeDate: new Date(values.executeDate).toISOString(),
-              returnDate: new Date(values.returnDate).toISOString()
+        onSubmit={async values => {
+          try {
+            if (values.returnDate < values.executeDate) {
+              setError('Return date can not be before execute date');
+              return;
             }
-          })
-            .then()
-            .catch((error: Error) => {
-              throw new Error(error.message);
-            })
-            .finally(() => {
-              navigate('/reservations-management');
+            await createReserve({
+              reserve: {
+                clientId: values.clientId,
+                materialId: values.materialId,
+                executeDate: new Date(values.executeDate).toISOString(),
+                returnDate: new Date(values.returnDate).toISOString()
+              }
             });
+            navigate('/reservations-management');
+          } catch (err) {
+            if (!(err instanceof AxiosError)) return;
+            const response = err as ApiError;
+            setError(response.response.data.message);
+          }
         }}
       >
         <Form className='w-3/5 ml-36 flex flex-col gap-5 h-2/3 justify-center mb-32'>
+          {error && <ErrorPopup error={error} />}
           <GlobalTextField title='User ID:' name='clientId' type='number' />
           <GlobalTextField
             title='Material ID:'

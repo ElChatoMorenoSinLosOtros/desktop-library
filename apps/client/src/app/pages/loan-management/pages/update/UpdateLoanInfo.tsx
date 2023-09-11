@@ -1,7 +1,9 @@
 import LibraryAPIService from '@api/LibraryAPI';
+import ErrorPopup from '@common-components/ErrorPopup';
 import GlobalForm from '@common-components/GlobalFrom';
 import GlobalSubmitButton from '@common-components/GlobalSubmitButton';
 import GlobalTextField from '@common-components/GlobalTextField';
+import { AxiosError } from 'axios';
 import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -9,6 +11,7 @@ import UpdateReturnLoan from './components/UpdateReturnLoan';
 
 function UpdateLoanPage() {
   const { updateLoanById, getLoanById } = LibraryAPIService();
+  const [error, setError] = useState<string>('');
   const { id } = useParams<UpdateLoanPageParams>();
   const [loan, setLoan] = useState<Loan>({} as Loan);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -18,8 +21,8 @@ function UpdateLoanPage() {
       .then(resp => {
         setLoan(resp[0]);
       })
-      .catch((error: Error) => {
-        throw new Error(error.message);
+      .catch((err: Error) => {
+        throw new Error(err.message);
       })
       .finally(() => setIsLoaded(true));
   }, []);
@@ -40,26 +43,33 @@ function UpdateLoanPage() {
               returned: loan.returned ? 'true' : 'false'
             }}
             enableReinitialize
-            onSubmit={values => {
-              updateLoanById({
-                id: Number(id),
-                loan: {
-                  loanId: Number(values.loanId),
-                  clientId: Number(values.clientId),
-                  materialId: Number(values.materialId),
-                  loanDate: new Date(values.loanDate).toISOString(),
-                  returnDate: new Date(values.returnDate).toISOString(),
-                  returned: values.returned.toLowerCase() === 'true'
+            onSubmit={async values => {
+              try {
+                if (values.returnDate < values.loanDate) {
+                  setError('Return date can not be before loan date');
+                  return;
                 }
-              })
-                .then()
-                .catch((error: Error) => {
-                  throw new Error(error.message);
-                })
-                .finally(() => navigate('/loan-management'));
+                await updateLoanById({
+                  loan: {
+                    loanId: values.loanId,
+                    clientId: values.clientId,
+                    materialId: values.materialId,
+                    loanDate: new Date(values.loanDate).toISOString(),
+                    returnDate: new Date(values.returnDate).toISOString(),
+                    returned: values.returned === 'true'
+                  },
+                  id: Number(id)
+                });
+                navigate('/loan-management');
+              } catch (err) {
+                if (!(err instanceof AxiosError)) return;
+                const response = err as ApiError;
+                setError(response.response.data.message);
+              }
             }}
           >
             <Form className='w-3/5 ml-36 flex flex-col gap-5'>
+              {error && <ErrorPopup error={error} />}
               <GlobalTextField
                 title='Loan Id:'
                 name='loanId'

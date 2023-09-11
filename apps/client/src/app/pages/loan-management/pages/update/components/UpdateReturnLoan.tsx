@@ -1,6 +1,7 @@
 import LibraryAPIService from '@api/LibraryAPI';
 import Button from '@common-components/Button';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function UpdateReturnLoan({
   isReturned,
@@ -13,7 +14,7 @@ function UpdateReturnLoan({
 }) {
   const { createReturn } = LibraryAPIService();
   const [isAlreadyReturned, setIsAlreadyReturned] = useState(isReturned);
-
+  const navigate = useNavigate();
   return (
     <Button
       onClick={() => {
@@ -24,6 +25,7 @@ function UpdateReturnLoan({
           })
           .finally(() => {
             setIsAlreadyReturned(true);
+            navigate('/loan-management');
           });
       }}
       disabled={isAlreadyReturned}
