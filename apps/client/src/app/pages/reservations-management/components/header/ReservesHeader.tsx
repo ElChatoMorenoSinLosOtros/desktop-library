@@ -1,23 +1,22 @@
 import GlobalBlueButton from '@common-components/GlobalBlueButton.tsx';
 import GlobalSearchInput from '@common-components/GlobalSearchInput.tsx';
 import GlobalSelectFilter from '@common-components/GlobalSelectFilter.tsx';
-import React, { useState } from 'react';
+import { useSearchReserves } from '@hooks/reserves/useSearchReserves';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function ReservesHeader() {
-  const [selected, setSelected] = useState('');
-  const [inputValue, setInputValue] = useState('');
+interface Props {
+  reserves: Reserve[];
+  setReserves: React.Dispatch<React.SetStateAction<Reserve[]>>;
+}
+
+function ReservesHeader({ reserves, setReserves }: Props) {
   const navigate = useNavigate();
-
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    if (selected === event.target.value) return;
-    setSelected(event.target.value);
-  };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (inputValue === event.target.value) return;
-    setInputValue(event.target.value);
-  };
+  const { setInputValue, handleInputChange, handleSelectChange, inputValue } =
+    useSearchReserves({
+      reserves,
+      setReserves
+    });
 
   return (
     <div className='px-6 py-2 grid place-items-center grid-cols-6'>
@@ -31,13 +30,18 @@ function ReservesHeader() {
       >
         Add Reserve
       </GlobalBlueButton>
-      <GlobalBlueButton onClick={() => setInputValue('')}>
+      <GlobalBlueButton
+        onClick={() => {
+          setInputValue('');
+          setReserves(reserves);
+        }}
+      >
         See All
       </GlobalBlueButton>
       <GlobalSelectFilter
         handleSelectChange={handleSelectChange}
         defaultValue='Filter'
-        options={['ID', 'Material Type', 'Order Date', 'Reserved By']}
+        options={['Material ID', 'Client ID']}
       />
       <GlobalSearchInput
         inputValue={inputValue}
