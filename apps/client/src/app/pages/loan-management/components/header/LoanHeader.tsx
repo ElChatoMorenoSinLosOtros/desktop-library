@@ -37,15 +37,7 @@ function LoanHeader() {
       <GlobalSelectFilter
         handleSelectChange={handleSelectChange}
         defaultValue='Filter'
-        options={[
-          'ID',
-          'Type',
-          'Title',
-          'Borrower',
-          'Loan Date',
-          'Returned Date',
-          'Status'
-        ]}
+        options={['ID', 'Title', 'Borrower', 'Due Date', 'Status']}
       />
       <GlobalSearchInput
         inputValue={inputValue}
