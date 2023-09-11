@@ -10,12 +10,13 @@ function MaterialItem({ material }: { material: Material }) {
   const { removeMaterialById } = LibraryAPIService();
 
   return (
-    <div className='grid grid-cols-9 w-full px-6 gap-4'>
+    <div className='grid grid-cols-11 w-full px-6 gap-4'>
       <div>{material.materialId}</div>
-      <div>{material.title}</div>
-      <div>{material.category}</div>
+      <div className='col-span-2'>{material.title}</div>
+      <div className='col-span-2'>{material.category}</div>
+      <div>{material.quantity}</div>
       <div>{material.available ? 'True' : 'False'}</div>
-      <div className='col-span-2'>{material.type_material}</div>
+      <div>{material.type_material}</div>
       <MaterialActionButton
         onClick={() => {
           navigate(`/material-management/info/${material.materialId}`);

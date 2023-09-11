@@ -8,24 +8,33 @@ import UsersList from './components/users-list/UsersList';
 
 function PersonManagementPage() {
   const [users, setUsers] = useState<User[]>([]);
+  const [initState, setInitState] = useState<User[]>([]);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   const { getUsers } = LibraryAPIService();
 
   useEffect(() => {
-    getUsers()
-      .then(resp => setUsers(resp))
-      .catch((error: Error) => {
-        throw new Error(error.message);
-      });
+    async function fetchUsers() {
+      const resp = await getUsers();
+      setUsers(resp);
+      setInitState(resp);
+      setIsLoaded(true);
+    }
+
+    fetchUsers();
   }, []);
 
   return (
     <GlobalList title='Person Management'>
-      <PersonsHeader />
-      <Line />
-      <UserFields />
-      <Line />
-      <UsersList users={users} />
+      {isLoaded && (
+        <>
+          <PersonsHeader setUsers={setUsers} initState={initState} />
+          <Line />
+          <UserFields />
+          <Line />
+          <UsersList users={users} />
+        </>
+      )}
     </GlobalList>
   );
 }

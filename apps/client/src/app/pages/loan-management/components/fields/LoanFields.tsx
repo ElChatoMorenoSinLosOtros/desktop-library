@@ -9,7 +9,7 @@ function LoanFields() {
       <div className='w-full'>Material Title</div>
       <div className='w-full'>Borrower</div>
       <div className='w-full'>Loan Date</div>
-      <div className='w-full'>Return Date</div>
+      <div className='w-full'>Due Date</div>
       <div className='w-full'>Status</div>
       <div className='w-full text-center'>Info</div>
       <div className='w-full text-center'>Edit</div>

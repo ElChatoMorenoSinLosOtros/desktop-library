@@ -36,7 +36,7 @@ function LoanItem({ loan }: { loan: Loan }) {
       <div>{client.name}</div>
       <div>{loan.loanDate.toString().substring(0, 10)}</div>
       <div>{loan.returnDate.toString().substring(0, 10)}</div>
-      <div>{loan.returned ? 'True' : 'False'}</div>
+      <div>{loan.returned ? 'Returned' : 'Not returned'}</div>
       <LoanActionButton
         onClick={() => {
           navigate(`/loan-management/info/${loan.loanId}`);

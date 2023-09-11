@@ -59,6 +59,9 @@
       "@services/*": [
         "./src/app/services/*"
       ],
+      "@hooks/*": [
+        "./src/app/hooks/*"
+      ],
     }
   },
   "types": [

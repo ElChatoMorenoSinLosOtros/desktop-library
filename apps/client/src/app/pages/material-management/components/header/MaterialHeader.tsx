@@ -1,23 +1,22 @@
 import GlobalBlueButton from '@common-components/GlobalBlueButton';
 import GlobalSearchInput from '@common-components/GlobalSearchInput';
 import GlobalSelectFilter from '@common-components/GlobalSelectFilter';
-import React, { useState } from 'react';
+import { useSearchMaterials } from '@hooks/materials/useSearchMaterials';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function MaterialHeader() {
-  const [selected, setSelected] = useState('');
-  const [inputValue, setInputValue] = useState('');
+interface Props {
+  setMaterials: React.Dispatch<React.SetStateAction<Material[]>>;
+  materials: Material[];
+}
+
+function MaterialHeader({ materials, setMaterials }: Props) {
   const navigate = useNavigate();
-
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    if (selected === event.target.value) return;
-    setSelected(event.target.value);
-  };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (inputValue === event.target.value) return;
-    setInputValue(event.target.value);
-  };
+  const { handleInputChange, handleSelectChange, inputValue, setInputValue } =
+    useSearchMaterials({
+      materials,
+      setMaterials
+    });
 
   return (
     <div className='px-6 py-2 grid place-items-center grid-cols-6'>
@@ -31,13 +30,25 @@ function MaterialHeader() {
       >
         Add Material
       </GlobalBlueButton>
-      <GlobalBlueButton onClick={() => setInputValue('')}>
+      <GlobalBlueButton
+        onClick={() => {
+          setInputValue('');
+          setMaterials(materials);
+        }}
+      >
         See All
       </GlobalBlueButton>
       <GlobalSelectFilter
         handleSelectChange={handleSelectChange}
         defaultValue='Filter'
-        options={['ID', 'Title', 'Category', 'Available', 'Type Material']}
+        options={[
+          'ID',
+          'Title',
+          'Category',
+          'Available',
+          'Type Material',
+          'Quantity'
+        ]}
       />
       <GlobalSearchInput
         inputValue={inputValue}

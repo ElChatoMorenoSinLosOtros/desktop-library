@@ -8,23 +8,32 @@ import MaterialList from './components/list/MaterialList';
 
 function MaterialManagementPage() {
   const { getMaterials } = LibraryAPIService();
-  const [materials, setMaterials] = useState<Material[]>([]);
+  const [materials, setMaterials] = useState<Material[]>([] as Material[]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [initState, setInitState] = useState<Material[]>([] as Material[]);
 
   useEffect(() => {
-    getMaterials()
-      .then(res => setMaterials(res))
-      .catch((error: Error) => {
-        throw new Error(error.message);
-      });
+    async function fetchData() {
+      const resp = await getMaterials();
+      setMaterials(resp);
+      setInitState(resp);
+      setLoading(false);
+    }
+
+    fetchData();
   }, []);
 
   return (
     <GlobalList title='Materials Management'>
-      <MaterialHeader />
-      <Line />
-      <MaterialFields />
-      <Line />
-      <MaterialList materials={materials} />
+      {!loading && (
+        <>
+          <MaterialHeader setMaterials={setMaterials} materials={initState} />
+          <Line />
+          <MaterialFields />
+          <Line />
+          <MaterialList materials={materials} />
+        </>
+      )}
     </GlobalList>
   );
 }

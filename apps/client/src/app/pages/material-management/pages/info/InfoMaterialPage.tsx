@@ -66,7 +66,13 @@ function InfoMaterialPage() {
           >
             Loan
           </GlobalButton>
-          <GlobalButton onClick={() => {}}>Reservation</GlobalButton>
+          <GlobalButton
+            onClick={() => {
+              navigate('/reservations-management/add');
+            }}
+          >
+            Reservation
+          </GlobalButton>
         </div>
       </div>
     </GlobalInfoForm>

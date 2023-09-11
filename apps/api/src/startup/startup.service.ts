@@ -67,7 +67,7 @@ export default class StartupService implements OnModuleInit {
   private async checkMaterialsService() {
     const lowStockMaterials = await this.materialService.getLowStockMaterials();
     return lowStockMaterials.map(material => ({
-      notificationName: `Material ${material.materialId} has low stock`,
+      notificationName: `Material ${material.title} has low stock`,
       notificationType: 'Material',
       notificationContent: `Material with ID ${material.materialId} has low stock. Please reorder.`,
       materialId: material.materialId

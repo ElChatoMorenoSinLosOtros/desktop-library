@@ -6,12 +6,9 @@ import Button from './Button';
 function DeleteButton({
   onClick,
   className,
-  type
-}: {
-  onClick: () => void;
-  className: string;
-  type: string;
-}) {
+  type,
+  children = undefined
+}: DeleteButtonFProps) {
   const { setOnClick, setType } = useDeleteStore();
   const navigate = useNavigate();
 
@@ -28,7 +25,7 @@ function DeleteButton({
         navigate('/delete');
       }}
     >
-      <DeleteForeverIcon fontSize='inherit' />
+      {children || <DeleteForeverIcon fontSize='inherit' />}
     </Button>
   );
 }
