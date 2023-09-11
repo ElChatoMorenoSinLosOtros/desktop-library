@@ -1,54 +1,43 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
+    "allowImportingTsExtensions": true,
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
     "lib": [
       "ES2020",
       "DOM",
       "DOM.Iterable"
     ],
     "module": "ESNext",
-    "skipLibCheck": true,
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "strict": true,
+    "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./",
-    "esModuleInterop": true,
     "paths": {
-      "@/node": [
-        "./node:path"
-      ],
       "@/*": [
         "./src/*"
       ],
-      "@src/*": [
-        "./src/app/*"
-      ],
-      "@pages/*": [
-        "./src/app/pages/*"
-      ],
-      "@common-components/*": [
-        "./src/app/common-components/*"
+      "@/node": [
+        "./node:path"
       ],
       "@api/*": [
         "./src/app/api/*"
       ],
-      "@store/*": [
-        "./src/store/*"
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@common-components/*": [
+        "./src/app/common-components/*"
       ],
       "@components/*": [
         "./src/app/components/*"
       ],
-      "@assets/*": [
-        "./src/assets/*"
+      "@hooks/*": [
+        "./src/app/hooks/*"
       ],
       "@images/*": [
         "./src/assets/images/*"
@@ -56,23 +45,31 @@
       "@menus/*": [
         "./src/assets/menus/*"
       ],
+      "@pages/*": [
+        "./src/app/pages/*"
+      ],
       "@services/*": [
         "./src/app/services/*"
       ],
-      "@hooks/*": [
-        "./src/app/hooks/*"
+      "@src/*": [
+        "./src/app/*"
       ],
-    }
+      "@store/*": [
+        "./src/store/*"
+      ]
+    },
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2020",
+    "useDefineForClassFields": true
   },
-  "types": [
-    "./src/globals",
-  ],
   "include": [
     "src",
     "electron",
-    "regex",
-    "regex/*.ts",
-    "regex/**/*.ts",
+    "src/regex",
+    "src/regex/*.ts",
+    "src/regex/**/*.ts",
     "*.ts",
     "*.js",
     "*.tsx",
@@ -94,5 +91,8 @@
     {
       "path": "./tsconfig.node.json"
     }
+  ],
+  "types": [
+    "./src/globals",
   ]
 }

@@ -2,7 +2,7 @@ import {
   isPositiveNumber,
   validateISBN,
   validatePhoneNumber
-} from '../../regex/regex';
+} from '../../src/app/services/regexService';
 
 describe('regex isPositiveNumber tests', () => {
   it('should return true if number is greater than 0', async () => {

@@ -29,4 +29,3 @@ export function validatePhoneNumber(textToCheck: string): Promise<boolean> {
     }
   });
 }
-
