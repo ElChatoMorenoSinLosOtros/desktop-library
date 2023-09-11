@@ -1,4 +1,5 @@
 import LibraryAPIService from '@api/LibraryAPI';
+import ErrorPopup from '@common-components/ErrorPopup';
 import GlobalForm from '@common-components/GlobalFrom';
 import GlobalSubmitButton from '@common-components/GlobalSubmitButton';
 import GlobalTextField from '@common-components/GlobalTextField';
@@ -54,14 +55,7 @@ function AddAdminPage() {
         }}
       >
         <Form className='flex flex-col h-full pb-12 gap-16 w-full'>
-          {error && (
-            <div
-              className=' text-white text-center font-bold rounded-lg absolute
-            left-0 right-0 top-0 mt-40 flex justify-center font-roboto'
-            >
-              <div className='bg-red-500 px-5 py-3 rounded-xl'>{error}</div>
-            </div>
-          )}
+          {error && <ErrorPopup error={error} />}
           <div className='w-full gap-12 flex px-24 justify-between'>
             <GlobalTextField
               title='Email:'
