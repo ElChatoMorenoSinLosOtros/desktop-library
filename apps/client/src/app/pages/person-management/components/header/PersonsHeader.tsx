@@ -30,7 +30,12 @@ function PersonsHeader({ setUsers, initState }: Props) {
       >
         Add Person
       </GlobalBlueButton>
-      <GlobalBlueButton onClick={() => setInputValue('')}>
+      <GlobalBlueButton
+        onClick={() => {
+          setInputValue('');
+          setUsers(initState);
+        }}
+      >
         See All
       </GlobalBlueButton>
       <GlobalSelectFilter

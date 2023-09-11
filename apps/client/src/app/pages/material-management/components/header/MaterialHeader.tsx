@@ -30,7 +30,12 @@ function MaterialHeader({ materials, setMaterials }: Props) {
       >
         Add Material
       </GlobalBlueButton>
-      <GlobalBlueButton onClick={() => setInputValue('')}>
+      <GlobalBlueButton
+        onClick={() => {
+          setInputValue('');
+          setMaterials(materials);
+        }}
+      >
         See All
       </GlobalBlueButton>
       <GlobalSelectFilter
