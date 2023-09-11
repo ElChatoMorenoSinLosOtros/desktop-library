@@ -552,4 +552,11 @@ declare global {
   type CreateReserveResponse = Reserve;
 
   type GetReservesResponse = Reserve[];
+
+  type DeleteButtonFProps = {
+    onClick: () => void;
+    className: string;
+    type: string;
+    children?: React.ReactNode;
+  };
 }

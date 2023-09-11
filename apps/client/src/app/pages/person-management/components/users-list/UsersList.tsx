@@ -1,6 +1,10 @@
 import UserItemList from './components/user/UserItemList';
 
-function UsersList({ users }: { users: User[] }) {
+interface Props {
+  users: User[];
+}
+
+function UsersList({ users }: Props) {
   return (
     <div
       className={`h-full overflow-auto mt-2 ${

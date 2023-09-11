@@ -74,7 +74,7 @@ function FinesItem({ fine }: { fine: Fine }) {
 
       <DeleteButton
         className='text-center text-2xl'
-        type='Loan'
+        type='Fine'
         onClick={() => {
           removeFineById({ id: fine.fineId })
             .then()

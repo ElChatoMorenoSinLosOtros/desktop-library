@@ -1,5 +1,6 @@
 import LibraryAPIService from '@api/LibraryAPI';
 import DeleteButton from '@common-components/DeleteButton';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 import { useNavigate } from 'react-router-dom';
 
 function NotificationsItem({ notify }: { notify: Notify }) {
@@ -26,7 +27,9 @@ function NotificationsItem({ notify }: { notify: Notify }) {
         }}
         className='text-center text-2xl grid place-content-center ml-3'
         type='Notification'
-      />
+      >
+        <DoneAllIcon fontSize='inherit' />
+      </DeleteButton>
     </div>
   );
 }

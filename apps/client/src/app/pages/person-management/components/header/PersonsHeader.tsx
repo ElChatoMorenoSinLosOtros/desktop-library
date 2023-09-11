@@ -1,23 +1,22 @@
 import GlobalBlueButton from '@common-components/GlobalBlueButton';
 import GlobalSearchInput from '@common-components/GlobalSearchInput';
 import GlobalSelectFilter from '@common-components/GlobalSelectFilter';
-import { ChangeEvent, useState } from 'react';
+import { useSearchPersons } from '@hooks/persons/useSearchPersons';
 import { useNavigate } from 'react-router-dom';
 
-function PersonsHeader() {
-  const [selected, setSelected] = useState('');
-  const [inputValue, setInputValue] = useState('');
+interface Props {
+  setUsers: React.Dispatch<React.SetStateAction<User[]>>;
+  initState: User[];
+}
+
+function PersonsHeader({ setUsers, initState }: Props) {
   const navigate = useNavigate();
 
-  const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    if (selected === event.target.value) return;
-    setSelected(event.target.value);
-  };
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (inputValue === event.target.value) return;
-    setInputValue(event.target.value);
-  };
+  const { handleInputChange, handleSelectChange, inputValue, setInputValue } =
+    useSearchPersons({
+      persons: initState,
+      setPersons: setUsers
+    });
 
   return (
     <div className='px-6 py-2 grid place-items-center grid-cols-6'>
@@ -31,7 +30,12 @@ function PersonsHeader() {
       >
         Add Person
       </GlobalBlueButton>
-      <GlobalBlueButton onClick={() => setInputValue('')}>
+      <GlobalBlueButton
+        onClick={() => {
+          setInputValue('');
+          setUsers(initState);
+        }}
+      >
         See All
       </GlobalBlueButton>
       <GlobalSelectFilter
