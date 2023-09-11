@@ -20,7 +20,7 @@ function LoanHeader() {
   };
 
   return (
-    <div className='px-6 py-2 grid place-items-center grid-cols-5'>
+    <div className='px-6 py-2 grid place-items-center grid-cols-6'>
       <div className='font-russo text-3xl text-[#0D1B2A]/75 text-start w-full'>
         List Loans
       </div>
@@ -30,6 +30,9 @@ function LoanHeader() {
         }}
       >
         Add Loan
+      </GlobalBlueButton>
+      <GlobalBlueButton onClick={() => setInputValue('')}>
+        See All
       </GlobalBlueButton>
       <GlobalSelectFilter
         handleSelectChange={handleSelectChange}
