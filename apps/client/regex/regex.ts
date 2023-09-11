@@ -1,6 +1,6 @@
-function isGreaterThanZero(numberToCheck: number): Promise<boolean> {
+export function isPositiveNumber(numberToCheck: string): Promise<boolean> {
   return new Promise((resolve, reject) => {
-    if (numberToCheck > 0) {
+    if (parseFloat(numberToCheck) >= 0) {
       resolve(true);
     } else {
       reject(new Error('number is negative'));
@@ -8,7 +8,7 @@ function isGreaterThanZero(numberToCheck: number): Promise<boolean> {
   });
 }
 
-function validateISBN(textToCheck: string): Promise<boolean> {
+export function validateISBN(textToCheck: string): Promise<boolean> {
   const regex = /^\d{3}-\d{10}$/;
   return new Promise((resolve, reject) => {
     if (regex.test(textToCheck)) {
@@ -19,7 +19,7 @@ function validateISBN(textToCheck: string): Promise<boolean> {
   });
 }
 
-function validatePhoneNumber(textToCheck: string): Promise<boolean> {
+export function validatePhoneNumber(textToCheck: string): Promise<boolean> {
   const regex = /^\d{8}$/;
   return new Promise((resolve, reject) => {
     if (regex.test(textToCheck)) {
@@ -30,4 +30,3 @@ function validatePhoneNumber(textToCheck: string): Promise<boolean> {
   });
 }
 
-export default { isGreaterThanZero, validateISBN, validatePhoneNumber };
