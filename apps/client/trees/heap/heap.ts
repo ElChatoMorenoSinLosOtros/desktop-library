@@ -108,4 +108,25 @@ export default class Heap<T> {
   public size(): number {
     return this.data.length;
   }
+
+  public update(index: number, newValue: T): void {
+    if (index < 0 || index >= this.data.length) {
+      throw new Error("Index out of bounds");
+    }
+
+    this.data[index] = newValue;
+
+    let currentIndex = index;
+    let parentIndex = Math.floor((currentIndex - 1) / 2);
+
+    if (parentIndex >= 0 && this.compare(this.data[currentIndex], this.data[parentIndex]) > 0) {
+      while (currentIndex > 0 && this.compare(this.data[currentIndex], this.data[parentIndex]) > 0) {
+        this.swap(currentIndex, parentIndex);
+        currentIndex = parentIndex;
+        parentIndex = Math.floor((currentIndex - 1) / 2);
+      }
+    } else {
+      this.heapify(currentIndex);
+    }
+  }
 }
