@@ -3,7 +3,7 @@ export function isPositiveNumber(numberToCheck: string): Promise<boolean> {
     if (parseFloat(numberToCheck) >= 0) {
       resolve(true);
     } else {
-      reject(new Error('number is negative'));
+      reject(new Error('Invalid Number'));
     }
   });
 }
@@ -14,7 +14,7 @@ export function validateISBN(textToCheck: string): Promise<boolean> {
     if (regex.test(textToCheck)) {
       resolve(true);
     } else {
-      reject(new Error('invalid ISBN'));
+      reject(new Error('Invalid ISBN'));
     }
   });
 }
@@ -25,7 +25,7 @@ export function validatePhoneNumber(textToCheck: string): Promise<boolean> {
     if (regex.test(textToCheck)) {
       resolve(true);
     } else {
-      reject(new Error('invalid phone'));
+      reject(new Error('Invalid phone number'));
     }
   });
 }

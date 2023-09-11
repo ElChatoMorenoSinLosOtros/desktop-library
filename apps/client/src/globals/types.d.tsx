@@ -559,4 +559,13 @@ declare global {
     type: string;
     children?: React.ReactNode;
   };
+
+  class ApiError {
+    response: {
+      data: {
+        statusCode: number;
+        message: string;
+      };
+    };
+  }
 }

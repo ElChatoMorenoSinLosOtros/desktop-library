@@ -1,4 +1,5 @@
 import LibraryAPIService from '@api/LibraryAPI';
+import ErrorPopup from '@common-components/ErrorPopup';
 import GlobalForm from '@common-components/GlobalFrom';
 import GlobalSubmitButton from '@common-components/GlobalSubmitButton';
 import GlobalTextField from '@common-components/GlobalTextField';
@@ -12,6 +13,7 @@ function NewDataMaterialPage() {
   const [material, setMaterial] = useState<Material>(INIT_STATE);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { getMaterialById, updateMaterialById } = LibraryAPIService();
+  const [error, setError] = useState<string>('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,8 +22,8 @@ function NewDataMaterialPage() {
         setMaterial(res);
         setIsLoading(true);
       })
-      .catch((error: Error) => {
-        throw new Error(error.message);
+      .catch((err: Error) => {
+        throw new Error(err.message);
       });
     setIsLoading(true);
   }, []);
@@ -43,18 +45,25 @@ function NewDataMaterialPage() {
               type_material: `${material.type_material}`
             }}
             enableReinitialize
-            onSubmit={(values: MaterialWithOutID) => {
-              updateMaterialById({ id: Number(id), material: values })
-                .then()
-                .catch((error: Error) => {
-                  throw new Error(error.message);
-                })
-                .finally(() => {
-                  navigate('/material-management');
-                });
+            onSubmit={async (values: MaterialWithOutID) => {
+              try {
+                if (
+                  values.type_material !== 'Book' &&
+                  values.type_material !== 'Magazine'
+                ) {
+                  setError('Type material must be Book or Magazine');
+                  return;
+                }
+                await updateMaterialById({ id: Number(id), material: values });
+                navigate('/material-management');
+              } catch (err) {
+                if (!(err instanceof Error)) return;
+                setError(err.message);
+              }
             }}
           >
             <Form className='mx-16 grid grid-cols-2 gap-16'>
+              {error && <ErrorPopup error={error} />}
               <GlobalTextField title='New Title:' name='title' />
               <GlobalTextField title='New Author:' name='author' />
               <GlobalTextField title='New Category:' name='category' />

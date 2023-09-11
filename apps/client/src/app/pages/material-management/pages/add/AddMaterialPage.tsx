@@ -1,12 +1,16 @@
+import ErrorPopup from '@common-components/ErrorPopup';
+import { validateISBN } from '@services/regexService';
 import LibraryAPIService from '@api/LibraryAPI';
 import GlobalForm from '@common-components/GlobalFrom';
 import GlobalSubmitButton from '@common-components/GlobalSubmitButton';
 import GlobalTextField from '@common-components/GlobalTextField';
 import { Form, Formik } from 'formik';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function AddMaterialPage() {
   const { createMaterial } = LibraryAPIService();
+  const [error, setError] = useState<string>('');
   const navigate = useNavigate();
 
   return (
@@ -23,18 +27,27 @@ function AddMaterialPage() {
           available: true,
           type_material: ''
         }}
-        onSubmit={(values: MaterialWithOutID) => {
-          createMaterial({ material: values })
-            .then()
-            .catch((error: Error) => {
-              throw new Error(error.message);
-            })
-            .finally(() => {
-              navigate('/material-management');
-            });
+        onSubmit={async (values: MaterialWithOutID) => {
+          try {
+            if (
+              values.type_material !== 'Book' &&
+              values.type_material !== 'Magazine'
+            ) {
+              setError('Type material must be Book or Magazine');
+              return;
+            }
+            await validateISBN(values.isbn);
+            await createMaterial({ material: values });
+
+            navigate('/material-management');
+          } catch (err) {
+            if (!(err instanceof Error)) return;
+            setError(err.message);
+          }
         }}
       >
         <Form className='mx-16 grid grid-cols-2 gap-16'>
+          {error && <ErrorPopup error={error} />}
           <GlobalTextField title='Title:' name='title' />
           <GlobalTextField title='Author:' name='author' />
           <GlobalTextField title='Category:' name='category' />

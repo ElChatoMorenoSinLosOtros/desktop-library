@@ -1,8 +1,10 @@
 import LibraryAPIService from '@api/LibraryAPI';
+import ErrorPopup from '@common-components/ErrorPopup';
 import GlobalButton from '@common-components/GlobalButton';
 import GlobalForm from '@common-components/GlobalFrom';
 import GlobalSubmitButton from '@common-components/GlobalSubmitButton';
 import GlobalTextField from '@common-components/GlobalTextField';
+import { AxiosError } from 'axios';
 import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -12,6 +14,7 @@ function UpdateReservePage() {
   const { id } = useParams<UpdateReservePageParams>();
   const [reserve, setReserve] = useState<Reserve>({} as Reserve);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
     async function fetchData() {
@@ -40,27 +43,34 @@ function UpdateReservePage() {
               executed: reserve.executed
             }}
             enableReinitialize
-            onSubmit={values => {
-              updateReserveById({
-                id: Number(id),
-                reserve: {
-                  reserveId: reserve.reserveId,
-                  clientId: reserve.clientId,
-                  materialId: values.materialId,
-                  reserveDate: new Date(values.reserveDate).toISOString(),
-                  executeDate: new Date(values.executeDate).toISOString(),
-                  returnDate: new Date(values.returnDate).toISOString(),
-                  executed: reserve.executed
+            onSubmit={async values => {
+              try {
+                if (values.returnDate < values.executeDate) {
+                  setError('Return date can not be before execute date');
+                  return;
                 }
-              })
-                .then()
-                .catch((error: Error) => {
-                  throw new Error(error.message);
-                })
-                .finally(() => navigate('/reservations-management'));
+                await updateReserveById({
+                  id: Number(id),
+                  reserve: {
+                    reserveId: reserve.reserveId,
+                    clientId: values.clientId,
+                    materialId: values.materialId,
+                    reserveDate: new Date(reserve.reserveDate).toISOString(),
+                    executeDate: new Date(values.executeDate).toISOString(),
+                    returnDate: new Date(values.returnDate).toISOString(),
+                    executed: reserve.executed
+                  }
+                });
+                navigate('/reservations-management');
+              } catch (err) {
+                if (!(err instanceof AxiosError)) return;
+                const response = err as ApiError;
+                setError(response.response.data.message);
+              }
             }}
           >
             <Form className='w-3/5 ml-36 flex flex-col gap-5'>
+              {error && <ErrorPopup error={error} />}
               <GlobalTextField
                 title='Reserve ID:'
                 name='reserveId'

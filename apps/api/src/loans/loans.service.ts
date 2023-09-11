@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import PrismaService from '@pr-prisma/prisma.service';
 import CreateLoanDto from './dto/create-loan.dto';
 import UpdateLoanDto from './dto/update-loan.dto';
@@ -16,14 +16,22 @@ export default class LoansService {
       returned: createLoanDto.returned
     };
 
-    const { materialId } = createLoanDto;
+    const { materialId, clientId } = createLoanDto;
 
     const material = await this.prisma.material.findUnique({
       where: { materialId }
     });
 
+    const client = await this.prisma.client.findUnique({
+      where: { clientId }
+    });
+
+    if (!client) {
+      throw new HttpException('Client not available', HttpStatus.BAD_REQUEST);
+    }
+
     if (!material || material.quantity === 0) {
-      throw new Error('Material not available');
+      throw new HttpException('Material not available', HttpStatus.BAD_REQUEST);
     }
 
     const createdLoan = await this.prisma.loan.create({
@@ -54,7 +62,25 @@ export default class LoansService {
     });
   }
 
-  update(loanId: number, updateLoanDto: UpdateLoanDto) {
+  async update(loanId: number, updateLoanDto: UpdateLoanDto) {
+    const { materialId, clientId } = updateLoanDto;
+
+    const material = await this.prisma.material.findUnique({
+      where: { materialId }
+    });
+
+    const client = await this.prisma.client.findUnique({
+      where: { clientId }
+    });
+
+    if (!client) {
+      throw new HttpException('Client not available', HttpStatus.BAD_REQUEST);
+    }
+
+    if (!material) {
+      throw new HttpException('Material not available', HttpStatus.BAD_REQUEST);
+    }
+
     return this.prisma.loan.update({
       where: { loanId },
       data: updateLoanDto

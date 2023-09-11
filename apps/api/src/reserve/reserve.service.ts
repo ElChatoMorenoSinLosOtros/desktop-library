@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import PrismaService from '@pr-prisma/prisma.service';
 
 import CreateReserveDto from './dto/create-reserve.dto';
@@ -8,7 +8,20 @@ import UpdateReserveDto from './dto/update-reserve.dto';
 export default class ReserveService {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(createReserveDto: CreateReserveDto) {
+  async create(createReserveDto: CreateReserveDto) {
+    const { materialId, clientId } = createReserveDto;
+    const material = await this.prisma.material.findUnique({
+      where: { materialId }
+    });
+    const client = await this.prisma.client.findUnique({
+      where: { clientId }
+    });
+    if (!client) {
+      throw new HttpException('Client not available', HttpStatus.BAD_REQUEST);
+    }
+    if (!material) {
+      throw new HttpException('Material not available', HttpStatus.BAD_REQUEST);
+    }
     return this.prisma.reserve.create({
       data: createReserveDto
     });
@@ -24,7 +37,20 @@ export default class ReserveService {
     });
   }
 
-  update(reserveId: number, updateReserveDto: UpdateReserveDto) {
+  async update(reserveId: number, updateReserveDto: UpdateReserveDto) {
+    const { materialId, clientId } = updateReserveDto;
+    const material = await this.prisma.material.findUnique({
+      where: { materialId }
+    });
+    const client = await this.prisma.client.findUnique({
+      where: { clientId }
+    });
+    if (!client) {
+      throw new HttpException('Client not available', HttpStatus.BAD_REQUEST);
+    }
+    if (!material) {
+      throw new HttpException('Material not available', HttpStatus.BAD_REQUEST);
+    }
     return this.prisma.reserve.update({
       where: { reserveId },
       data: updateReserveDto

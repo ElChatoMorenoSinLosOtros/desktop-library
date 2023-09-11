@@ -20,13 +20,9 @@ describe('regex isPositiveNumber tests', () => {
   });
 
   it('should return new Error if number is lower than 0', async () => {
-    await expect(isPositiveNumber('-2')).rejects.toThrow('number is negative');
-    await expect(isPositiveNumber('-123')).rejects.toThrow(
-      'number is negative'
-    );
-    await expect(isPositiveNumber('-5.4')).rejects.toThrow(
-      'number is negative'
-    );
+    await expect(isPositiveNumber('-2')).rejects.toThrow('Invalid Number');
+    await expect(isPositiveNumber('-123')).rejects.toThrow('Invalid Number');
+    await expect(isPositiveNumber('-5.4')).rejects.toThrow('Invalid Number');
   });
 });
 
@@ -40,15 +36,15 @@ describe('regex validateISBN tests', () => {
     expect(result).toBe(true);
   });
   it('should return new Error if ISBN is not according to ISBN format', async () => {
-    await expect(validateISBN('1234567890123')).rejects.toThrow('invalid ISBN');
+    await expect(validateISBN('1234567890123')).rejects.toThrow('Invalid ISBN');
     await expect(validateISBN('123-123123123123')).rejects.toThrow(
-      'invalid ISBN'
+      'Invalid ISBN'
     );
     await expect(validateISBN('123----123123123')).rejects.toThrow(
-      'invalid ISBN'
+      'Invalid ISBN'
     );
     await expect(validateISBN('12-12312312312')).rejects.toThrow(
-      'invalid ISBN'
+      'Invalid ISBN'
     );
   });
 });
@@ -64,11 +60,13 @@ describe('regex validatePhoneNumber test', () => {
   });
   it('should return new Error if number is not according to phone number format', async () => {
     await expect(validatePhoneNumber('123456789')).rejects.toThrow(
-      'invalid phone'
+      'Invalid phone number'
     );
     await expect(validatePhoneNumber('123f23424')).rejects.toThrow(
-      'invalid phone'
+      'Invalid phone number'
     );
-    await expect(validatePhoneNumber('091')).rejects.toThrow('invalid phone');
+    await expect(validatePhoneNumber('091')).rejects.toThrow(
+      'Invalid phone number'
+    );
   });
 });
