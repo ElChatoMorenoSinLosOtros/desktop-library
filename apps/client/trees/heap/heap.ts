@@ -109,20 +109,19 @@ export default class Heap<T> {
     return this.data.length;
   }
 
-  public update(index: number, newValue: T): void {
-    if (index < 0 || index >= this.data.length) {
-      throw new Error('Index out of bounds');
+  public update(oldItem: T, newItem: T): void {
+    const index = this.data.findIndex(item => item === oldItem);
+
+    if (index === -1) {
+      return;
     }
 
-    this.data[index] = newValue;
+    this.data[index] = newItem;
 
     let currentIndex = index;
     let parentIndex = Math.floor((currentIndex - 1) / 2);
 
-    if (
-      parentIndex >= 0 &&
-      this.compare(this.data[currentIndex], this.data[parentIndex]) > 0
-    ) {
+    if (parentIndex >= 0 && this.compare(newItem, this.data[parentIndex]) > 0) {
       while (
         currentIndex > 0 &&
         this.compare(this.data[currentIndex], this.data[parentIndex]) > 0

@@ -179,4 +179,39 @@ describe('Heap', () => {
     minHeap.delete(material4);
     expect(minHeap.extractMax()).toBeUndefined();
   });
+
+  test('updateMaterial', () => {
+    const maxHeap = new Heap<Material>((a, b) => a.materialId - b.materialId);
+
+    const material1: Material = {
+      materialId: 1,
+      title: 'Libro de Ciencia',
+      author: 'Autor A',
+      category: 'Ciencia',
+      isbn: '978-1234567890',
+      publicationYear: 2020,
+      pageCount: 300,
+      quantity: 5,
+      available: true,
+      type_material: 'Libro'
+    };
+
+    maxHeap.insert(material1);
+    const updatedMaterial: Material = {
+      materialId: 1,
+      title: 'Nuevo Libro de Ciencia',
+      author: 'Nuevo Autor',
+      category: 'Ciencia',
+      isbn: '978-1111111111',
+      publicationYear: 2023,
+      pageCount: 400,
+      quantity: 10,
+      available: true,
+      type_material: 'Libro'
+    };
+
+    maxHeap.update(material1, updatedMaterial);
+
+    expect(maxHeap.extractMax()).toEqual(updatedMaterial);
+  });
 });
