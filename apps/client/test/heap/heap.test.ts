@@ -110,4 +110,73 @@ describe('Heap', () => {
     expect(minHeap.extractMax()).toBe(material2);
     expect(minHeap.extractMax()).toBe(material3);
   });
+  test('deleteFromHeap', () => {
+    const minHeap = new Heap<Material>((a, b) => b.materialId - a.materialId);
+    const material1: Material = {
+      materialId: 1,
+      title: 'Libro de Ciencia',
+      author: 'Autor A',
+      category: 'Ciencia',
+      isbn: '978-1234567890',
+      publicationYear: 2020,
+      pageCount: 300,
+      quantity: 5,
+      available: true,
+      type_material: 'Libro'
+    };
+
+    const material2: Material = {
+      materialId: 2,
+      title: 'Revista de Historia',
+      author: 'Autor B',
+      category: 'Historia',
+      isbn: '978-0987654321',
+      publicationYear: 2022,
+      pageCount: 50,
+      quantity: 10,
+      available: false,
+      type_material: 'Revista'
+    };
+
+    const material3: Material = {
+      materialId: 3,
+      title: 'Película de Aventuras',
+      author: 'Director C',
+      category: 'Aventuras',
+      isbn: 'N/A',
+      publicationYear: 2021,
+      pageCount: 0,
+      quantity: 3,
+      available: true,
+      type_material: 'Película'
+    };
+
+    const material4: Material = {
+      materialId: 4,
+      title: 'Película de Aventuras',
+      author: 'Director C',
+      category: 'Aventuras',
+      isbn: 'N/A',
+      publicationYear: 2021,
+      pageCount: 0,
+      quantity: 3,
+      available: true,
+      type_material: 'Película'
+    };
+
+    minHeap.insert(material1);
+    minHeap.insert(material2);
+    minHeap.insert(material3);
+    minHeap.insert(material4);
+
+    minHeap.delete(material1);
+    expect(minHeap.extractMax()).toBe(material2);
+
+    minHeap.delete(material3);
+    expect(minHeap.extractMax()).toBe(material4);
+
+    minHeap.delete(material2);
+    minHeap.delete(material4);
+    expect(minHeap.extractMax()).toBeUndefined();
+  });
 });
