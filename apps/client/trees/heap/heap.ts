@@ -141,4 +141,30 @@ export default class Heap<T> {
       this.data = [];
     }
   }
+
+  public update(oldItem: T, newItem: T): void {
+    const index = this.data.findIndex(item => item === oldItem);
+
+    if (index === -1) {
+      return;
+    }
+
+    this.data[index] = newItem;
+
+    let currentIndex = index;
+    let parentIndex = Math.floor((currentIndex - 1) / 2);
+
+    if (parentIndex >= 0 && this.compare(newItem, this.data[parentIndex]) > 0) {
+      while (
+        currentIndex > 0 &&
+        this.compare(this.data[currentIndex], this.data[parentIndex]) > 0
+      ) {
+        this.swap(currentIndex, parentIndex);
+        currentIndex = parentIndex;
+        parentIndex = Math.floor((currentIndex - 1) / 2);
+      }
+    } else {
+      this.heapify(currentIndex);
+    }
+  }
 }
