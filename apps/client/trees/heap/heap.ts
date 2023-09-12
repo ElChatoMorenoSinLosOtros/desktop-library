@@ -105,4 +105,40 @@ export default class Heap<T> {
   public size(): number {
     return this.data.length;
   }
+
+  public delete(item: T): void {
+    const index = this.data.indexOf(item);
+    if (index === -1) {
+      return;
+    }
+
+    const lastItem = this.data.pop();
+
+    if (lastItem !== undefined) {
+      this.data[index] = lastItem;
+
+      let currentIndex = index;
+      let parentIndex = Math.floor((currentIndex - 1) / 2);
+
+      if (
+        parentIndex >= 0 &&
+        this.compare(this.data[currentIndex], this.data[parentIndex]) > 0
+      ) {
+        while (
+          currentIndex > 0 &&
+          this.compare(this.data[currentIndex], this.data[parentIndex]) > 0
+        ) {
+          this.swap(currentIndex, parentIndex);
+          currentIndex = parentIndex;
+          parentIndex = Math.floor((currentIndex - 1) / 2);
+        }
+      } else {
+        this.heapify(currentIndex);
+      }
+    }
+
+    if (this.data.length === 0) {
+      this.data = [];
+    }
+  }
 }
